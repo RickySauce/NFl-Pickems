@@ -1,9 +1,22 @@
---MODELS--
-- Users (has_secure_password)
-    - Username
-    - Email
+--Schema--
+
+- Users
+    - username
+    - email
     - password_digest
+    - admin default: false
+    - owner default: false
 - Teams
+    - name
+    - abbreviation
+    - location
 - Leagues
+    - owner_id
+- UserLeagues
+  - league_id
+  - user_id
+- MatchUps
+  - home_id
+  - away_id
 - Years
 - Weeks
