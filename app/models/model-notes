@@ -1,0 +1,9 @@
+--MODELS--
+- Users (has_secure_password)
+    - Username
+    - Email
+    - password_digest
+- Teams
+- Leagues
+- Years
+- Weeks
