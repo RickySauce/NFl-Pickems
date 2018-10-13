@@ -10,6 +10,8 @@
     - name
     - abbreviation
     - location
+
+
 - Leagues - has_many users: through userLeagues || League has_many: seasons
     - name
     - owner_id: class_name => User
@@ -19,24 +21,28 @@
     - UserLeagues
       - league_id
       - user_id
-      - user_team_name = nill
+
+      - user_team_name = nil
      ------------------------
 
 - Seasons - has_many: weeks - 17 weeks
+  - league_id
   - locked default: false
-  - time stamp
+
+
   - Weeks - has_many: MatchUps  13 - 16 matchups
+    - start_time
+    - end_time
+    - season_id
     - locked: default: false
-      - MatchUps
+      - MatchUps has-many UserPicks
+        - week_id
         - home_id
         - away_id
         - winning_id
         - time
-
-
         UserPicks
         - user_id : value
-        - league_id : value
         - matchup_id : value
         - team_id : nil, !team_id.blank? border that team.
         - correct? : True || false if true highlight green if false highlight red
