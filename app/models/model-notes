@@ -27,6 +27,7 @@
 
 - Seasons - has_many: weeks - 17 weeks
   - league_id
+  - current_week
   - locked default: false
 
 
@@ -42,6 +43,7 @@
         - winning_id
         - time
         UserPicks
+        - locked: default: false
         - user_id : value
         - matchup_id : value
         - team_id : nil, !team_id.blank? border that team.
