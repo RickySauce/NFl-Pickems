@@ -1,0 +1,2 @@
+class UserPick < ApplicationRecord
+end
