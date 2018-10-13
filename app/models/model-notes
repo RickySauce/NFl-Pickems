@@ -1,23 +1,58 @@
 --Schema--
 
-- Users
+- Users - has_many leagues: throguh userleagues
     - username
     - email
     - password_digest
     - admin default: false
-    - owner default: false
+        - UserSettings Model
 - Teams
     - name
     - abbreviation
     - location
-- Leagues
-    - owner_id
-- UserLeagues
-  - league_id
-  - user_id
-- MatchUps
-  - home_id
-  - away_id
-- Years
+- Leagues - has_many users: through userLeagues || League has_many: seasons
+    - name
+    - owner_id: class_name => User
+              - additional privileges = remove/add players/ league settings
+                - LeagueSettings Model
+    ------ joins table ----
+    - UserLeagues
+      - league_id
+      - user_id
+      - user_team_name = nill
+     ------------------------
 
-- Weeks
+- Seasons - has_many: weeks - 17 weeks
+  - locked default: false
+  - time stamp
+  - Weeks - has_many: MatchUps  13 - 16 matchups
+    - locked: default: false
+      - MatchUps
+        - home_id
+        - away_id
+        - winning_id
+        - time
+
+
+        UserPicks
+        - user_id : value
+        - league_id : value
+        - matchup_id : value
+        - team_id : nil, !team_id.blank? border that team.
+        - correct? : True || false if true highlight green if false highlight red
+
+  state = {
+    matchup_1 = eagles
+  }
+
+
+--------------drop down-------------
+-team_1 - user_pick for that particular league for that particular matchup
+-team_2
+
+LEAGUE 1 id:1
+
+has_many users: through usersLeagues.
+                        - column league_id
+                            league_id = 1 - user_id = 1
+                            league_ud = 1 - user_id = 2
