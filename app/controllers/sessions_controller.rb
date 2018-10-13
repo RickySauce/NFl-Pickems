@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
 
 
-  def new
+  def login
     @user = User.find_by(username: params[:user][:username])
     if @user && @user.authenticate(params[:user][:password])
     render json: @user, status: 200
