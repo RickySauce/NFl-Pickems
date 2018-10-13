@@ -4,7 +4,7 @@ import './App.css';
 import Header from './header'
 import CustomNavbar from './components/navbar'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-
+import Login from './components/LoginRegistration/login'
 class App extends Component {
   render() {
     return (
@@ -12,6 +12,8 @@ class App extends Component {
       <React.Fragment>
       <Header/>
       <CustomNavbar/>
+      <Route exact path="/login" component={Login} />
+
       </React.Fragment>
       </Router>
     );
