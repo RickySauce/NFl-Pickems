@@ -1,11 +1,11 @@
 import React from 'react';
 
 
- const RegistrationForm = ({handleChange}) => {
+ const RegistrationForm = ({handleChange, handleSubmit}) => {
 
   return (
     <div>
-     <form>
+     <form onSubmit={handleSubmit}>
      <input
      id="username"
      placeholder="Username"

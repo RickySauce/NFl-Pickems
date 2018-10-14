@@ -3,6 +3,7 @@ import RegistrationForm from './registrationform'
 
  class Register extends Component {
   state = {
+    errors: [],
     username: '',
     email: '',
     password: '',
@@ -27,15 +28,35 @@ import RegistrationForm from './registrationform'
        body: data
      })
      .then(res => res.json())
-     .catch(json => {
-       debugger;
-     })
+     .then(json => {
+      const errors = json.errors
+      if (errors !== undefined){
+        this.setState({errors});
+      } 
+    });
    };
 
-    render() {
-      console.log(this.state)
+   renderErrors = () => {
+    const errors = []
+    if (this.state.errors != false) {
+      for (var el in this.state.errors){
+        errors.push(`${el}: ${this.state.errors[el].join(', ')}`)
+      }
       return (
         <div>
+        The following errors prevented the creation of the account:
+        <br/><br/>
+        {errors.map(el => <li>{el}</li>)}
+        <br/><br/>
+        </div>
+      )
+    }
+  }
+
+    render() {
+      return (
+        <div>
+        {this.renderErrors()}
            <RegistrationForm  handleChange={this.handleChange} handleSubmit={this.handleSubmit} />
         </div>
       )

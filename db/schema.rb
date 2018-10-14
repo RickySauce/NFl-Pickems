@@ -10,7 +10,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_13_001841) do
+ActiveRecord::Schema.define(version: 2018_10_13_134758) do
+
+  create_table "leagues", force: :cascade do |t|
+    t.string "name"
+    t.integer "current_season"
+    t.integer "owner_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "matchups", force: :cascade do |t|
+    t.integer "week_id"
+    t.integer "home_id"
+    t.integer "away_id"
+    t.integer "winning_id"
+    t.time "game_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "seasons", force: :cascade do |t|
+    t.integer "league_id"
+    t.integer "current_week"
+    t.boolean "locked", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "teams", force: :cascade do |t|
     t.string "name"
@@ -20,11 +46,37 @@ ActiveRecord::Schema.define(version: 2018_10_13_001841) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "user_leagues", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "league_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "user_picks", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "team_id"
+    t.integer "matchup_id"
+    t.boolean "correct"
+    t.boolean "locked", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "email"
     t.string "password_digest"
     t.boolean "admin", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "weeks", force: :cascade do |t|
+    t.date "start_date"
+    t.date "end_date"
+    t.integer "season_id"
+    t.boolean "locked"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
