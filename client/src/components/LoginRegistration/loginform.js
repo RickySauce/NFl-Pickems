@@ -5,7 +5,7 @@ const LoginForm = ({handleChange}) => {
 
   return (
     <div>
-    <form>
+    <form onSubmit={this.props.handleSubmit}>
       <input type="text" id="username" placeholder="Username" onChange={handleChange} /> <br />
       <input type="password" id="password" placeholder="Password" onChange={handleChange} /> <br />
       <input type="submit" value="Log In"  />
