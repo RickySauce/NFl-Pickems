@@ -1,1 +1,3 @@
 - Move handleChange into an events folder
+- add logic to navbar display
+- add onSubmit event handler for login form and registration form
