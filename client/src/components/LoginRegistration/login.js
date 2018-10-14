@@ -1,15 +1,11 @@
 import React, { Component } from 'react';
 import LoginForm from './loginform'
 
-
-
-
-
-export default class Login extends Component {
+class Login extends Component {
   state = {
         username: '',
         password: ''
-      } 
+      }
 
     handleChange = (event) => {
       this.setState({
@@ -26,3 +22,5 @@ export default class Login extends Component {
       )
     }
   }
+
+export default Login

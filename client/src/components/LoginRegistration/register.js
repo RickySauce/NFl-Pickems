@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import RegistrationForm from './registrationform'
 
-export default class Register extends Component {
+ class Register extends Component {
   state = {
     username: '',
     email: '',
@@ -17,6 +17,7 @@ export default class Register extends Component {
     }
 
     render() {
+      console.log(this.state)
       return (
         <div>
            <RegistrationForm  handleChange={this.handleChange} />
@@ -24,3 +25,5 @@ export default class Register extends Component {
       )
     }
   }
+
+export default Register
