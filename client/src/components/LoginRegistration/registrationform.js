@@ -32,4 +32,4 @@ import React from 'react';
   )
 }
 
-export default RegistrationForm
+export default RegistrationForm;

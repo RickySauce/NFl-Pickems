@@ -13,7 +13,7 @@ const store = createStore(rootReducer, applyMiddleware(thunk))
 
 
 ReactDOM.render(
-  <Provider>
+  <Provider store={store}>
     <Router>
       <React.Fragment>
         <Route path="/" component={App}/>

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import RegistrationForm from './registrationform'
+import { connect } from 'react-redux';
+import { signUp } from '../../actions/signUp';
+import RegistrationForm from './registrationform';
 
  class Register extends Component {
   state = {
@@ -29,10 +31,12 @@ import RegistrationForm from './registrationform'
      })
      .then(res => res.json())
      .then(json => {
-      const errors = json.errors
-      if (errors !== undefined){
-        this.setState({errors});
-      }
+       const errors = json.errors
+       if (errors !== undefined){
+         this.setState({errors});
+       } else {
+       this.props.signUp(json);
+     };
     });
    };
 
@@ -55,6 +59,7 @@ import RegistrationForm from './registrationform'
   }
 
     render() {
+      console.log(this.props.user)
       return (
         <div>
            <RegistrationForm  handleChange={this.handleChange} handleSubmit={this.handleSubmit} />
@@ -64,4 +69,11 @@ import RegistrationForm from './registrationform'
     }
   }
 
-export default Register
+
+const mapStateToProps = (state) => {
+  return {
+    user: state.user
+  }
+}
+
+export default connect(mapStateToProps, {signUp})(Register);
