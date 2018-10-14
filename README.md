@@ -1,5 +1,5 @@
 # NFl-Pickems
-test
 
-
-wer2werwerwerqwreqerqer
+Contributors:
+ - Eric DeSimone - https://github.com/RickySauce
+ - Matthew Goldfine - https://github.com/mgoldfi1
