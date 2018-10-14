@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
     if @user && @user.authenticate(params[:user][:password])
     render json: @user, status: 200
     else
-    render json: {message: "Invalid Username Or Password"}, status: 406
+    render json: {error: "Invalid Username Or Password"}, status: 422
     end
   end
 
@@ -17,7 +17,7 @@ class SessionsController < ApplicationController
 private
 
  def user_params
-   params.require(:user).permit(:username,:password, :email, :password_confirmation)
+   params.require(:user).permit(:username,:password)
  end
 
 end
