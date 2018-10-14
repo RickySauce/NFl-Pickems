@@ -32,11 +32,14 @@ import RegistrationForm from './registrationform'
       const errors = json.errors
       if (errors !== undefined){
         this.setState({errors});
-      } 
+      }
     });
    };
 
    renderErrors = () => {
+     let liStyle = {
+      color: 'red'
+    };
     const errors = []
     if (this.state.errors != false) {
       for (var el in this.state.errors){
@@ -44,9 +47,7 @@ import RegistrationForm from './registrationform'
       }
       return (
         <div>
-        The following errors prevented the creation of the account:
-        <br/><br/>
-        {errors.map(el => <li>{el}</li>)}
+        {errors.map(el => <li style={liStyle}>{el}</li>)}
         <br/><br/>
         </div>
       )
@@ -56,8 +57,8 @@ import RegistrationForm from './registrationform'
     render() {
       return (
         <div>
-        {this.renderErrors()}
            <RegistrationForm  handleChange={this.handleChange} handleSubmit={this.handleSubmit} />
+           {this.renderErrors()}
         </div>
       )
     }
