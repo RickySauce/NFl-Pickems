@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
-import LoginForm from './loginform'
+import RegistrationForm from './registrationform'
 
-
-
-
-
-export default class Login extends Component {
+export default class Register extends Component {
   state = {
-        username: '',
-        password: ''
-      } 
+    username: '',
+    email: '',
+    password: '',
+    password_confirmation: ''
+}
 
     handleChange = (event) => {
       this.setState({
@@ -21,7 +19,7 @@ export default class Login extends Component {
     render() {
       return (
         <div>
-           <LoginForm  handleChange={this.handleChange} />
+           <RegistrationForm  handleChange={this.handleChange} />
         </div>
       )
     }
