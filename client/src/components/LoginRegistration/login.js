@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { logIn } from '../../actions/logIn';
+import { connect } from 'react-redux';
 import LoginForm from './loginform'
 
 class Login extends Component {
@@ -16,7 +18,7 @@ class Login extends Component {
 
     handleSubmit = (event) => {
      event.preventDefault()
-     fetch('/api/users', {
+     fetch('/api/login', {
        headers: {
                'Accept': 'application/json',
                'Content-Type': 'application/json'
@@ -27,16 +29,26 @@ class Login extends Component {
      .then(resp => resp.json())
      .then(json => this.props.logIn(json))
      .catch(error => this.props.message("Invalid Username Or Password"))
+    }
 
+    renderComponent = () => {
+      return this.props.user === "" ? <LoginForm  handleChange={this.handleChange} handleSubmit={this.handleSubmit} /> : "Hello"
     }
 
     render() {
+      console.log(this.props.user)
       return (
         <div>
-           <LoginForm  handleChange={this.handleChange} handleSubmit={this.handleSubmit} />
+          {this.renderComponent()}
         </div>
       )
     }
   }
 
-export default Login
+  const mapStateToProps = (state) => {
+    return {
+      user: state.user.user
+    }
+  }
+
+export default connect(mapStateToProps, {logIn})(Login);

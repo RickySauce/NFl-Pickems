@@ -45,7 +45,7 @@ import RegistrationForm from './registrationform';
       color: 'red'
     };
     const errors = []
-    if (this.state.errors != false) {
+    if (this.state.errors !== []) {
       for (var el in this.state.errors){
         errors.push(`${el}: ${this.state.errors[el].join(', ')}`)
       }
@@ -70,10 +70,4 @@ import RegistrationForm from './registrationform';
   }
 
 
-const mapStateToProps = (state) => {
-  return {
-    user: state.user
-  }
-}
-
-export default connect(mapStateToProps, {signUp})(Register);
+export default connect(null, {signUp})(Register);

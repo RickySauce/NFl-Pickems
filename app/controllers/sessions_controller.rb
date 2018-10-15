@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
     if @user && @user.authenticate(params[:user][:password])
     render json: @user, status: 200
     else
-    render json: {error: "Invalid Username Or Password"}, status: 422
+    render status: 422
     end
   end
 
