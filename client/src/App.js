@@ -9,7 +9,7 @@ import Register from './components/LoginRegistration/register'
 import { connect } from 'react-redux';
 import { fetchUser } from './actions/fetchUser'
 import Profile from './components/user/profile'
-
+import LeagueForm from './components/leagues/createleague'
 class App extends Component {
 
   componentWillMount(){
@@ -29,6 +29,8 @@ class App extends Component {
       <Route exact path="/login" component={Login} />
       <Route exact path="/profile" component={Profile} />
       <Route exact path="/register" component={Register} />
+      <Route exact path="/leagues/new" component={LeagueForm} />
+
       </React.Fragment>
       </Router>
     );
