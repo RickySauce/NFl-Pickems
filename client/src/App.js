@@ -8,7 +8,6 @@ import Login from './components/LoginRegistration/login'
 import Register from './components/LoginRegistration/register'
 import { connect } from 'react-redux';
 import { fetchUser } from './actions/fetchUser'
-import { logOut } from './actions/logOut'
 
 
 class App extends Component {
@@ -29,7 +28,6 @@ class App extends Component {
       <CustomNavbar user={this.props.user}/>
       <Route exact path="/login" component={Login} />
       <Route exact path="/register" component={Register} />
-      <Route exact path="/logout" onEnter={this.props.logOut} />
       </React.Fragment>
       </Router>
     );
@@ -43,4 +41,4 @@ const mapStateToProps = (state) => {
 }
 
 
-export default connect(mapStateToProps, {fetchUser, logOut})(App);
+export default connect(mapStateToProps, {fetchUser})(App);

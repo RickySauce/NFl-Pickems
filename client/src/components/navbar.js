@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Navbar, Nav, NavItem } from 'react-bootstrap'
+import { logOut } from '../actions/logout';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom'
 
@@ -22,8 +23,12 @@ const CustomNavbar = (props) => {
       let links = ["home","logout"]
       return links.map(el => {
         let id = links.findIndex(element => element === el)  + 1
+        if (el === "logout") {
+          return <NavItem eventKey={id} componentClass={Link} href="/login"  to="/login" onClick={props.logOut}> {capitalize(el)}</NavItem>
+        } else {
         return   <NavItem eventKey={id} componentClass={Link} href={el}  to={el}> {capitalize(el)}</NavItem>
-                })
+        }
+      })
     }
   }
 
@@ -48,4 +53,4 @@ const CustomNavbar = (props) => {
 }
 
 
-export default CustomNavbar;
+export default connect(null,{logOut})(CustomNavbar);
