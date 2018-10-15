@@ -59,7 +59,6 @@ import RegistrationForm from './registrationform';
   }
 
     render() {
-      console.log(this.props.user)
       return (
         <div>
            <RegistrationForm  handleChange={this.handleChange} handleSubmit={this.handleSubmit} />
