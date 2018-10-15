@@ -30,7 +30,6 @@ const CustomNavbar = (props) => {
 
   return (
   <div>
-  {console.log(props.user)}
   <Navbar default collapseOnSelect>
     <Navbar.Header>
       <Navbar.Brand>
