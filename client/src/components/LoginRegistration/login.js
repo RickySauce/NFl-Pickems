@@ -17,6 +17,7 @@ class Login extends Component {
     }
 
     handleSubmit = (event) => {
+      debugger;
      event.preventDefault()
      fetch('/api/login', {
        headers: {
@@ -35,7 +36,6 @@ class Login extends Component {
     }
 
     render() {
-      console.log(this.handleSubmit)
       return (
         <div>
           {this.renderComponent()}
