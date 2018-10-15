@@ -17,7 +17,6 @@ class Login extends Component {
     }
 
     handleSubmit = (event) => {
-      debugger;
      event.preventDefault()
      fetch('/api/login', {
        headers: {
