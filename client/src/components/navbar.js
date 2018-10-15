@@ -20,7 +20,7 @@ const CustomNavbar = (props) => {
           return   <NavItem eventKey={id} componentClass={Link} href={el}  to={el}> {capitalize(el)}</NavItem>
                 })
     } else {
-      let links = ["home","logout"]
+      let links = ["home","logout","profile"]
       return links.map(el => {
         let id = links.findIndex(element => element === el)  + 1
         if (el === "logout") {

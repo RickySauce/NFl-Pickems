@@ -8,7 +8,7 @@ import Login from './components/LoginRegistration/login'
 import Register from './components/LoginRegistration/register'
 import { connect } from 'react-redux';
 import { fetchUser } from './actions/fetchUser'
-
+import Profile from './components/user/profile'
 
 class App extends Component {
 
@@ -27,6 +27,7 @@ class App extends Component {
       <Header/>
       <CustomNavbar user={this.props.user}/>
       <Route exact path="/login" component={Login} />
+      <Route exact path="/profile" component={Profile} />
       <Route exact path="/register" component={Register} />
       </React.Fragment>
       </Router>
