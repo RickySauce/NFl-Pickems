@@ -17,6 +17,7 @@ class Login extends Component {
     }
 
     handleSubmit = (event) => {
+      debugger;
      event.preventDefault()
      fetch('/api/login', {
        headers: {
@@ -28,7 +29,6 @@ class Login extends Component {
      })
      .then(resp => resp.json())
      .then(json => this.props.logIn(json))
-     .catch(error => this.props.message("Invalid Username Or Password"))
     }
 
     renderComponent = () => {
