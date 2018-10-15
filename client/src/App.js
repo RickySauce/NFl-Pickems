@@ -15,7 +15,7 @@ class App extends Component {
   componentWillMount(){
     let id = sessionStorage.getItem("ID")
   if (typeof(id) === "string") {
-      fetchUser(id)
+      this.props.fetchUser(id)
   }
 
   }
