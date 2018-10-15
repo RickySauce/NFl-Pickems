@@ -6,7 +6,13 @@ import CustomNavbar from './components/navbar'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import Login from './components/LoginRegistration/login'
 import Register from './components/LoginRegistration/register'
+
 class App extends Component {
+
+  componentWillMount(){
+    let id = sessionStorage.getItem("ID")
+  }
+
   render() {
     return (
       <Router>

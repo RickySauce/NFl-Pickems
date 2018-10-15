@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { logIn } from '../../actions/signUp';
+import { logIn } from '../../actions/logIn';
 import RegistrationForm from './registrationform';
 
  class Register extends Component {
