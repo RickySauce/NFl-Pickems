@@ -17,6 +17,7 @@ class Login extends Component {
     }
 
     handleSubmit = (event) => {
+      debugger;
      event.preventDefault()
      fetch('/api/login', {
        headers: {
@@ -45,6 +46,10 @@ class Login extends Component {
     }
   }
 
+  const mapStateToProps = (state) => {
+    return  {
+      user: state.user.user
+    }
+  }
 
-
-export default connect(null, {logIn})(Login);
+export default connect(mapStateToProps, {logIn})(Login);

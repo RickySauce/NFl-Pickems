@@ -25,7 +25,7 @@ class App extends Component {
       <Router>
       <React.Fragment>
       <Header/>
-      <CustomNavbar/>
+      <CustomNavbar user={this.props.user}/>
       <Route exact path="/login" component={Login} />
       <Route exact path="/register" component={Register} />
       </React.Fragment>
@@ -34,10 +34,11 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = state => {
-
+const mapStateToProps = (state) => {
+  return  {
+    user: state.user.user
+  }
 }
-
 
 
 export default connect(mapStateToProps, {fetchUser})(App);
