@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Panel, Button } from 'react-bootstrap'
+import { Panel, Button, PageHeader } from 'react-bootstrap'
 
 
 
@@ -13,10 +13,10 @@ import { Panel, Button } from 'react-bootstrap'
     render() {
       return (
         <div>
-        <h1 className="welcome">Welcome {this.props.user.username}!</h1>
+        <PageHeader className="welcome">Welcome {this.props.user.username}!</PageHeader>
         <Panel>
-        <Panel.Heading>My Leagues</Panel.Heading>
-        <Panel.Body >League 1 name <Button bsStyle="info" bsSize="xsmall" value={1} onClick={this.handleClick}>CLICK ME</Button></Panel.Body>
+        <Panel.Heading>My Leagues <Button className="pull-right" bsStyle="success" bsSize="xsmall" value={1} onClick={this.handleClick}>Create New League</Button></Panel.Heading>
+        <Panel.Body >League 1 name <Button bsStyle="info" bsSize="xsmall" value={1} onClick={this.handleClick}>View</Button></Panel.Body>
         <Panel.Body onClick={this.handleClick}>League 2 name</Panel.Body>
         </Panel>
         </div>
