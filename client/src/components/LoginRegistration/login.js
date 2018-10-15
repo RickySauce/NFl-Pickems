@@ -36,7 +36,6 @@ class Login extends Component {
     }
 
     render() {
-      console.log(this.handleSubmit)
       return (
         <div>
           {this.renderComponent()}
