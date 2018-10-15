@@ -3,5 +3,5 @@ Rails.application.routes.draw do
 
 post '/api/login', to: 'sessions#login'
 post '/api/register', to: 'users#create'
-
+get '/api/users/:id', to: 'users#show'
 end

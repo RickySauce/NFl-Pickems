@@ -4,7 +4,3 @@ export function logIn(user){
     sessionStorage.setItem("ID", `${user.id}`);
   };
 };
-
-export function loadUser(){
-  
-}
