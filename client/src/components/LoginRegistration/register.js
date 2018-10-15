@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { signUp } from '../../actions/signUp';
+import { logIn } from '../../actions/signUp';
 import RegistrationForm from './registrationform';
 
  class Register extends Component {
@@ -35,7 +35,7 @@ import RegistrationForm from './registrationform';
        if (errors !== undefined){
          this.setState({errors});
        } else {
-       this.props.signUp(json);
+       this.props.logIn(json);
      };
     });
    };
@@ -70,4 +70,4 @@ import RegistrationForm from './registrationform';
   }
 
 
-export default connect(null, {signUp})(Register);
+export default connect(null, {logIn})(Register);

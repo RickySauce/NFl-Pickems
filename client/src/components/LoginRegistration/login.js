@@ -32,7 +32,7 @@ class Login extends Component {
     }
 
     renderComponent = () => {
-      return this.props.user === "" ? <LoginForm  handleChange={this.handleChange} handleSubmit={this.handleSubmit} /> : "Hello"
+      return this.props.user === "" ? <LoginForm handleChange={this.handleChange} handleSubmit={this.handleSubmit} /> : "Hello"
     }
 
     render() {
