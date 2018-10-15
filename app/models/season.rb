@@ -1,4 +1,4 @@
 class Season < ApplicationRecord
-  belongs_to :league
-  has_many :weeks 
+  belongs_to :league, optional: true
+  has_many :weeks
 end
