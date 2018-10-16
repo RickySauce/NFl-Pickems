@@ -7,7 +7,8 @@ export default class LeagueForm extends Component {
 
   state = {
     count: 0,
-    inputs: []
+    inputs: [],
+    name: ''
   }
 
   handleClick = (event) => {
@@ -36,13 +37,16 @@ export default class LeagueForm extends Component {
     })
   }
 
+  handleNameChange = (event) => {
+    this.setState({name: event.target.value})
+  }
 
   render() {
     console.log(this.state)
     return (
       <form onSubmit={this.handleSubmit}>
       <strong>Name of League</strong><br/><br/>
-      <input type="text" name="name"/><br/><br/>
+      <input onChange={this.handleNameChange} type="text" name="name"/><br/><br/>
       <strong>Number of Players</strong>  <Button onClick={this.handleClick} name="decrease" bsSize="xsmall">-</Button><span>{this.state.count}</span><Button onClick={this.handleClick} name="increase" bsSize="xsmall">+</Button><br/><br/>
       {this.state.inputs.map(el => {
         return <input id={Object.keys(el)} onChange={this.handleChange} style={{display: "block"}}type='text' placeholder='Player Name'/>
