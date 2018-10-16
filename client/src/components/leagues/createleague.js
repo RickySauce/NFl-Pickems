@@ -7,17 +7,7 @@ export default class LeagueForm extends Component {
 
   state = {
     count: 0,
-    inputs: [],
-<<<<<<< HEAD
-    name: "",
-    players: []
-=======
->>>>>>> 4932932eb691405c27463a9ba9c951b242228d39
-  }
-
-  handleChange = (event) => {
-    this.setState({players: [...this.state.players, event.target.name: event.target.value]})
-    console.log(this.state)
+    inputs: []
   }
 
   handleClick = (event) => {
@@ -28,21 +18,10 @@ export default class LeagueForm extends Component {
         return this.setState({count: this.state.count - 1, inputs: [...this.state.inputs.slice(0,-1)]})
       } else {return this.setState({count: 0})}
       case "increase":
-<<<<<<< HEAD
-        return this.setState({count: this.state.count + 1, inputs: [...this.state.inputs, <input onChange={this.handleChange} name={"Player" + (this.state.count + 1)} style={{display: "block"}}type='text' placeholder='Player Name'/>]})
-    }
-  }
-
-  handleSubmit = (event) => {
-    event.preventDefault()
-    console.log()
-  }
-
-=======
-        let count = this.state.count + 1;
+      let count = this.state.count + 1;
         let playerName = `player${count}`
         let player = {[playerName]: ""};
-        return this.setState({count: this.state.count + 1, inputs: [...this.state.inputs, player]})
+        return this.setState({count: count, inputs: [...this.state.inputs, player]})
     }
   }
 
@@ -58,7 +37,6 @@ export default class LeagueForm extends Component {
   }
 
 
->>>>>>> 4932932eb691405c27463a9ba9c951b242228d39
   render() {
     console.log(this.state)
     return (
