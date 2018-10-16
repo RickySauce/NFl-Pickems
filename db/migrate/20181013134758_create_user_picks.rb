@@ -4,6 +4,7 @@ class CreateUserPicks < ActiveRecord::Migration[5.2]
       t.integer :user_id
       t.integer :team_id
       t.integer :matchup_id
+      t.integer :league_season
       t.boolean :correct
       t.boolean :locked, default: false
       t.timestamps

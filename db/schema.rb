@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_15_213338) do
+ActiveRecord::Schema.define(version: 2018_10_16_115207) do
+
+  create_table "league_seasons", force: :cascade do |t|
+    t.integer "league_id"
+    t.integer "season_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "leagues", force: :cascade do |t|
     t.string "name"
@@ -31,12 +38,11 @@ ActiveRecord::Schema.define(version: 2018_10_15_213338) do
   end
 
   create_table "seasons", force: :cascade do |t|
-    t.integer "league_id"
     t.integer "current_week"
+    t.integer "year"
     t.boolean "locked", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "year"
   end
 
   create_table "teams", force: :cascade do |t|
@@ -58,6 +64,7 @@ ActiveRecord::Schema.define(version: 2018_10_15_213338) do
     t.integer "user_id"
     t.integer "team_id"
     t.integer "matchup_id"
+    t.integer "league_season"
     t.boolean "correct"
     t.boolean "locked", default: false
     t.datetime "created_at", null: false
@@ -77,9 +84,9 @@ ActiveRecord::Schema.define(version: 2018_10_15_213338) do
     t.date "start_date"
     t.date "end_date"
     t.integer "season_id"
+    t.boolean "locked", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "locked", default: false
   end
 
 end
