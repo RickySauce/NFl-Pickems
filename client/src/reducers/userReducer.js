@@ -8,7 +8,7 @@ export default function userReducer(state = {user: '', logging_out: false}, acti
       return {user: '', logging_out: true}
 
     case 'RESET_LOGGING_OUT':
-      return {...state, logging_out: false}  
+      return {...state, logging_out: false}
 
     default:
       return state;
