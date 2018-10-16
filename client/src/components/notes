@@ -1,1 +1,3 @@
-- add boolean to user reducer 
+- add boolean to user reducer
+- convert all fetch requests to async dispatch actions
+- refactor code for LeagueForm

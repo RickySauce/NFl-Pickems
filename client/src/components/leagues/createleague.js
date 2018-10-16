@@ -10,7 +10,7 @@ class LeagueForm extends Component {
     count: 0,
     inputs: [],
     name: '',
-    ownerID: this.props.user.id
+    owner_id: this.props.user.id
   }
 
   handleClick = (event) => {
