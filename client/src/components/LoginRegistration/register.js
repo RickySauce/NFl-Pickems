@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { logIn } from '../../actions/logIn';
+import Profile from '../user/profile'
 import RegistrationForm from './registrationform';
 
  class Register extends Component {
@@ -58,15 +59,24 @@ import RegistrationForm from './registrationform';
     }
   }
 
+  renderComponent = () => {
+    return this.props.user === "" ? <RegistrationForm  handleChange={this.handleChange} handleSubmit={this.handleSubmit} /> : <Profile/>
+  }
+
     render() {
       return (
         <div>
-           <RegistrationForm  handleChange={this.handleChange} handleSubmit={this.handleSubmit} />
+           {this.renderComponent()}
            {this.renderErrors()}
         </div>
       )
     }
   }
 
+  const mapStateToProps = (state) => {
+    return  {
+      user: state.user.user
+    }
+  }
 
-export default connect(null, {logIn})(Register);
+export default connect(mapStateToProps, {logIn})(Register);
