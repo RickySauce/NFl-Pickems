@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import { Button } from 'react-bootstrap'
+import { connect } from 'react-redux';
 
 
 
-export default class LeagueForm extends Component {
+class LeagueForm extends Component {
 
   state = {
     count: 0,
     inputs: [],
-    name: ''
+    name: '',
+    ownerID: this.props.user.id
   }
 
   handleClick = (event) => {
@@ -41,6 +43,20 @@ export default class LeagueForm extends Component {
     this.setState({name: event.target.value})
   }
 
+  handleSubmit = event => {
+    event.preventDefault();
+    fetch('/api/leagues/new', {
+      headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+    },
+      method: "POST",
+      body: JSON.stringify({league: this.state})
+    }
+    )
+  }
+
+
   render() {
     console.log(this.state)
     return (
@@ -55,5 +71,14 @@ export default class LeagueForm extends Component {
       </form>
     )
   }
-
 }
+
+
+const mapStateToProps = (state) => {
+  return  {
+    user: state.user.user
+  }
+}
+
+
+export default connect(mapStateToProps)(LeagueForm)
