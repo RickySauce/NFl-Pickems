@@ -2,7 +2,6 @@ export default function userReducer(state = {user: '', logging_out: false}, acti
   switch (action.type) {
 
     case 'LOG_IN':
-      console.log(action)
       return {user: action.user, logging_out: false};
 
     case 'LOG_OUT':

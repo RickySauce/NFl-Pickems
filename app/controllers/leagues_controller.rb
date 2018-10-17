@@ -11,6 +11,11 @@ class LeaguesController < ApplicationController
     end
   end
 
+  def show
+    league = League.find(params[:id])
+    render json: league 
+  end
+
 
 
 

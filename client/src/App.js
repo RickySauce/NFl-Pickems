@@ -11,6 +11,9 @@ import { fetchUser } from './actions/fetchUser'
 import Profile from './components/user/profile'
 import LeagueForm from './components/leagues/createleague'
 import Home from './components/home'
+import League from './components/leagues/leagueview'
+
+
 
 class App extends Component {
 
@@ -31,6 +34,7 @@ class App extends Component {
       <Route exact path="/profile" component={Profile} />
       <Route exact path="/register" component={Register} />
       <Route exact path="/leagues/new" component={LeagueForm} />
+      <Route exact path="/league/:id/view" component={League} />
       <Route exact path="/home" component={Home} />
       </React.Fragment>
       </Router>
