@@ -9,10 +9,18 @@
 
 api_key = 'qgwp56audu67tqeyupv66ymc'
 api_root = 'https://api.sportradar.us/nfl-ot2/'
+current_year = Date.today.year
 
-@resp = Faraday.get "#{api_root}seasontd/2018/standings.json?" do |req|
+@resp = Faraday.get "#{api_root}seasontd/#{current_year}/standings.json?" do |req|
  req.params['api_key'] = api_key
 end
+
+if @resp.body.blank?
+  @resp = Faraday.get "#{api_root}seasontd/#{current_year - 1}/standings.json?" do |req|
+   req.params['api_key'] = api_key
+  end
+end
+
 body_hash = JSON.parse(@resp.body)
 
 body_hash["conferences"].each do |conference|
