@@ -17,7 +17,7 @@ const CustomNavbar = (props) => {
       let links = ["home","login","register"]
         return links.map(el => {
           let id = links.findIndex(element => element === el)  + 1
-          return   <NavItem eventKey={id} componentClass={Link} href={el}  to={el}> {capitalize(el)}</NavItem>
+          return   <NavItem eventKey={id} componentClass={Link} href={`/${el}`}  to={`/${el}`}> {capitalize(el)}</NavItem>
                 })
     } else {
       let links = ["home","logout","profile"]
@@ -26,7 +26,7 @@ const CustomNavbar = (props) => {
         if (el === "logout") {
           return <NavItem eventKey={id} componentClass={Link} href="/home"  to="/home" onClick={props.logOut}> {capitalize(el)}</NavItem>
         } else {
-        return   <NavItem eventKey={id} componentClass={Link} href={el}  to={el}> {capitalize(el)}</NavItem>
+        return   <NavItem eventKey={id} componentClass={Link} href={`/${el}`}  to={`/${el}`} > {capitalize(el)}</NavItem>
         }
       })
     }

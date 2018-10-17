@@ -8,6 +8,7 @@ import Login from './components/LoginRegistration/login'
 import Register from './components/LoginRegistration/register'
 import { connect } from 'react-redux';
 import { fetchUser } from './actions/fetchUser'
+import { newSeason } from './actions/newSeason';
 import Profile from './components/user/profile'
 import LeagueForm from './components/leagues/createleague'
 import Home from './components/home'
@@ -15,13 +16,15 @@ import League from './components/leagues/leagueview'
 
 
 
+
 class App extends Component {
 
   componentWillMount(){
+    // this.props.newSeason()
     let id = sessionStorage.getItem("ID")
-  if (typeof(id) === "string") {
-      this.props.fetchUser(id)
-  }
+    if (typeof(id) === "string") {
+        this.props.fetchUser(id)
+    }
   }
 
   render() {
@@ -49,4 +52,4 @@ const mapStateToProps = (state) => {
 }
 
 
-export default connect(mapStateToProps, {fetchUser})(App);
+export default connect(mapStateToProps, {fetchUser, newSeason})(App);

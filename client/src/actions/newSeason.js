@@ -1,7 +1,6 @@
 export function newSeason(){
   return (dispatch) => {
-    fetch(`/api/users/${id}`)
+    fetch(`/api/seasons/new`)
     .then(resp => resp.json())
-    .then(json => dispatch({ type: 'LOG_IN', user: json}))
   };
 };

@@ -19,6 +19,7 @@ import { Link } from 'react-router-dom'
 
 
     render() {
+      console.log(this.props.user)
       return (
         <div>
         <PageHeader className="welcome">Welcome {this.props.user.username}!</PageHeader>
