@@ -5,6 +5,7 @@ class CreateWeeks < ActiveRecord::Migration[5.2]
       t.date :end_date
       t.integer :season_id
       t.boolean :locked, :default => false
+      t.integer :week_number
       t.timestamps
     end
   end

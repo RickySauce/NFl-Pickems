@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_17_220926) do
+ActiveRecord::Schema.define(version: 2018_10_16_115207) do
 
   create_table "league_seasons", force: :cascade do |t|
     t.integer "league_id"
@@ -32,10 +32,9 @@ ActiveRecord::Schema.define(version: 2018_10_17_220926) do
     t.integer "home_id"
     t.integer "away_id"
     t.integer "winning_id"
-    t.string "game_time"
+    t.datetime "game_date_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.date "game_date"
   end
 
   create_table "seasons", force: :cascade do |t|
@@ -77,6 +76,7 @@ ActiveRecord::Schema.define(version: 2018_10_17_220926) do
     t.string "email"
     t.string "password_digest"
     t.boolean "admin", default: false
+    t.string "time_zone", default: "Eastern Time (US & Canada)"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -86,9 +86,9 @@ ActiveRecord::Schema.define(version: 2018_10_17_220926) do
     t.date "end_date"
     t.integer "season_id"
     t.boolean "locked", default: false
+    t.integer "week_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "week_number"
   end
 
 end

@@ -31,52 +31,33 @@ current_year = Date.today.year
 #   end
 # end
 
-  @resp = Faraday.get "#{api_root}games/2018/REG/schedule.json?" do |req|
-   req.params['api_key'] = api_key
-  end
-def date_parser(date)
-  # Date.strptime(date).strptime('%A')
-  date, time = date.split('T')[0], date.split('T')[1].split('+')[0]
-  time = time.split(':')
-  if time[0].to_i < 4
-    time[0] = time[0].to_i + 20
-    time = time.join(':').to_time.strftime('%l:%M %p').strip
-    date_time = {
-      time: time,
-      date: Date.strptime(date) - 1
-    }
-  else
-    time[0] = time[0].to_i - 4
-    time = time.join(':').to_time.strftime('%l:%M %p').strip
-    date_time = {
-      time: time,
-      date: Date.strptime(date)
-    }
-  end
-  date_time
-end
-body_hash = JSON.parse(@resp.body)
-  @season = Season.create(year: body_hash["year"])
-  body_hash["weeks"].each do |week|
-    @week = @season.weeks.build(week_number: @season.weeks.count + 1)
-    @week.save
-    week["games"].each do |game|
-      home = Team.find_by(abrv: game["home"]["alias"])
-      away = Team.find_by(abrv: game["away"]["alias"])
-      date_time = date_parser(game["scheduled"])
-      @matchup = @week.matchups.build(
-        home_id: home.id,
-        away_id: away.id,
-        game_time: date_time[:time],
-        game_date: date_time[:date]
-      )
-      @matchup.save
-    end
-    start_date = @week.matchups.sort_by{|matchup| matchup.game_date}.first.game_date - 2
-    @week.update(start_date: start_date, end_date: start_date + 7)
-    
-    binding.pry
-  end
+#   @resp = Faraday.get "#{api_root}games/2018/REG/schedule.json?" do |req|
+#    req.params['api_key'] = api_key
+#   end
+# def date_parser(date)
+#   binding.pry
+#   date_time
+# end
+# body_hash = JSON.parse(@resp.body)
+#   @season = Season.create(year: body_hash["year"])
+#   body_hash["weeks"].each do |week|
+#     @week = @season.weeks.build(week_number: @season.weeks.count + 1)
+#     @week.save
+#     week["games"].each do |game|
+#       home = Team.find_by(abrv: game["home"]["alias"])
+#       away = Team.find_by(abrv: game["away"]["alias"])
+#       @matchup = @week.matchups.build(
+#         home_id: home.id,
+#         away_id: away.id,
+#         game_date_time: game["scheduled"]
+#       )
+#       @matchup.save
+#     end
+#     start_date = @week.matchups.sort_by{|matchup| matchup.game_date}.first.game_date - 2
+#     @week.update(start_date: start_date, end_date: start_date + 7)
+#
+#     binding.pry
+#   end
 
 
 # create_table "weeks", force: :cascade do |t|

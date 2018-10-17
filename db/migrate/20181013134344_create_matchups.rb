@@ -5,7 +5,7 @@ class CreateMatchups < ActiveRecord::Migration[5.2]
       t.integer :home_id
       t.integer :away_id
       t.integer :winning_id
-      t.time :game_time
+      t.datetime :game_date_time
       t.timestamps
     end
   end
