@@ -44,11 +44,7 @@ import { Link } from 'react-router-dom'
     }
   }
 
-  const mapDispatchToProps = (dispatch) => {
-    return {
-      fetchLeagues: (leagues) => dispatch({type: "FETCH_LEAGUES", leagues: leagues })
-    }
-  }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Profile)
+
+export default connect(mapStateToProps)(Profile)
