@@ -28,7 +28,7 @@ export default class League extends Component {
       <Panel>
       <Panel.Heading>Members</Panel.Heading>
       {this.state.users.map(u => {
-        return <Panel.Body key={u.id}>{u.username} {this.state.owner_id === u.id ? "OWNER" : ""}</Panel.Body>
+        return <Panel.Body key={u.id}>{this.state.owner_id === u.id ? <img style={{width: "18px", height: "18px"}} src={require('./image/crown.jpg')} alt="crown" title="crown" /> : ""} {u.username}</Panel.Body>
         }
       )
     }
