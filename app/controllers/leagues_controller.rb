@@ -8,12 +8,14 @@ class LeaguesController < ApplicationController
         @user = User.find_by(username: hash.values.first)
         UserLeague.create(league_id: @league.id, user_id: @user.id) if @user
       end
+    else
+      render status: 422
     end
   end
 
   def show
     league = League.find(params[:id])
-    render json: league 
+    render json: league
   end
 
 
