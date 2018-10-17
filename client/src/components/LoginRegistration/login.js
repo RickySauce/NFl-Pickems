@@ -28,6 +28,7 @@ class Login extends Component {
      })
      .then(resp => resp.json())
      .then(json => this.props.logIn(json))
+     .catch(error => alert('Incorrect Username or Password') )
     }
 
     renderComponent = () => {

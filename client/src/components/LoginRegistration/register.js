@@ -37,6 +37,7 @@ import RegistrationForm from './registrationform';
          this.setState({errors});
        } else {
        this.props.logIn(json);
+       this.setState({errors});
      };
     });
    };
