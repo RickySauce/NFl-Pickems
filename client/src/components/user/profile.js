@@ -6,7 +6,13 @@ import { Link } from 'react-router-dom'
 
 
 
+
   class Profile extends Component {
+
+    componentDidMount(){
+      console.log(this.props.loaded)
+      this.props.changeLoad()
+    }
 
     handleClick = event => {
       console.log(event.target.value)
@@ -14,7 +20,6 @@ import { Link } from 'react-router-dom'
 
 
     render() {
-      console.log(this.props.user)
       return (
         <div>
         <PageHeader className="welcome">Welcome {this.props.user.username}!</PageHeader>
@@ -34,11 +39,16 @@ import { Link } from 'react-router-dom'
 
   const mapStateToProps = (state) => {
     return  {
-      user: state.user.user
+      user: state.user.user,
+      loading: state.user.loading
+    }
+  }
+
+  const mapDispatchToProps = (dispatch) => {
+    return {
+      changeLoad: () => dispatch({type: "LOADED"})
     }
   }
 
 
-
-
-export default connect(mapStateToProps)(Profile)
+export default connect(mapStateToProps, mapDispatchToProps)(Profile)
