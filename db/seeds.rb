@@ -35,15 +35,36 @@ current_year = Date.today.year
    req.params['api_key'] = api_key
   end
 def date_parser(date)
-  binding.pry
+  # Date.strptime(date).strptime('%A')
+  date, time = date.split('T')[0], date.split('T')[1].split('+')[0]
+  time = time.split(':')
+  if time[0].to_i < 4
+    time[0] = time[0].to_i + 20
+    time = time.join(':').to_time.strftime('%l:%M %p')
+    date_time = {
+      time: time,
+      date: Date.strptime(date) - 1
+    }
+  else
+    time[0] = time[0].to_i - 4
+    time = time.join(':').to_time.strftime('%l:%M %p')
+    date_time = {
+      time: time,
+      date: Date.strptime(date)
+    }
+  end
+  date_time
 end
 body_hash = JSON.parse(@resp.body)
   @season = Season.create(year: body_hash["year"])
   body_hash["weeks"].each do |week|
-    @week = @season.weeks.build(week_number: @season.weeks.count + 1).save
+    @week = @season.weeks.build(week_number: @season.weeks.count + 1)
+    @week.save
     week["games"].each do |game|
       home = Team.find_by(abrv: game["home"]["alias"])
       away = Team.find_by(abrv: game["away"]["alias"])
+      date_time = date_parser(game["scheduled"])
+      binding.pry
       @matchup = @week.matchups.build()
     end
   end
