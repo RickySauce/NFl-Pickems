@@ -56,8 +56,11 @@ class LeagueForm extends Component {
       body: JSON.stringify({league: this.state})
     }
   )
-  .then(res => this.setState({redirect: true}))
-
+  .then(resp => resp.json())
+  .then(json => {
+    debugger;
+    this.setState({redirect: true})
+    });
   }
 
 

@@ -8,6 +8,7 @@ class LeaguesController < ApplicationController
         @user = User.find_by(username: hash.values.first)
         UserLeague.create(league_id: @league.id, user_id: @user.id) if @user
       end
+      render :json => @league, status: 201
     else
       render status: 422
     end

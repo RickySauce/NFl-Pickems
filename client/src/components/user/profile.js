@@ -8,11 +8,6 @@ import { Link } from 'react-router-dom'
 
   class Profile extends Component {
 
-
-
-
-
-
     handleClick = event => {
       console.log(event.target.value)
     }
