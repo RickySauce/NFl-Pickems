@@ -1,11 +1,14 @@
 class SeasonsController < ApplicationController
 
   def create
-    @resp = Faraday.get "#{api_root}games/2018/REG/schedule.json?" do |req|
-     req.params['api_key'] = api_key
+    current_year = Date.today.year
+    if Season.find_by(year: current_year).blank?
+      @resp = Faraday.get "#{api_root}games/2018/REG/schedule.json?" do |req|
+       req.params['api_key'] = api_key
+     end
+     body_hash = JSON.parse(@resp.body)
+     @season = Season.find_or_create_by(year: body_hash["year"])
    end
-   body_hash = JSON.parse(@resp.body)
-   @season = Season.find_or_create_by(year: body_hash["year"])
   end
 
 end
