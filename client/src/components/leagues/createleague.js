@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Button } from 'react-bootstrap'
 import { connect } from 'react-redux';
+import { BrowserRouter as Router, Route, Link, Redirect  } from 'react-router-dom';
 
 
 
@@ -10,7 +11,8 @@ class LeagueForm extends Component {
     count: 0,
     inputs: [],
     name: '',
-    owner_id: this.props.user.id
+    owner_id: this.props.user.id,
+    redirect: false
   }
 
   handleClick = (event) => {
@@ -53,12 +55,16 @@ class LeagueForm extends Component {
       method: "POST",
       body: JSON.stringify({league: this.state})
     }
-    )
+  )
+  .then(res => this.setState({redirect: true}))
+
   }
 
 
   render() {
-    console.log(this.state)
+    if (this.state.redirect) {
+      return <Redirect to='/profile'/>
+    }
     return (
       <form onSubmit={this.handleSubmit}>
       <strong>Name of League</strong><br/><br/>
@@ -76,9 +82,11 @@ class LeagueForm extends Component {
 
 const mapStateToProps = (state) => {
   return  {
-    user: state.user.user
+    user: state.user.user,
+    auth: state.authenticated
   }
 }
+
 
 
 export default connect(mapStateToProps)(LeagueForm)

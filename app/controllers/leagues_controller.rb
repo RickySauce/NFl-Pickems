@@ -12,6 +12,8 @@ class LeaguesController < ApplicationController
   end
 
 
+
+
   def league_params
      params.require("league").permit(
        :owner_id,

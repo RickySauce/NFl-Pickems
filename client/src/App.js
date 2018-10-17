@@ -11,6 +11,7 @@ import { fetchUser } from './actions/fetchUser'
 import Profile from './components/user/profile'
 import LeagueForm from './components/leagues/createleague'
 import Home from './components/home'
+
 class App extends Component {
 
   componentWillMount(){
@@ -18,7 +19,7 @@ class App extends Component {
   if (typeof(id) === "string") {
       this.props.fetchUser(id)
   }
-
+  
   }
 
   render() {
