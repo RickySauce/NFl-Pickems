@@ -10,10 +10,15 @@
 api_key = 'qgwp56audu67tqeyupv66ymc'
 api_root = 'https://api.sportradar.us/nfl-ot2/'
 
-
 @resp = Faraday.get "#{api_root}seasontd/2018/standings.json?" do |req|
  req.params['api_key'] = api_key
 end
 body_hash = JSON.parse(@resp.body)
 
-binding.pry
+body_hash["conferences"].each do |conference|
+  conference["divisions"].each do |division|
+    division["teams"].each do |team|
+      Team.create(name: team["name"], city: team["market"], abrv: team["alias"])
+    end
+  end
+end
