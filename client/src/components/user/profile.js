@@ -19,13 +19,12 @@ import { Link } from 'react-router-dom'
 
 
     render() {
-      {console.log(this.props.leagues)}
       return (
         <div>
         <PageHeader className="welcome">Welcome {this.props.user.username}!</PageHeader>
         <Panel>
         <Panel.Heading>My Leagues <Link to="/leagues/new"><Button className="pull-right" bsStyle="success" bsSize="xsmall" value={1} onClick={this.handleClick}>Create New League</Button></Link></Panel.Heading>
-        {this.props.leagues.map(el => {
+        {this.props.user.leagues.map(el => {
           return <Panel.Body key={el.id}>{el.name}  <Button bsStyle="info" bsSize="xsmall" value={el.id} onClick={this.handleClick}>View</Button></Panel.Body>
             }
           )
@@ -39,8 +38,7 @@ import { Link } from 'react-router-dom'
 
   const mapStateToProps = (state) => {
     return  {
-      user: state.user.user.user,
-      leagues: state.user.leagues
+      user: state.user.user
     }
   }
 

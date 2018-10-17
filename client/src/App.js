@@ -19,7 +19,6 @@ class App extends Component {
   if (typeof(id) === "string") {
       this.props.fetchUser(id)
   }
-
   }
 
   render() {
