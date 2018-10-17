@@ -10,6 +10,9 @@ export default function userReducer(state = {user: '', logging_out: false}, acti
     case 'RESET_LOGGING_OUT':
       return {...state, logging_out: false}
 
+    case 'ADD_LEAGUE':
+      return {...state, user: {...state.user, leagues: [...state.user.leagues, action.league]}}
+
     default:
       return state;
 

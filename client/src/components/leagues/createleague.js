@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Button } from 'react-bootstrap'
 import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route, Link, Redirect  } from 'react-router-dom';
-
+import { newLeague } from '../../actions/newleague';
 
 
 class LeagueForm extends Component {
@@ -56,12 +56,15 @@ class LeagueForm extends Component {
       body: JSON.stringify({league: this.state})
     }
   )
-  .then(resp => resp.json())
+  .then(res => res.json())
   .then(json => {
-    debugger;
-    this.setState({redirect: true})
-    });
+    console.log(json);
+    this.props.newLeague(json);
+    this.setState({redirect: true});
+
   }
+)
+}
 
 
   render() {
@@ -92,4 +95,4 @@ const mapStateToProps = (state) => {
 
 
 
-export default connect(mapStateToProps)(LeagueForm)
+export default connect(mapStateToProps, {newLeague})(LeagueForm)
