@@ -5,11 +5,11 @@ import ReactDOM from 'react-dom';
 const Errors = (props) => {
 
 const renderErrors = () => {
- //  let liStyle = {
- //   color: 'red'
- // };
+  let liStyle = {
+   color: 'red'
+ };
   if (props.errors !== undefined){
-    return props.errors.map(el => <li>{el}</li>)
+    return props.errors.map(el => <li style={liStyle}>{el}</li>)
   }
 }
 
