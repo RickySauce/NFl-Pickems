@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { Panel, Button, PageHeader } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
@@ -7,12 +6,8 @@ import { Link } from 'react-router-dom'
 
 
 
-  class Profile extends Component {
+  class ProfileView extends Component {
 
-    componentDidMount(){
-      console.log(this.props.loaded)
-      this.props.changeLoad()
-    }
 
     handleClick = event => {
       console.log(event.target.value)
@@ -36,19 +31,4 @@ import { Link } from 'react-router-dom'
     }
   }
 
-
-  const mapStateToProps = (state) => {
-    return  {
-      user: state.user.user,
-      loading: state.user.loading
-    }
-  }
-
-  const mapDispatchToProps = (dispatch) => {
-    return {
-      changeLoad: () => dispatch({type: "LOADED"})
-    }
-  }
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(Profile)
+export default ProfileView

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { logIn } from '../../actions/logIn';
-import Profile from '../user/profile'
+import ProfileContainer from '../user/profileContainer'
 import RegistrationForm from './registrationform';
 import { ErrorList } from '../../models/errorList'
 
@@ -43,7 +43,7 @@ import { ErrorList } from '../../models/errorList'
    };
 
   renderComponent = () => {
-    return this.props.user === "" ? <RegistrationForm errors={this.state.errors}  handleChange={this.handleChange} handleSubmit={this.handleSubmit} /> : <Profile/>
+    return this.props.user === "" ? <RegistrationForm errors={this.state.errors}  handleChange={this.handleChange} handleSubmit={this.handleSubmit} /> : <ProfileContainer/>
   }
 
     render() {

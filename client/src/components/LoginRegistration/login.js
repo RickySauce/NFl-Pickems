@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { logIn } from '../../actions/logIn';
 import { connect } from 'react-redux';
-import Profile from '../user/profile'
+import ProfileContainer from '../user/profileContainer'
 import LoginForm from './loginform'
 
 class Login extends Component {
@@ -39,7 +39,7 @@ class Login extends Component {
     }
 
     renderComponent = () => {
-      return this.props.user === "" ? <LoginForm errors={this.state.message} handleChange={this.handleChange} handleSubmit={this.handleSubmit} /> : <Profile/>
+      return this.props.user === "" ? <LoginForm errors={this.state.message} handleChange={this.handleChange} handleSubmit={this.handleSubmit} /> : <ProfileContainer/>
     }
 
     render() {

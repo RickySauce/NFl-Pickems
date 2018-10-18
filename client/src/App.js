@@ -8,7 +8,7 @@ import Login from './components/LoginRegistration/login'
 import Register from './components/LoginRegistration/register'
 import { connect } from 'react-redux';
 import { fetchUser } from './actions/fetchUser'
-import Profile from './components/user/profile'
+import ProfileContainer from './components/user/profileContainer'
 import LeagueForm from './components/leagues/createleague'
 import Home from './components/home'
 import League from './components/leagues/leagueview'
@@ -55,7 +55,7 @@ class App extends Component {
       <Header/>
       <CustomNavbar user={this.props.user}/>
       <Route exact path="/login" component={Login} />
-      <Route exact path="/profile" component={Profile} />
+      <Route exact path="/profile" component={ProfileContainer} />
       <Route exact path="/register" component={Register} />
       <Route exact path="/leagues/new" component={LeagueForm} />
       <Route exact path="/league/:id/view" component={League} />
