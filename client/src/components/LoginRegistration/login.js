@@ -6,6 +6,7 @@ import LoginForm from './loginform'
 
 class Login extends Component {
   state = {
+        message: '',
         username: '',
         password: ''
       }
@@ -27,17 +28,24 @@ class Login extends Component {
        body: JSON.stringify({user: this.state})
      })
      .then(resp => resp.json())
-     .then(json => this.props.logIn(json))
-     .catch(error => alert('Incorrect Username or Password') )
+     .then(json => {
+       const message = json.message;
+       if (message !== undefined){
+         this.setState({message: message});
+       } else {
+       this.props.logIn(json);
+       }
+     });
     }
 
     renderComponent = () => {
-      return this.props.user === "" ? <LoginForm handleChange={this.handleChange} handleSubmit={this.handleSubmit} /> : <Profile/>
+      return this.props.user === "" ? <LoginForm errors={this.state.message} handleChange={this.handleChange} handleSubmit={this.handleSubmit} /> : <Profile/>
     }
 
     render() {
       return (
         <div>
+          {console.log(this.state)}
           {this.renderComponent()}
         </div>
       )

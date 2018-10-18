@@ -1,6 +1,5 @@
 import React from 'react';
 import capitalize from '../functions/capitalize'
-import Errors from '../error'
 
 export class ErrorList {
 

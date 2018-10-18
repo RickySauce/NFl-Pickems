@@ -4,7 +4,6 @@ import { logIn } from '../../actions/logIn';
 import Profile from '../user/profile'
 import RegistrationForm from './registrationform';
 import { ErrorList } from '../../models/errorList'
-import Errors from '../../error'
 
  class Register extends Component {
   state = {
@@ -39,7 +38,6 @@ import Errors from '../../error'
          this.setState({errors: new ErrorList(json.errors)});
        } else {
        this.props.logIn(json);
-       this.setState({errors: ''});
      };
     });
    };
