@@ -4,13 +4,10 @@ import { Navbar, Nav, NavItem } from 'react-bootstrap'
 import { logOut } from '../actions/logout';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom'
+import capitalize from '../functions/capitalize'
 
 
 const CustomNavbar = (props) => {
-
-  function capitalize(string) {
-      return string.charAt(0).toUpperCase() + string.slice(1);
-  }
 
   const renderLinks = () => {
     if (props.user === ''){
