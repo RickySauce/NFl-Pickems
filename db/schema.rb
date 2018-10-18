@@ -82,8 +82,8 @@ ActiveRecord::Schema.define(version: 2018_10_16_115207) do
   end
 
   create_table "weeks", force: :cascade do |t|
-    t.date "start_date"
-    t.date "end_date"
+    t.datetime "start_date_time"
+    t.datetime "end_date_time"
     t.integer "season_id"
     t.boolean "locked", default: false
     t.integer "week_number"
