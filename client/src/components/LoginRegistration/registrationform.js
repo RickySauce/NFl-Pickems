@@ -1,31 +1,35 @@
 import React from 'react';
+import Errors from '../../error'
 
-
- const RegistrationForm = ({handleChange, handleSubmit}) => {
+ const RegistrationForm = (props) => {
 
   return (
     <div>
-     <form onSubmit={handleSubmit}>
+     <form onSubmit={props.handleSubmit}>
      <input
      id="username"
      placeholder="Username"
      type="text"
-     onChange={handleChange}/><br/>
+     onChange={props.handleChange}/><br/>
+     <Errors errors={props.errors["username"]}/>
      <input
      id="email"
      placeholder="Email"
      type="email"
-     onChange={handleChange}/><br/>
+     onChange={props.handleChange}/><br/>
+     <Errors  errors={props.errors["email"]}/>
      <input
      id="password"
      placeholder="Password"
      type="password"
-     onChange={handleChange}/><br/>
+     onChange={props.handleChange}/><br/>
+     <Errors  errors={props.errors["password"]}/>
      <input
      id="password_confirmation"
      placeholder="Password Confirmation"
      type="password"
-     onChange={handleChange}/><br/>
+     onChange={props.handleChange}/><br/>
+     <Errors  errors={props.errors["password_confirmation"]}/>
      <input type="submit" value="Register"/>
      </form>
    </div>

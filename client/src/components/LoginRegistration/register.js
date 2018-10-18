@@ -4,10 +4,11 @@ import { logIn } from '../../actions/logIn';
 import Profile from '../user/profile'
 import RegistrationForm from './registrationform';
 import { ErrorList } from '../../models/errorList'
+import Errors from '../../error'
 
  class Register extends Component {
   state = {
-    errors: [],
+    errors: '',
     username: '',
     email: '',
     password: '',
@@ -35,9 +36,8 @@ import { ErrorList } from '../../models/errorList'
      .then(json => {
        const errors = json.errors
        if (errors !== undefined){
-         let errorList = new ErrorList(json.errors)
-         debugger;
-         this.setState({errors});
+         this.setState({errors: new ErrorList(json.errors)});
+         console.log(this.state)
        } else {
        this.props.logIn(json);
        this.setState({errors: ''});
@@ -45,33 +45,14 @@ import { ErrorList } from '../../models/errorList'
     });
    };
 
-   renderErrors = () => {
-     let liStyle = {
-      color: 'red'
-    };
-    const errors = []
-    if (this.state.errors !== []) {
-      for (var el in this.state.errors){
-        errors.push(`${el}: ${this.state.errors[el].join(', ')}`)
-      }
-      return (
-        <div>
-        {errors.map(el => <li style={liStyle}>{el}</li>)}
-        <br/><br/>
-        </div>
-      )
-    }
-  }
-
   renderComponent = () => {
-    return this.props.user === "" ? <RegistrationForm  handleChange={this.handleChange} handleSubmit={this.handleSubmit} /> : <Profile/>
+    return this.props.user === "" ? <RegistrationForm errors={this.state.errors}  handleChange={this.handleChange} handleSubmit={this.handleSubmit} /> : <Profile/>
   }
 
     render() {
       return (
         <div>
            {this.renderComponent()}
-           {this.renderErrors()}
         </div>
       )
     }
