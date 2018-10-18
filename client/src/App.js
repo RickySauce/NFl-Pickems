@@ -8,19 +8,40 @@ import Login from './components/LoginRegistration/login'
 import Register from './components/LoginRegistration/register'
 import { connect } from 'react-redux';
 import { fetchUser } from './actions/fetchUser'
-import { newSeason } from './actions/newSeason';
 import Profile from './components/user/profile'
 import LeagueForm from './components/leagues/createleague'
 import Home from './components/home'
 import League from './components/leagues/leagueview'
+import jstz from 'jstz';
+import moment from 'moment';
+import 'moment-timezone';
 
 
 
 
 class App extends Component {
 
+  newSeason = () => {
+    fetch(`/api/seasons/new`)
+    .then(resp => resp.json())
+  }
+
+  setTimeZone = () => {
+    if (!sessionStorage.getItem('timezone')) {
+      let tz = jstz.determine() || 'UTC';
+      sessionStorage.setItem('timezone', tz.name());
+    }
+    let currTz = sessionStorage.getItem('timezone');
+    let date = moment().format("YYYY-MM-DD");
+    let stamp = date + "T" + '14:30' + "Z";
+    let momentTime = moment(stamp);
+    let tzTime = momentTime.tz(currTz);
+    let formattedTime = tzTime.format('h:mm A');
+  }
+
   componentWillMount(){
-    // this.props.newSeason()
+    this.newSeason()
+    // this.setTimeZone()
     let id = sessionStorage.getItem("ID")
     if (typeof(id) === "string") {
         this.props.fetchUser(id)
@@ -52,4 +73,4 @@ const mapStateToProps = (state) => {
 }
 
 
-export default connect(mapStateToProps, {fetchUser, newSeason})(App);
+export default connect(mapStateToProps, {fetchUser})(App);

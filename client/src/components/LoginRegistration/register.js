@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { logIn } from '../../actions/logIn';
 import Profile from '../user/profile'
 import RegistrationForm from './registrationform';
+import { ErrorList } from '../../models/errorList'
 
  class Register extends Component {
   state = {
@@ -34,10 +35,11 @@ import RegistrationForm from './registrationform';
      .then(json => {
        const errors = json.errors
        if (errors !== undefined){
+         let errorList = new ErrorList(json.errors)
          this.setState({errors});
        } else {
        this.props.logIn(json);
-       this.setState({errors});
+       this.setState({errors: ''});
      };
     });
    };
