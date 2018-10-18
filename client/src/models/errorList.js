@@ -8,8 +8,11 @@ export class ErrorList {
     };
 
     function conventionialize(key){
-      console.log(capitalize)
-    };
+      let keyArray = key.split('_')
+      let capArray = keyArray.slice(1).map(el => capitalize(el))
+      let newKey = [keyArray[0], ...capArray].join('')
+      return newKey
+    }
   }
 
 }

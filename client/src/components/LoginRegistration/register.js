@@ -36,6 +36,7 @@ import { ErrorList } from '../../models/errorList'
        const errors = json.errors
        if (errors !== undefined){
          let errorList = new ErrorList(json.errors)
+         debugger;
          this.setState({errors});
        } else {
        this.props.logIn(json);
