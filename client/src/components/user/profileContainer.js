@@ -5,7 +5,7 @@ import ProfileView from './profileView'
 class ProfileContainer extends Component {
 
   renderView = () => {
-    if (this.props.loading === false){
+    if (this.props.loading === false && this.props.user !== ''){
       return <ProfileView user={this.props.user}/>
     }
   }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Panel, Button, PageHeader } from 'react-bootstrap'
-
+import LeagueSideNav from './leagueSideNav'
 
 
 
