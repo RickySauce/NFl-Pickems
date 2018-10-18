@@ -37,7 +37,6 @@ import Errors from '../../error'
        const errors = json.errors
        if (errors !== undefined){
          this.setState({errors: new ErrorList(json.errors)});
-         console.log(this.state)
        } else {
        this.props.logIn(json);
        this.setState({errors: ''});

@@ -29,7 +29,7 @@ import Errors from '../../error'
      placeholder="Password Confirmation"
      type="password"
      onChange={props.handleChange}/><br/>
-     <Errors  errors={props.errors["password_confirmation"]}/>
+     <Errors  errors={props.errors["passwordConfirmation"]}/>
      <input type="submit" value="Register"/>
      </form>
    </div>
