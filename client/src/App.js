@@ -21,10 +21,10 @@ import 'moment-timezone';
 
 class App extends Component {
 
-  newSeason = () => {
-    fetch(`/api/seasons/new`)
-    .then(resp => resp.json())
-  }
+  // newSeason = () => {
+  //   fetch(`/api/seasons/new`)
+  //   .then(resp => resp.json())
+  // }
 
   setTimeZone = () => {
     if (!sessionStorage.getItem('timezone')) {
@@ -40,7 +40,7 @@ class App extends Component {
   }
 
   componentWillMount(){
-    this.newSeason()
+    // this.newSeason()
     // this.setTimeZone()
     let id = sessionStorage.getItem("ID")
     if (typeof(id) === "string") {
