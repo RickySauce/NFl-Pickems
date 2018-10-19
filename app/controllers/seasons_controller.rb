@@ -25,6 +25,7 @@ class SeasonsController < ApplicationController
         @week.update(start_date_time: start_date_time, end_date_time: start_date_time.next_day(7))
       end
     end
+    render status: 201
   end
 
 end
