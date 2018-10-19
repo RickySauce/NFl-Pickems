@@ -39,6 +39,7 @@ class Login extends Component {
     }
 
     renderComponent = () => {
+      console.log(this.state.message)
       return this.props.user === "" ? <LoginForm errors={this.state.message} handleChange={this.handleChange} handleSubmit={this.handleSubmit} /> : <ProfileContainer/>
     }
 

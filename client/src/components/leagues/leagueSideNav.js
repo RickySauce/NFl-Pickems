@@ -7,7 +7,7 @@ import React, {Component} from 'react';
        render() {
            return (
              <div>
-             <Navbar className="sidebar-nav">
+             <Navbar class="side">
                <Navbar.Header>
                  <Navbar.Brand>
                    League Menu
