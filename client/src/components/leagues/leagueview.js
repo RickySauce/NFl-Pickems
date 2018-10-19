@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Panel, Button, PageHeader, Col } from 'react-bootstrap'
 import LeagueSideNav from './leagueSideNav'
-
+import {RemoveButton} from './button'
 
 
 
@@ -35,7 +35,7 @@ export default class League extends Component {
       <Panel>
       <Panel.Heading>Members {this.state.owner ? <Button className="pull-right" bsStyle="success" bsSize="xsmall" value={1}>+</Button> : null }</Panel.Heading>
       {this.state.users.map(u => {
-        return <Panel.Body key={u.id}>{this.state.owner_id === u.id ? <img style={{width: "18px", height: "18px"}} src={require('./image/crown.jpg')} alt="crown" title="crown" /> : null } {u.username} {this.state.owner && (this.state.owner_id !== u.id) ? <Button className="pull-right" bsStyle="danger" bsSize="xsmall" value={1}>x</Button> : null } </Panel.Body>
+        return <Panel.Body key={u.id}>{this.state.owner_id === u.id ? <img style={{width: "18px", height: "18px"}} src={require('./image/crown.jpg')} alt="crown" title="crown" /> : null } {u.username} {this.state.owner && (this.state.owner_id !== u.id) ? <RemoveButton id={u.id} /> : null } </Panel.Body>
         }
       )
     }
