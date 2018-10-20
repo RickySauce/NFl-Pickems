@@ -35,6 +35,8 @@ export default class League extends Component {
       },
         method: "DELETE"
       })
+      .then(res => this.setState({})
+      )
     } else {
       return false
     }
