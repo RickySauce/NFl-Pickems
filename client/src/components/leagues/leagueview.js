@@ -39,14 +39,6 @@ export default class League extends Component {
     }
   }
 
-  // {this.state.users.map(u => {
-  //   return <Panel.Body key={u.id}>{this.state.owner_id === u.id ? <img style={{width: "18px", height: "18px"}} src={require('./image/crown.jpg')} alt="crown" title="crown" /> : null } {u.username}
-  //    {this.state.owner && (this.state.owner_id !== u.id) ? <RemoveButton id={u.id} /> : null } </Panel.Body>
-  //   }
-  // )
-  // }
-  //
-
     renderMembersList = () => {
       return this.state.users.length > 0 ? <MembersList users={this.state.users} owner_id={this.state.owner_id} removeUser={this.removeUser}/> : null
     }
