@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Panel, Button, PageHeader, Col } from 'react-bootstrap'
 import LeagueSideNav from './leagueSideNav'
-import MembersList from './membersList'
-import SeasonView from './seasonView'
+import MembersList from './members/membersList'
+import SeasonContainer from './seasons/seasonContainer'
 
 
 
@@ -49,7 +49,7 @@ export default class League extends Component {
     }
 
     renderSeasonView = () => {
-      return this.state.id !== "" ? <SeasonView currentSeason={this.state.currentSeason} leagueId={this.state.id}/> : null
+      return this.state.id !== "" ? <SeasonContainer currentSeason={this.state.currentSeason} leagueId={this.state.id}/> : null
     }
 
   render() {
