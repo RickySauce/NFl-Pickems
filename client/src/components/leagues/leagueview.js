@@ -18,7 +18,7 @@ import {fetchLeague} from '../../actions/league/fetchLeague'
     }
 
     renderSeasonView = () => {
-      return this.props.loading === false ? <SeasonContainer/> : null
+      return this.props.loading === false ? <SeasonContainer currentSeason={this.props.currentSeason}/> : null
     }
 
   render() {
@@ -39,6 +39,7 @@ import {fetchLeague} from '../../actions/league/fetchLeague'
 
 const mapStateToProps = (state) => {
   return  {
+    currentSeason: state.league.league.current_season,
     users: state.league.league.users,
     owner: state.league.league.owner,
     name: state.league.league.name,
