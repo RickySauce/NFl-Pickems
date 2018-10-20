@@ -1,3 +1,4 @@
 class SeasonSerializer < ActiveModel::Serializer
-  attributes :id
+  attributes :id, :year, :locked, :current_week
+  has_many :weeks
 end
