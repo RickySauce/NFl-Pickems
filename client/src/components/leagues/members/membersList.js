@@ -7,16 +7,16 @@ const MembersList = (props) => {
 
   const renderMembers = () => {
     return props.users.map(u => {
-      return <Panel.Body key={u.id}><MemberCard user={u} ownerId={props.ownerId} owner={props.owner} removeUser={props.removeUser}/></Panel.Body>
+      return <Panel.Body key={u.id}><MemberCard user={u} removeUser={props.removeUser}/></Panel.Body>
     })
   }
 
     return(
       <div>
+      {console.log(props)}
       {renderMembers()}
       </div>
     )
-
 }
 
 export default MembersList

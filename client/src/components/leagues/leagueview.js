@@ -9,15 +9,6 @@ import {fetchLeague} from '../../actions/league/fetchLeague'
 
  class League extends Component {
 
-  state = {
-    name: "",
-    users: [],
-    ownerId: "",
-    owner: false,
-    id: "",
-    currentSeason: ""
-  }
-
   componentWillMount() {
     this.props.fetchLeague(this.props.match.params.id)
   }
@@ -39,21 +30,21 @@ import {fetchLeague} from '../../actions/league/fetchLeague'
   }
 
     renderMembersList = () => {
-      return this.state.users.length > 0 ? <MembersList users={this.state.users} ownerId={this.state.ownerId} owner={this.state.owner} removeUser={this.removeUser}/> : null
+      return this.props.loading === false ? <MembersList users={this.props.users} removeUser={this.removeUser}/> : null
     }
 
     renderSeasonView = () => {
-      return this.state.id !== "" ? <SeasonContainer currentSeason={this.state.currentSeason} leagueId={this.state.id}/> : null
+      return this.props.loading === false ? <SeasonContainer/> : null
     }
 
   render() {
-    console.log(this.props.state)
+    console.log(this.props.loading)
     return (
       <div>
-      <PageHeader className="welcome">{this.state.name}</PageHeader>
+      <PageHeader className="welcome">{this.props.name}</PageHeader>
       <div style={{width: "15%"}}>
       <Panel>
-      <Panel.Heading>Members {this.state.owner ? <Button className="pull-right" bsStyle="success" bsSize="xsmall" value={1}>+</Button> : null }</Panel.Heading>
+      <Panel.Heading>Members {this.props.owner ? <Button className="pull-right" bsStyle="success" bsSize="xsmall" value={1}>+</Button> : null }</Panel.Heading>
       {this.renderMembersList()}
       </Panel>
       </div>
@@ -65,7 +56,10 @@ import {fetchLeague} from '../../actions/league/fetchLeague'
 
 const mapStateToProps = (state) => {
   return  {
-    state: state
+    users: state.league.league.users,
+    owner: state.league.league.owner,
+    name: state.league.league.name,
+    loading: state.league.loading
   }
 }
 

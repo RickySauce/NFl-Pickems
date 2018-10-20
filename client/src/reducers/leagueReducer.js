@@ -1,4 +1,4 @@
-export default function leagueReducer(state = {league: '', loading: false}, action) {
+export default function leagueReducer(state = {league: '', loading: true}, action) {
   switch (action.type) {
 
     case 'LOADING_LEAGUE':

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Panel, Button, PageHeader, Col } from 'react-bootstrap'
+import { connect } from 'react-redux';
 
 
 
