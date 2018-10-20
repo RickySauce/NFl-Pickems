@@ -7,7 +7,7 @@ class MembersList extends Component {
 
   renderMembers = () => {
     return this.props.users.map(u => {
-      return <Panel.Body key={u.id}><MemberCard user={u} owner_id={this.props.owner_id} owner={this.props.owner} removeUser={this.props.removeUser}/></Panel.Body>
+      return <Panel.Body key={u.id}><MemberCard user={u} ownerId={this.props.ownerId} owner={this.props.owner} removeUser={this.props.removeUser}/></Panel.Body>
     })
   }
 

@@ -5,11 +5,11 @@ import {RemoveUser} from './removeUser'
 const MemberCard = (props) => {
 
 const renderCrown = () => {
-  return props.user.id === props.owner_id ? <img style={{width: "18px", height: "18px"}} src={require('./image/crown.jpg')} alt="crown" title="crown" /> : null
+  return props.user.id === props.ownerId ? <img style={{width: "18px", height: "18px"}} src={require('./image/crown.jpg')} alt="crown" title="crown" /> : null
 }
 
 const renderRemove = () => {
-  return props.user.id !== props.owner_id ? <RemoveUser id={props.user.id} owner={props.owner} removeUser={props.removeUser} /> :null
+  return props.user.id !== props.ownerId ? <RemoveUser id={props.user.id} owner={props.owner} removeUser={props.removeUser} /> :null
 }
 
     return(
