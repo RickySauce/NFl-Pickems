@@ -9,7 +9,7 @@ const renderCrown = () => {
 }
 
 const renderRemove = () => {
-  return props.user.id !== props.owner_id ? <RemoveUser id={props.user.id} removeUser={props.removeUser} /> :null
+  return props.user.id !== props.owner_id ? <RemoveUser id={props.user.id} owner={props.owner} removeUser={props.removeUser} /> :null
 }
 
     return(

@@ -11,13 +11,14 @@ export default class League extends Component {
     name: "",
     users: [],
     owner_id: "",
-    owner: false
+    owner: false,
+    id: ""
   }
 
   componentWillMount() {
     fetch(`/api/leagues/${this.props.match.params.id}`)
     .then(res => res.json())
-    .then(json => {this.setState({name: json.name, users: [...json.users], owner_id: json.owner_id,
+    .then(json => {this.setState({name: json.name, users: [...json.users], owner_id: json.owner_id, id: json.id,
       owner: parseInt(sessionStorage.getItem('ID')) === json.owner_id ? true : false
         }
         )
@@ -25,9 +26,9 @@ export default class League extends Component {
     )
   }
 
-  removeUser = () => {
+  removeUser = (userId) => {
     if (this.state.owner === true){
-      fetch('/api/leagues/:league_id/users/remove/:user_id', {
+      fetch(`/api/leagues/${this.state.id}/users/remove/${userId}`, {
         headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
@@ -40,7 +41,7 @@ export default class League extends Component {
   }
 
     renderMembersList = () => {
-      return this.state.users.length > 0 ? <MembersList users={this.state.users} owner_id={this.state.owner_id} removeUser={this.removeUser}/> : null
+      return this.state.users.length > 0 ? <MembersList users={this.state.users} owner_id={this.state.owner_id} owner={this.state.owner} removeUser={this.removeUser}/> : null
     }
 
   render() {
