@@ -10,13 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_16_115207) do
+ActiveRecord::Schema.define(version: 2018_10_20_012730) do
 
   create_table "league_seasons", force: :cascade do |t|
     t.integer "league_id"
     t.integer "season_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "locked", default: false
   end
 
   create_table "leagues", force: :cascade do |t|
