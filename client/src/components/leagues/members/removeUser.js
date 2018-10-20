@@ -1,6 +1,7 @@
 import React from 'react';
 import { Panel, Button, PageHeader, Col } from 'react-bootstrap'
 import { connect } from 'react-redux';
+import { deleteUser }  from '../../../actions/league/deleteUser'
 
 
 
@@ -15,7 +16,7 @@ import { connect } from 'react-redux';
       },
         method: "DELETE"
       })
-      .then(res => this.setState({})
+      .then(res => props.deleteUser(props.id)
       )
      }
 
@@ -46,4 +47,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(RemoveUser)
+export default connect(mapStateToProps , { deleteUser })(RemoveUser)
