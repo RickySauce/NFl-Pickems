@@ -6,14 +6,14 @@ const MembersList = (props) => {
 
 
   const renderMembers = () => {
-    return this.props.users.map(u => {
-      return <Panel.Body key={u.id}><MemberCard user={u} ownerId={this.props.ownerId} owner={this.props.owner} removeUser={this.props.removeUser}/></Panel.Body>
+    return props.users.map(u => {
+      return <Panel.Body key={u.id}><MemberCard user={u} ownerId={props.ownerId} owner={props.owner} removeUser={props.removeUser}/></Panel.Body>
     })
   }
 
     return(
       <div>
-      {this.renderMembers()}
+      {renderMembers()}
       </div>
     )
 

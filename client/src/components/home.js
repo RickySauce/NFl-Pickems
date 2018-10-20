@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { resetLoggingOut } from '../actions/resetloggingout';
+import { resetLoggingOut } from '../actions/users/resetloggingout';
 import { connect } from 'react-redux';
 import { Panel, Button, PageHeader, Col, Grid, Row } from 'react-bootstrap'
 import LeagueSideNav from './leagues/leagueSideNav'

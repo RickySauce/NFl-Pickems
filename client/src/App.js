@@ -7,7 +7,7 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import Login from './components/LoginRegistration/login'
 import Register from './components/LoginRegistration/register'
 import { connect } from 'react-redux';
-import { fetchUser } from './actions/fetchUser'
+import { fetchUser } from './actions/users/fetchUser'
 import ProfileContainer from './components/user/profileContainer'
 import LeagueForm from './components/leagues/createleague'
 import Home from './components/home'

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { logIn } from '../../actions/logIn';
+import { logIn } from '../../actions/users/logIn';
 import { connect } from 'react-redux';
 import ProfileContainer from '../user/profileContainer'
 import LoginForm from './loginform'

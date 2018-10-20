@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { logIn } from '../../actions/logIn';
+import { logIn } from '../../actions/users/logIn';
 import ProfileContainer from '../user/profileContainer'
 import RegistrationForm from './registrationform';
 import { ErrorList } from '../../models/errorList'

@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Navbar, Nav, NavItem } from 'react-bootstrap'
-import { logOut } from '../actions/logout';
+import { logOut } from '../actions/users/logout';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom'
 import capitalize from '../functions/capitalize'

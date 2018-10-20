@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Panel, Button, PageHeader, Col } from 'react-bootstrap'
 import LeagueSideNav from './leagueSideNav'
 import MembersList from './members/membersList'
 import SeasonContainer from './seasons/seasonContainer'
+import {fetchLeague} from '../../actions/league/fetchLeague'
 
 
-
-export default class League extends Component {
+ class League extends Component {
 
   state = {
     name: "",
@@ -18,14 +19,7 @@ export default class League extends Component {
   }
 
   componentWillMount() {
-    fetch(`/api/leagues/${this.props.match.params.id}`)
-    .then(res => res.json())
-    .then(json => {this.setState({name: json.name, users: [...json.users], ownerId: json.owner_id, id: json.id, currentSeason: json.current_season,
-      owner: parseInt(sessionStorage.getItem('ID')) === json.owner_id ? true : false
-        }
-        )
-      }
-    )
+    this.props.fetchLeague(this.props.match.params.id)
   }
 
   removeUser = (userId) => {
@@ -53,6 +47,7 @@ export default class League extends Component {
     }
 
   render() {
+    console.log(this.props.state)
     return (
       <div>
       <PageHeader className="welcome">{this.state.name}</PageHeader>
@@ -60,10 +55,18 @@ export default class League extends Component {
       <Panel>
       <Panel.Heading>Members {this.state.owner ? <Button className="pull-right" bsStyle="success" bsSize="xsmall" value={1}>+</Button> : null }</Panel.Heading>
       {this.renderMembersList()}
-      {this.renderSeasonView()}
       </Panel>
       </div>
+      {this.renderSeasonView()}
       </div>
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return  {
+    state: state
+  }
+}
+
+export default connect(mapStateToProps,{fetchLeague})(League)

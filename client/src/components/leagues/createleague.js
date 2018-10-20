@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Button } from 'react-bootstrap'
 import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route, Link, Redirect  } from 'react-router-dom';
-import { newLeague } from '../../actions/newleague';
+import { newLeague } from '../../actions/users/newleague';
 
 
 class LeagueForm extends Component {

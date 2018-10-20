@@ -10,12 +10,13 @@ import NewSeason from './newSeason'
   }
 
   renderCurrentSeason = () => {
-
+    return this.state.currentSeason === null ? <NewSeason/> : "bye"
   }
 
   render() {
     return (
       <div>
+      {this.renderCurrentSeason()}
       </div>
     )
   }
