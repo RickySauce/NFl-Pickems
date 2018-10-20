@@ -13,24 +13,8 @@ import {fetchLeague} from '../../actions/league/fetchLeague'
     this.props.fetchLeague(this.props.match.params.id)
   }
 
-  removeUser = (userId) => {
-    if (this.state.owner === true){
-      fetch(`/api/leagues/${this.state.id}/users/remove/${userId}`, {
-        headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-      },
-        method: "DELETE"
-      })
-      .then(res => this.setState({})
-      )
-    } else {
-      return false
-    }
-  }
-
     renderMembersList = () => {
-      return this.props.loading === false ? <MembersList users={this.props.users} removeUser={this.removeUser}/> : null
+      return this.props.loading === false ? <MembersList users={this.props.users}/> : null
     }
 
     renderSeasonView = () => {
@@ -38,7 +22,6 @@ import {fetchLeague} from '../../actions/league/fetchLeague'
     }
 
   render() {
-    console.log(this.props.loading)
     return (
       <div>
       <PageHeader className="welcome">{this.props.name}</PageHeader>

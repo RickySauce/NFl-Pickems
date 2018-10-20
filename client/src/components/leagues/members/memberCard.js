@@ -1,6 +1,7 @@
 import React from 'react';
 import { Panel, Button, PageHeader, Col } from 'react-bootstrap'
-import {RemoveUser} from './removeUser'
+import RemoveUser from './removeUser'
+import { connect } from 'react-redux';
 
 const MemberCard = (props) => {
 
@@ -9,15 +10,22 @@ const renderCrown = () => {
 }
 
 const renderRemove = () => {
-  return props.user.id !== props.ownerId ? <RemoveUser id={props.user.id} removeUser={props.removeUser} /> :null
+  return props.user.id !== props.ownerId ? <RemoveUser id={props.user.id} /> :null
 }
 
     return(
       <div>
+      {console.log(props.ownerId)}
       {renderCrown()}{props.user.username}{renderRemove()}
       </div>
     )
-
 }
 
-export default MemberCard
+
+const mapStateToProps = (state) => {
+  return  {
+    ownerId: state.league.league.owner_id
+  }
+}
+
+export default connect(mapStateToProps)(MemberCard)
