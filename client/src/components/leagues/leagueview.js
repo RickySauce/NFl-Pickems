@@ -27,7 +27,13 @@ export default class League extends Component {
 
   removeUser = () => {
     if (this.state.owner === true){
-      return true
+      fetch('/api/leagues/:league_id/users/remove/:user_id', {
+        headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+      },
+        method: "DELETE"
+      })
     } else {
       return false
     }
