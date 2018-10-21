@@ -24,10 +24,11 @@ class SeasonsController < ApplicationController
           end
         start_date_time = @week.matchups.sort_by{|matchup| matchup.game_date_time}.first.game_date_time.prev_day(2)
         @week.update(start_date_time: start_date_time, end_date_time: start_date_time.next_day(7))
+        @season.update(current_week_id: @season.weeks.first.id)
       end
       render :json => @season, status: 201
     else
-      render :json => @season, include: ['weeks', 'weeks.matchups', 'weeks.matchups.home_team', 'weeks.matchups.away_team'], status: 200
+      render :json => @season, include: ['current_week.matchups', 'current_week.matchups.home_team', 'current_week.matchups.away_team', 'weeks', 'weeks.matchups', 'weeks.matchups.home_team', 'weeks.matchups.away_team'], status: 200
     end
   end
 

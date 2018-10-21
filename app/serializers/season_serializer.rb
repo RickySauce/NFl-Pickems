@@ -1,10 +1,6 @@
 class SeasonSerializer < ActiveModel::Serializer
-  attributes :id, :year, :locked, :current_week
+  attributes :id, :year, :locked
   has_many :weeks
-
-
-  def current_week
-     object.weeks.find{|week| week.locked == false}
-  end
+  has_one :current_week, class_name: "Week"
 
 end
