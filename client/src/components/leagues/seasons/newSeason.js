@@ -8,6 +8,9 @@ const NewSeason = (props) => {
 const createSeason = () => {
     fetch(`/api/seasons/new`)
     .then(resp => resp.json())
+    .then(json => {
+      debugger;
+    })
   }
 
   return(

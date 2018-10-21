@@ -13,7 +13,6 @@ const MembersList = (props) => {
 
     return(
       <div>
-      {console.log(props)}
       {renderMembers()}
       </div>
     )

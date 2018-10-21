@@ -15,7 +15,6 @@ const renderRemove = () => {
 
     return(
       <div>
-      {console.log(props.ownerId)}
       {renderCrown()}{props.user.username}{renderRemove()}
       </div>
     )

@@ -2,7 +2,8 @@ class SeasonsController < ApplicationController
 
   def create
     current_year = Date.today.year
-    if Season.find_by(year: current_year).blank?
+    @season = Season.find_by(year: current_year)
+    if @season.blank?
       @resp = Faraday.get "#{api_root}games/2018/REG/schedule.json?" do |req|
        req.params['api_key'] = api_key
       end
@@ -24,8 +25,10 @@ class SeasonsController < ApplicationController
         start_date_time = @week.matchups.sort_by{|matchup| matchup.game_date_time}.first.game_date_time.prev_day(2)
         @week.update(start_date_time: start_date_time, end_date_time: start_date_time.next_day(7))
       end
+      render :json => @season, status: 201
+    else
+      render :json => @season, status: 200
     end
-    render status: 201
   end
 
 end
