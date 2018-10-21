@@ -27,7 +27,7 @@ class SeasonsController < ApplicationController
       end
       render :json => @season, status: 201
     else
-      render :json => @season, status: 200
+      render :json => @season, include: ['weeks', 'weeks.matchups', 'weeks.matchups.home_team', 'weeks.matchups.away_team'], status: 200
     end
   end
 
