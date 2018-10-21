@@ -25,13 +25,15 @@ import {fetchLeague} from '../../actions/league/fetchLeague'
     return (
       <div>
       <PageHeader className="welcome">{this.props.name}</PageHeader>
-      <div style={{width: "15%"}}>
+      <div style={{width: "15%", display: 'inline-block'}}>
       <Panel>
       <Panel.Heading>Members {this.props.owner ? <Button className="pull-right" bsStyle="success" bsSize="xsmall" value={1}>+</Button> : null }</Panel.Heading>
       {this.renderMembersList()}
       </Panel>
       </div>
+      <div style={{width: "40%", display: 'inline-block', padding: '40px'}}>
       {this.renderSeasonView()}
+      </div>
       </div>
     )
   }

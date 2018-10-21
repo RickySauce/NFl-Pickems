@@ -26,7 +26,7 @@ class SeasonsController < ApplicationController
         @week.update(start_date_time: start_date_time, end_date_time: start_date_time.next_day(7))
         @season.update(current_week_id: @season.weeks.first.id)
       end
-      render :json => @season, status: 201
+      render :json => @season, include: ['current_week.matchups', 'current_week.matchups.home_team', 'current_week.matchups.away_team', 'weeks', 'weeks.matchups', 'weeks.matchups.home_team', 'weeks.matchups.away_team'], status: 201
     else
       render :json => @season, include: ['current_week.matchups', 'current_week.matchups.home_team', 'current_week.matchups.away_team', 'weeks', 'weeks.matchups', 'weeks.matchups.home_team', 'weeks.matchups.away_team'], status: 200
     end
