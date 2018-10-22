@@ -3,6 +3,7 @@ class SeasonsController < ApplicationController
   def create
     current_year = Date.today.year
     @season = Season.find_by(year: current_year)
+    @league_season = LeagueSeason.find_league_season(params["league_id"], @season.id)
     if @season.blank?
       @resp = Faraday.get "#{api_root}games/2018/REG/schedule.json?" do |req|
        req.params['api_key'] = api_key
@@ -26,9 +27,19 @@ class SeasonsController < ApplicationController
         @week.update(start_date_time: start_date_time, end_date_time: start_date_time.next_day(7))
         @season.update(current_week_id: @season.weeks.first.id)
       end
-      render :json => @season, include: ['current_week.matchups', 'current_week.matchups.home_team', 'current_week.matchups.away_team', 'weeks', 'weeks.matchups', 'weeks.matchups.home_team', 'weeks.matchups.away_team'], status: 201
+      @league_season = LeagueSeason.create(league_id: params["league_id"], season_id: @season.id) if @league_season.blank?
+      render :json => @league_season, include: [
+        'season.current_week.matchups', 'season.current_week.matchups.home_team', 'season.current_week.matchups.away_team',
+        'season.weeks', 'season.weeks.matchups', 'season.weeks.matchups.home_team', 'season.weeks.matchups.away_team',
+        'season'
+        ], status: 201
     else
-      render :json => @season, include: ['current_week.matchups', 'current_week.matchups.home_team', 'current_week.matchups.away_team', 'weeks', 'weeks.matchups', 'weeks.matchups.home_team', 'weeks.matchups.away_team'], status: 200
+      @league_season = LeagueSeason.create(league_id: params["league_id"], season_id: @season.id) if @league_season.blank?
+      render :json => @league_season, include:[
+        'season.current_week.matchups', 'season.current_week.matchups.home_team', 'season.current_week.matchups.away_team',
+        'season.weeks', 'season.weeks.matchups', 'season.weeks.matchups.home_team', 'season.weeks.matchups.away_team',
+        'season'
+        ], status: 200
     end
   end
 

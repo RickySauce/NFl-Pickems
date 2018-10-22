@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Panel, Button, PageHeader, Col } from 'react-bootstrap'
-import LeagueSideNav from './leagueSideNav'
 import MembersList from './members/membersList'
 import SeasonContainer from './seasons/seasonContainer'
 import {fetchLeague} from '../../actions/league/fetchLeague'
@@ -22,6 +21,7 @@ import {fetchLeague} from '../../actions/league/fetchLeague'
     }
 
   render() {
+    console.log(this.props.currentSeason)
     return (
       <div>
       <PageHeader className="welcome">{this.props.name}</PageHeader>

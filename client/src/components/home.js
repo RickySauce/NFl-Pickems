@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { resetLoggingOut } from '../actions/users/resetloggingout';
 import { connect } from 'react-redux';
 import { Panel, Button, PageHeader, Col, Grid, Row } from 'react-bootstrap'
-import LeagueSideNav from './leagues/leagueSideNav'
 
 
 class Home extends Component {
@@ -16,14 +15,8 @@ class Home extends Component {
     }
 
     render() {
-      console.log(this.props.logging_out)
       return (
         <div>
-
-          <Col xs={12} md={1} lg={4}>
-          <LeagueSideNav/>
-          </Col>
-
         </div>
       )
     }
