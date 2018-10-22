@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import NewSeason from './newSeason'
+import SeasonSelect from './seasonSelect'
 
 
  class SeasonContainer extends Component {
 
-  renderCurrentSeason = () => {
-    return this.props.currentSeason === null && this.props.loading !== true  ? <NewSeason/> : "bye"
+  renderSeasonOptions = () => {
+    return this.props.currentSeason === null && this.props.loading === false  ? <NewSeason/> : <SeasonSelect seasons={this.props.leagueSeasons}/>
+  }
+
+  renderSeasonView = () => {
+    return this.props.currentSeason !== null && this.props.loading === false  ? "HAPPY DAYS" : null
   }
 
   render() {
@@ -14,7 +19,8 @@ import NewSeason from './newSeason'
     console.log(this.props.loading)
     return (
       <div>
-      {this.renderCurrentSeason()}
+      {this.renderSeasonOptions()}
+      {this.renderSeasonView()}
       </div>
     )
   }
@@ -22,6 +28,7 @@ import NewSeason from './newSeason'
 
 const mapStateToProps = (state) => {
   return  {
+    leagueSeasons: state.league.league.leagueSeasons,
     currentSeason: state.league.league.currentSeason,
     loading: state.season.loading
   }
