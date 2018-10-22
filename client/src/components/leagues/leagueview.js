@@ -4,6 +4,7 @@ import { Panel, Button, PageHeader, Col } from 'react-bootstrap'
 import MembersList from './members/membersList'
 import SeasonContainer from './seasons/seasonContainer'
 import {fetchLeague} from '../../actions/league/fetchLeague'
+import {resetLeague} from '../../actions/league/resetLeague'
 import Popup from "reactjs-popup";
 
 
@@ -15,6 +16,10 @@ import Popup from "reactjs-popup";
 
   componentWillMount() {
     this.props.fetchLeague(this.props.match.params.id)
+  }
+
+  componentWillUnmount(){
+    this.props.resetLeague()
   }
 
     renderMembersList = () => {
@@ -67,4 +72,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps,{fetchLeague})(League)
+export default connect(mapStateToProps,{fetchLeague, resetLeague})(League)
