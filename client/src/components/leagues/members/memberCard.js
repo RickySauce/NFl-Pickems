@@ -23,7 +23,7 @@ const renderRemove = () => {
 
 const mapStateToProps = (state) => {
   return  {
-    ownerId: state.league.league.owner_id
+    ownerId: state.league.league.ownerId
   }
 }
 

@@ -6,7 +6,7 @@ import NewSeason from './newSeason'
  class SeasonContainer extends Component {
 
   renderCurrentSeason = () => {
-    return this.props.currentSeason === undefined && this.props.loading !== true  ? <NewSeason/> : "bye"
+    return this.props.currentSeason === null && this.props.loading !== true  ? <NewSeason/> : "bye"
   }
 
   render() {
