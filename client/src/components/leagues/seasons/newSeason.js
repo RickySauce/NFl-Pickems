@@ -1,21 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Button } from 'react-bootstrap';
-
+import { newSeason } from '../../../actions/seasons/newSeason'
 
 
 const NewSeason = (props) => {
 
-const createSeason = () => {
-    fetch(`/api/seasons/new?league_id=${props.leagueId}`)
-    .then(resp => resp.json())
-    .then(json => {
-      debugger;
-    })
-  }
-
   return(
-    <Button onClick={createSeason}>New Season</Button>
+    <Button onClick={() => props.newSeason(props.leagueId)}>New Season</Button>
   )
 }
 
@@ -26,4 +18,4 @@ const mapStateToProps = (state) => {
 }
 
 
-export default connect(mapStateToProps)(NewSeason)
+export default connect(mapStateToProps,{newSeason})(NewSeason)

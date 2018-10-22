@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { logIn } from '../../actions/users/logIn';
 import ProfileContainer from '../user/profileContainer'
 import RegistrationForm from './registrationform';
-import { ErrorList } from '../../models/errorList'
+import { Pojo} from '../../models/pojo'
 
  class Register extends Component {
   state = {
@@ -35,7 +35,7 @@ import { ErrorList } from '../../models/errorList'
      .then(json => {
        const errors = json.errors
        if (errors !== undefined){
-         this.setState({errors: new ErrorList(json.errors)});
+         this.setState({errors: new Pojo(json.errors)});
        } else {
        this.props.logIn(json);
      };

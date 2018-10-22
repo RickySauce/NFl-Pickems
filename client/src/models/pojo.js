@@ -1,11 +1,15 @@
 import React from 'react';
 import capitalize from '../functions/capitalize'
 
-export class ErrorList {
+export class Pojo{
 
   constructor(json) {
     for(var el in json){
-      this[conventionialize(el)] = json[el];
+      if (typeof(json[el]) === "object"){
+        this[conventionialize(el)] = new Pojo(json[el])
+      } else {
+        this[conventionialize(el)] = json[el];
+      };
     };
 
     function conventionialize(key){
