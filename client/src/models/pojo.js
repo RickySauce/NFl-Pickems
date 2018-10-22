@@ -5,8 +5,10 @@ export class Pojo{
 
   constructor(json) {
     for(var el in json){
-      if (typeof(json[el]) === "object"){
+      if (typeof(json[el]) === "object" && Array.isArray(json[el]) === false){
         this[conventionialize(el)] = new Pojo(json[el])
+      } else if (typeof(json[el]) === "object" && Array.isArray(json[el])){
+        this[conventionialize(el)] = json[el].map(el => new Pojo(el))
       } else {
         this[conventionialize(el)] = json[el];
       };
