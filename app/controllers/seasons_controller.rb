@@ -2,8 +2,9 @@ class SeasonsController < ApplicationController
 
   def create
     current_year = Date.today.year
+    @league = League.find_by(id: params["league_id"])
     @season = Season.find_by(year: current_year)
-    @league_season = LeagueSeason.find_league_season(params["league_id"], @season.id)
+    @league_season = LeagueSeason.find_league_season(@league.id, @season.id)
     if @season.blank?
       @resp = Faraday.get "#{api_root}games/2018/REG/schedule.json?" do |req|
        req.params['api_key'] = api_key
@@ -28,23 +29,23 @@ class SeasonsController < ApplicationController
         @season.update(current_week_id: @season.weeks.first.id)
       end
       @league_season = LeagueSeason.create(league_id: params["league_id"], season_id: @season.id) if @league_season.blank?
-      render :json => @league_season, include: [
-        'season.current_week.matchups', 'season.current_week.matchups.home_team', 'season.current_week.matchups.away_team',
-        'season.weeks', 'season.weeks.matchups', 'season.weeks.matchups.home_team', 'season.weeks.matchups.away_team',
-        'season'
-        ], status: 201
+      @league.update(current_season_id: @league_season.id)
+      render :json => @league_season, status: 201
     else
       @league_season = LeagueSeason.create(league_id: params["league_id"], season_id: @season.id) if @league_season.blank?
-      render :json => @league_season, include:[
-        'season.current_week.matchups', 'season.current_week.matchups.home_team', 'season.current_week.matchups.away_team',
-        'season.weeks', 'season.weeks.matchups', 'season.weeks.matchups.home_team', 'season.weeks.matchups.away_team',
-        'season'
-        ], status: 200
+      @league.update(current_season_id: @league_season.id)
+      render :json => @league_season, status: 200
     end
   end
 
 end
 
+
+# include: [
+#   'season.current_week.matchups', 'season.current_week.matchups.home_team', 'season.current_week.matchups.away_team',
+#   'season.weeks', 'season.weeks.matchups', 'season.weeks.matchups.home_team', 'season.weeks.matchups.away_team',
+#   'season'
+#   ]
 
 # create_table "seasons", force: :cascade do |t|
 #   t.integer "current_week"
