@@ -4,9 +4,14 @@ import { Panel, Button, PageHeader, Col } from 'react-bootstrap'
 import MembersList from './members/membersList'
 import SeasonContainer from './seasons/seasonContainer'
 import {fetchLeague} from '../../actions/league/fetchLeague'
+import Popup from "reactjs-popup";
 
 
  class League extends Component {
+   state = {
+      adding: false,
+      username: ''
+   }
 
   componentWillMount() {
     this.props.fetchLeague(this.props.match.params.id)
@@ -20,13 +25,28 @@ import {fetchLeague} from '../../actions/league/fetchLeague'
       return this.props.loading === false ? <SeasonContainer/> : null
     }
 
+    addUser = (event) => {
+      event.preventDefault()
+      console.log(this.state.username)
+    }
+
+    handleChange = (event) => {
+        this.setState({username: event.target.value})
+    }
+
+
   render() {
     return (
       <div>
       <PageHeader className="welcome">{this.props.name}</PageHeader>
       <div style={{width: "15%", display: 'inline-block'}}>
       <Panel>
-      <Panel.Heading>Members {this.props.owner ? <Button className="pull-right" bsStyle="success" bsSize="xsmall" value={1}>+</Button> : null }</Panel.Heading>
+      <Panel.Heading>Members {this.props.owner ? <Popup trigger={<Button className="pull-right" bsStyle="success" bsSize="xsmall" onClick={this.addUser} value={1}>+</Button>} position="right center">
+      <form onSubmit={this.addUser}>
+      <input type="text"  onChange={this.handleChange} name="username" placeholder="User"/>
+      <input type="submit" value="Add" />
+      </form>
+      </Popup> : null }</Panel.Heading>
       {this.renderMembersList()}
       </Panel>
       </div>
