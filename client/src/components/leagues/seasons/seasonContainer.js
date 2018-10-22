@@ -6,6 +6,14 @@ import SeasonSelect from './seasonSelect'
 
  class SeasonContainer extends Component {
 
+   state = {
+     LeagueSeasonID: ""
+   }
+
+   componentWillUpdate(){
+     
+   }
+
   renderSeasonOptions = () => {
     return this.props.currentSeason === null && this.props.loading === false  ? <NewSeason/> : <SeasonSelect seasons={this.props.leagueSeasons}/>
   }
