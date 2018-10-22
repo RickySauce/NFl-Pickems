@@ -21,7 +21,6 @@ import {fetchLeague} from '../../actions/league/fetchLeague'
     }
 
   render() {
-    console.log(this.props)
     return (
       <div>
       <PageHeader className="welcome">{this.props.name}</PageHeader>
