@@ -3,9 +3,14 @@ import { connect } from 'react-redux';
 import NewSeason from './newSeason'
 import SeasonSelect from './seasonSelect'
 import {setSeasonId} from '../../../actions/seasons/setSeasonId'
+import {resetSeason} from '../../../actions/seasons/resetSeason'
 
 
  class SeasonContainer extends Component {
+
+   componentWillUnmount(){
+     this.props.resetSeason()
+   }
 
   renderSeasonOptions = () => {
     return this.props.currentSeason === null && this.props.loading === false  ? <NewSeason/> : <SeasonSelect seasons={this.props.leagueSeasons} currentSeason={this.props.currentSeason}/>
@@ -35,4 +40,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps,{setSeasonId})(SeasonContainer)
+export default connect(mapStateToProps,{setSeasonId, resetSeason})(SeasonContainer)

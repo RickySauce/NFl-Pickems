@@ -14,9 +14,9 @@ const SeasonSelect = (props) => {
     <select id="leagueSeasonId" onChange={handleChange}>
       {props.seasons.map(el =>{
         if (el.year === props.currentSeason.year){
-          return <option value={el.id} selected>{el.year}</option>
+          return <option key={el.id} value={el.id} defaultValue>{el.year}</option>
         } else {
-          return <option value={el.id}>{el.year}</option>
+          return <option key={el.id} value={el.id}>{el.year}</option>
         }
       })}
       <option value={4}>{2017}</option>
