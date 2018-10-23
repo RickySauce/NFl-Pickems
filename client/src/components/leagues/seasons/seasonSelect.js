@@ -5,8 +5,13 @@ import React from 'react';
 
 const SeasonSelect = (props) => {
 
+  const handleChange = (event) => {
+   this.props.setSeasonId(event.target.value)
+  }
+
+
   return(
-    <select id="leagueSeasonId" onChange={props.handleChange}>
+    <select id="leagueSeasonId" onChange={handleChange}>
       {props.seasons.map(el =>{
         if (el.year === props.currentSeason.year){
           return <option value={el.id} selected>{el.year}</option>

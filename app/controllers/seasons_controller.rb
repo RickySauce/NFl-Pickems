@@ -4,7 +4,6 @@ class SeasonsController < ApplicationController
     current_year = Date.today.year
     @league = League.find_by(id: params["league_id"])
     @season = Season.find_by(year: current_year)
-    @league_season = LeagueSeason.find_league_season(@league.id, @season.id)
     if @season.blank?
       @resp = Faraday.get "#{api_root}games/2018/REG/schedule.json?" do |req|
        req.params['api_key'] = api_key
@@ -24,18 +23,18 @@ class SeasonsController < ApplicationController
             )
             @matchup.save
           end
-        start_date_time = @week.matchups.sort_by{|matchup| matchup.game_date_time}.first.game_date_time.prev_day(2)
-        @week.update(start_date_time: start_date_time, end_date_time: start_date_time.next_day(7))
-        @season.update(current_week_id: @season.weeks.first.id)
+          start_date_time = @week.matchups.sort_by{|matchup| matchup.game_date_time}.first.game_date_time.prev_day(2)
+          @week.update(start_date_time: start_date_time, end_date_time: start_date_time.next_day(7))
+          @season.update(current_week_id: @season.weeks.first.id)
+        end
       end
-      @league_season = LeagueSeason.create(league_id: params["league_id"], season_id: @season.id) if @league_season.blank?
-      @league.update(current_season_id: @league_season.id)
-      render :json => @league_season, status: 201
-    else
-      @league_season = LeagueSeason.create(league_id: params["league_id"], season_id: @season.id) if @league_season.blank?
+      if LeagueSeason.find_league_season(@league.id, @season.id).nil? 
+        @league_season = LeagueSeason.create(league_id: @league.id, season_id: @season.id)
+      else
+        @league_season = LeagueSeason.find_league_season(@league.id, @season.id)
+      end
       @league.update(current_season_id: @league_season.id)
       render :json => @league_season, status: 200
-    end
   end
 
 end
