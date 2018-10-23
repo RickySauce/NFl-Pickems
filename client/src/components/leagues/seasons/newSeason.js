@@ -7,8 +7,15 @@ import { newSeason } from '../../../actions/seasons/newSeason'
 
 const NewSeason = (props) => {
 
+  const handleClick = () => {
+    props.newSeason(props.leagueId);
+    props.handleClick();
+  }
+
   return(
-    <Button onClick={() => props.newSeason(props.leagueId)}>New Season</Button>
+    <div>
+    <Button onClick={handleClick}>New Season</Button>
+    </div>
   )
 }
 

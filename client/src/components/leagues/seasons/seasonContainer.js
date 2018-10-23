@@ -12,11 +12,18 @@ import {resetSeason} from '../../../actions/seasons/resetSeason'
    }
 
    componentWillMount(){
-
+     this.checkNewSeasonAvailability()
    }
 
    checkNewSeasonAvailability = () => {
-
+     let season = this.props.leagueSeasons.find(season => {
+       return season.year === new Date().getFullYear()
+     })
+     if (this.props.leagueSeasons.length === 0){
+       this.setState({newSeasonAvailable: true})
+     } else if (season === undefined){
+         this.setState({newSeasonAvailable: true})
+     }
    }
 
    componentWillUnmount(){
@@ -26,33 +33,30 @@ import {resetSeason} from '../../../actions/seasons/resetSeason'
   renderSeasonSelect = () => {
     if (this.props.loading === true){
       return "Seasons Loading"
-    } else {
-      if (this.props.leagueSeasons.length > 0){
+    } else if (this.props.leagueSeasons.length > 0){
         return <SeasonSelect seasons={this.props.leagueSeasons} currentSeason={this.props.currentSeason}/>
-      } else {
-        return
-      }
+    }
+  }
+
+  handleNewSeason = () => {
+    this.setState({newSeasonAvailable: false})
+  }
+
+  renderNewSeason = () => {
+    if (this.state.newSeasonAvailable === true){
+      return <NewSeason handleClick={this.handleNewSeason}/>
     }
   }
 
   renderSeasonView = () => {
-    if (this.props.loading === true){
-      return null
-    } else {
-      if (this.props.seasonId !== undefined){
-        return "HAPPY DAYS"
-      } else {
-        return "SAD DAYS"
-      }
-    }
   }
 
   render() {
-    console.log(this.props.leagueSeasons)
+    console.log(this.state)
     return (
       <div>
+      {this.renderNewSeason()}
       {this.renderSeasonSelect()}
-      {this.renderSeasonView()}
       </div>
     )
   }
@@ -60,7 +64,6 @@ import {resetSeason} from '../../../actions/seasons/resetSeason'
 
 const mapStateToProps = (state) => {
   return  {
-    seasonId: state.season.season.id,
     leagueSeasons: state.league.league.leagueSeasons,
     currentSeason: state.league.league.currentSeason,
     loading: state.season.loading

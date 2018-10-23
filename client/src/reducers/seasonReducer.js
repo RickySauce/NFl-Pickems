@@ -5,10 +5,7 @@ export default function seasonReducer(state = {season: '', loading: false}, acti
       return {season: '', loading: true};
 
     case 'NEW_SEASON':
-      return {season:{id: action.id}, loading: false};
-
-    case 'SET_SEASON_ID':
-      return {season:{id: action.id}, loading: false};
+      return {season:'', loading: false};
 
     case 'RESET_SEASON':
       return {season:'', loading: false}

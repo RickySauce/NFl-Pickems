@@ -10,6 +10,7 @@ get '/api/seasons/new', to: 'seasons#create'
 delete '/api/leagues/:league_id/users/remove/:user_id', to: 'user_leagues#destroy'
 post '/api/leagues/:league_id/users/add/:username', to: 'user_leagues#new'
 post '/api/leagues/users/new', to: 'user_leagues#create'
+get '/api/season/find', to: 'seasons#show'
 # get '/api/weeks/new', to: 'weeks#create'
 # get '/api/matchups/new', to: 'matchups#create'
 
