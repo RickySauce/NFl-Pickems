@@ -4,7 +4,7 @@ export function fetchSeason(id){
     fetch(`/api/leagues/seasons/${id}`)
     .then(resp => resp.json())
     .then(json => {
-      debugger;
+      dispatch({type: 'SEASON_LOADED', season: json})
     });
   };
 };

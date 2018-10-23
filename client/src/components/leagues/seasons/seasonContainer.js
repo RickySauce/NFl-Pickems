@@ -43,20 +43,20 @@ import {resetSeason} from '../../../actions/seasons/resetSeason'
   }
 
   renderNewSeason = () => {
-    if (this.state.newSeasonAvailable === true){
-      return <NewSeason handleClick={this.handleNewSeason}/>
-    }
+    return this.state.newSeasonAvailable === true ? <NewSeason handleClick={this.handleNewSeason}/> : null
   }
 
   renderSeasonView = () => {
+    return this.props.seasonLoading === true ? "Current Season is Loading." : "Season has loaded"
   }
 
   render() {
-    console.log(this.state)
+    console.log(this.props.season)
     return (
       <div>
       {this.renderNewSeason()}
       {this.renderSeasonSelect()}
+      {this.renderSeasonView()}
       </div>
     )
   }
@@ -64,6 +64,8 @@ import {resetSeason} from '../../../actions/seasons/resetSeason'
 
 const mapStateToProps = (state) => {
   return  {
+    season: state.season.season,
+    seasonLoading: state.season.season.loading,
     leagueSeasons: state.league.league.leagueSeasons,
     currentSeason: state.league.league.currentSeason,
     loading: state.season.loading
