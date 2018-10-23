@@ -13,11 +13,27 @@ import {resetSeason} from '../../../actions/seasons/resetSeason'
    }
 
   renderSeasonOptions = () => {
-    return this.props.currentSeason === null && this.props.loading === false  ? <NewSeason/> : <SeasonSelect seasons={this.props.leagueSeasons} currentSeason={this.props.currentSeason}/>
+    if (this.props.loading === true){
+      return null
+    } else {
+      if (this.props.currentSeason === null){
+        return <NewSeason/>
+      } else {
+        return <SeasonSelect seasons={this.props.leagueSeasons} currentSeason={this.props.currentSeason}/>
+      }
+    }
   }
 
   renderSeasonView = () => {
-    return this.props.seasonId !== undefined && this.props.loading === false  ? "HAPPY DAYS" : null
+    if (this.props.loading === true){
+      return null
+    } else {
+      if (this.props.seasonId !== undefined){
+        return "HAPPY DAYS"
+      } else {
+        return "SAD DAYS"
+      }
+    }
   }
 
   render() {
