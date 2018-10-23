@@ -11,8 +11,12 @@ class UserLeaguesController < ApplicationController
 
   def new
     user = User.find_by(username: params[:username])
+    if user
     @user_league = UserLeague.create(user_id: user.id, league_id: params[:league_id])
     render json: {user: user}, status: 201
+    else
+    render json: {message: "Cannot Find User"} 
+    end
   end
 
 

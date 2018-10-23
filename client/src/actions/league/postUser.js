@@ -10,7 +10,7 @@ export function postUser(username,league_id){
     .then(res => res.json())
     .then(json => { if (json.user) {
       dispatch({type: 'ADD_USER', user: json.user})
-    }
+    } else { alert(json.message)}
   }
   )
   };
