@@ -2,20 +2,20 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import NewSeason from './newSeason'
 import SeasonSelect from './seasonSelect'
+import {setSeasonId} from '../../../actions/seasons/setSeasonId'
 
 
  class SeasonContainer extends Component {
 
-   state = {
-     LeagueSeasonID: ""
+
+   handleChange = (event) => {
+    this.props.setSeasonId(event.target.value)
    }
 
-   componentWillUpdate(){
-     
-   }
+
 
   renderSeasonOptions = () => {
-    return this.props.currentSeason === null && this.props.loading === false  ? <NewSeason/> : <SeasonSelect seasons={this.props.leagueSeasons}/>
+    return this.props.currentSeason === null && this.props.loading === false  ? <NewSeason/> : <SeasonSelect seasons={this.props.leagueSeasons} currentSeason={this.props.currentSeason} handleChange={this.handleChange}/>
   }
 
   renderSeasonView = () => {
@@ -23,8 +23,7 @@ import SeasonSelect from './seasonSelect'
   }
 
   render() {
-    console.log(this.props.currentSeason)
-    console.log(this.props.loading)
+    console.log(console.log('seasonId', this.props.seasonId))
     return (
       <div>
       {this.renderSeasonOptions()}
@@ -36,10 +35,11 @@ import SeasonSelect from './seasonSelect'
 
 const mapStateToProps = (state) => {
   return  {
+    seasonId: state.season.season.id,
     leagueSeasons: state.league.league.leagueSeasons,
     currentSeason: state.league.league.currentSeason,
     loading: state.season.loading
   }
 }
 
-export default connect(mapStateToProps)(SeasonContainer)
+export default connect(mapStateToProps,{setSeasonId})(SeasonContainer)
