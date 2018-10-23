@@ -13,6 +13,9 @@ export default function leagueReducer(state = {league: '', loading: true}, actio
       case 'NEW_SEASON':
         return {...state, league: {...state.league, currentSeason: action.currentSeason, leagueSeasons:[...state.league.leagueSeasons, action.currentSeason]}}
 
+      case 'ADD_USER':
+        return {...state, league: {...state.league, users: [...state.league.users, action.user]}}
+
 
     default:
       return state;

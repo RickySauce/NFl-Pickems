@@ -5,6 +5,7 @@ import MembersList from './members/membersList'
 import SeasonContainer from './seasons/seasonContainer'
 import {fetchLeague} from '../../actions/league/fetchLeague'
 import {resetLeague} from '../../actions/league/resetLeague'
+import {postUser} from '../../actions/league/postUser'
 import Popup from "reactjs-popup";
 
 
@@ -32,7 +33,7 @@ import Popup from "reactjs-popup";
 
     addUser = (event) => {
       event.preventDefault()
-      console.log(this.state.username)
+      this.props.postUser(this.state.username,this.props.match.params.id)
     }
 
     handleChange = (event) => {
@@ -72,4 +73,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps,{fetchLeague, resetLeague})(League)
+export default connect(mapStateToProps,{fetchLeague, resetLeague, postUser})(League)
