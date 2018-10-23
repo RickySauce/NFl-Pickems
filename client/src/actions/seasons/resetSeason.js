@@ -1,5 +1,5 @@
 export function resetSeason(id){
   return (dispatch) => {
-    dispatch({type: 'RESET_SEASON'})
+    dispatch({type: 'NEW_SEASON'})
   };
 };

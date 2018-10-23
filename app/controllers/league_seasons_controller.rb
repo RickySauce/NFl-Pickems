@@ -1,0 +1,2 @@
+class LeagueSeasonsController < ApplicationController
+end
