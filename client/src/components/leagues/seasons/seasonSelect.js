@@ -1,28 +1,28 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import {setSeasonId} from '../../../actions/seasons/setSeasonId'
 
+ class SeasonSelect extends Component {
 
-
-
-const SeasonSelect = (props) => {
-
-  const handleChange = (event) => {
-   this.props.setSeasonId(event.target.value)
+   handleChange = (event) => {
+    this.props.setSeasonId(event.target.value)
   }
 
 
+render(){
   return(
-    <select id="leagueSeasonId" onChange={handleChange}>
-      {props.seasons.map(el =>{
-        if (el.year === props.currentSeason.year){
+    <select id="leagueSeasonId" onChange={this.handleChange}>
+      {this.props.seasons.map(el =>{
+        if (el.year === this.props.currentSeason.year){
           return <option key={el.id} value={el.id} defaultValue>{el.year}</option>
         } else {
           return <option key={el.id} value={el.id}>{el.year}</option>
         }
       })}
-      <option value={4}>{2017}</option>
     </select>
   )
+  }
 }
 
 
-export default SeasonSelect
+export default connect(null, {setSeasonId})(SeasonSelect)

@@ -4,4 +4,8 @@ class LeagueSerializer < ActiveModel::Serializer
   has_many :league_seasons
   has_one :current_season, class_name: "LeagueSeason"
 
+  def league_seasons
+    object.league_seasons.sort_by{|league_season| league_season.season.year}.reverse
+  end
+
 end

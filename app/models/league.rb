@@ -10,4 +10,8 @@ class League < ApplicationRecord
     self.league_seasons.find{|league_season| league_season.id == self.current_season_id}
   end
 
+  def current_season_id
+    self.league_seasons.sort_by{|league_season| league_season.season.year}.reverse.first.id
+  end
+
 end

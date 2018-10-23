@@ -2,24 +2,35 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import NewSeason from './newSeason'
 import SeasonSelect from './seasonSelect'
-import {setSeasonId} from '../../../actions/seasons/setSeasonId'
 import {resetSeason} from '../../../actions/seasons/resetSeason'
 
 
  class SeasonContainer extends Component {
 
+   state = {
+     newSeasonAvailable: false
+   }
+
+   componentWillMount(){
+
+   }
+
+   checkNewSeasonAvailability = () => {
+
+   }
+
    componentWillUnmount(){
      this.props.resetSeason()
    }
 
-  renderSeasonOptions = () => {
+  renderSeasonSelect = () => {
     if (this.props.loading === true){
-      return null
+      return "Seasons Loading"
     } else {
-      if (this.props.currentSeason === null){
-        return <NewSeason/>
-      } else {
+      if (this.props.leagueSeasons.length > 0){
         return <SeasonSelect seasons={this.props.leagueSeasons} currentSeason={this.props.currentSeason}/>
+      } else {
+        return
       }
     }
   }
@@ -37,10 +48,10 @@ import {resetSeason} from '../../../actions/seasons/resetSeason'
   }
 
   render() {
-    console.log(this.props.seasonId)
+    console.log(this.props.leagueSeasons)
     return (
       <div>
-      {this.renderSeasonOptions()}
+      {this.renderSeasonSelect()}
       {this.renderSeasonView()}
       </div>
     )
@@ -56,4 +67,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps,{setSeasonId, resetSeason})(SeasonContainer)
+export default connect(mapStateToProps,{resetSeason})(SeasonContainer)
