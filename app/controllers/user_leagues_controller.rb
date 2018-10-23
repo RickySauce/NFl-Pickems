@@ -11,11 +11,13 @@ class UserLeaguesController < ApplicationController
 
   def new
     user = User.find_by(username: params[:username])
-    if user
+    if user && !UserLeague.find_user_league(params["league_id"], user.id)
     @user_league = UserLeague.create(user_id: user.id, league_id: params[:league_id])
     render json: {user: user}, status: 201
+    elsif user && UserLeague.find_user_league(params["league_id"], user.id)
+    render json: {message: "User Already In League"}
     else
-    render json: {message: "Cannot Find User"} 
+    render json: {message: "Cannot Find User"}
     end
   end
 
