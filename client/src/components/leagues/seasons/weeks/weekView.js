@@ -1,13 +1,9 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import MatchupList from './matchups/matchupList'
-import { loadWeeklyPicks } from '../../../../actions/seasons/weeks/loadWeeklyPicks'
+
+
 
 class WeekView extends Component {
-
-  componentWillMount(){
-    this.props.loadWeeklyPicks(this.props.userId, this.props.week.id, this.props.leagueSeasonId)
-  }
 
   renderMatchupList = () => {
     if (this.props.picksLoading === true){
@@ -27,12 +23,5 @@ class WeekView extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return  {
-    userId: state.user.user.id,
-    picksLoading: state.userPicks.loading,
-    leagueSeasonId: state.season.season.id
-  }
-}
 
-export default connect(mapStateToProps,{loadWeeklyPicks})(WeekView)
+export default WeekView
