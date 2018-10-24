@@ -10,7 +10,12 @@ class UserPicksController < ApplicationController
         user_id: user_pick["user_id"]
       )
     end
-    render json: @user_picks, status: 201
+    render :json => @user_picks, status: 201
+  end
+
+  def weekly
+    @user_picks = UserPick.find_user_weekly_picks(params["user_id"], params["week_id"], params["league_season_id"])
+    render :json => @user_picks, status: 200
   end
 
 

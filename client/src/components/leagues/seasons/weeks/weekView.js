@@ -6,7 +6,7 @@ import { loadWeeklyPicks } from '../../../../actions/seasons/weeks/loadWeeklyPic
 class WeekView extends Component {
 
 componentWillMount(){
-
+  this.props.loadWeeklyPicks(this.props.userId, this.props.week.id, this.props.leagueSeasonId)
 }
 
   render(){
@@ -26,4 +26,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(WeekView)
+export default connect(mapStateToProps,{loadWeeklyPicks})(WeekView)
