@@ -20,8 +20,10 @@ handleClick = (event) => {
 
   render(){
     return(
+
       <ul>
-      <Team team={this.props.matchup.homeTeam} side={this.state.home} handleClick={this.handleClick}/> vs. <Team team={this.props.matchup.awayTeam} side={this.state.away} handleClick={this.handleClick}/>
+      <Team team={this.props.matchup.homeTeam} side={this.state.home} handleClick={this.handleClick}/>   vs.  <Team team={this.props.matchup.awayTeam} side={this.state.away} handleClick={this.handleClick}/> <br/><br/>
+      <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{this.props.matchup.homeTeam.name}(Home)  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{this.props.matchup.awayTeam.name}(Away)</span>
       </ul>
     )
   }
