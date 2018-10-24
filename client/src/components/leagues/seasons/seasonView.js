@@ -1,12 +1,16 @@
-import React from 'react';
+import React, { Component } from 'react';
+import WeekList from './weeks/weekList'
 
-const SeasonView = (props) => {
+ class SeasonView extends Component {
 
-  return (
-    <div>
-    NFL REGULAR SEASON SCHEDULE {console.log(props.season)}
-    </div>
-  )
+  render(){
+    return (
+      <div>
+      NFL REGULAR SEASON SCHEDULE {this.props.season.year}
+        <WeekList weeks={this.props.season.weeks} currentWeek={this.props.season.currentWeek}/>
+      </div>
+    )
+  }
 }
 
 export default SeasonView

@@ -48,11 +48,10 @@ import SeasonView from './seasonView'
   }
 
   renderSeasonView = () => {
-    return this.props.seasonLoading === false ? <SeasonView season={this.props.season}/> : "Current Season is Loading." 
+    return this.props.seasonLoading === false ? <SeasonView season={this.props.season}/> : "Current Season is Loading."
   }
 
   render() {
-    console.log(this.props.seasonLoading)
     return (
       <div>
       {this.renderNewSeason()}

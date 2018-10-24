@@ -9,7 +9,6 @@ export function fetchLeague(id){
       json["owner"] = parseInt(sessionStorage.getItem("ID")) === json["owner_id"] ? true : false
       let league = new Pojo(json)
       dispatch({type: 'LEAGUE_LOADED', league: league})
-      dispatch({type: 'SET_SEASON_ID', id: league.currentSeason.id})
       })
   };
 };
