@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import MatchupCard from './matchupCard'
+import { Button } from 'react-bootstrap';
+import { connect } from 'react-redux';
 
 class MatchupList extends Component {
 
@@ -19,8 +21,16 @@ class MatchupList extends Component {
     }
   }
 
+  handleSubmit = () => {
+
+  }
+
   renderMatchupList = () => {
     return this.props.matchups.map(matchup => <MatchupCard key={matchup.id} handelClick={this.handleClick} matchup={matchup}/>)
+  }
+
+  renderSubmit = () => {
+    return <Button>Submit Picks</Button>
   }
 
   render(){
@@ -28,6 +38,7 @@ class MatchupList extends Component {
     return(
       <div>
       {this.renderMatchupList()}
+      {this.renderSubmit()}
       </div>
     )
   }

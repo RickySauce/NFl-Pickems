@@ -4,14 +4,16 @@ Rails.application.routes.draw do
 post '/api/login', to: 'sessions#login'
 post '/api/register', to: 'users#create'
 get '/api/users/:id', to: 'users#show'
+post '/api/users/picks', to: 'user_picks#create'
 post '/api/leagues/new', to: 'leagues#create'
 get '/api/leagues/:id', to: 'leagues#show'
 get '/api/seasons/new', to: 'seasons#create'
 delete '/api/leagues/:league_id/users/remove/:user_id', to: 'user_leagues#destroy'
 post '/api/leagues/:league_id/users/add/:username', to: 'user_leagues#new'
 post '/api/leagues/users/new', to: 'user_leagues#create'
-get '/api/seasons/find', to: 'seasons#show'
 get '/api/leagues/seasons/:id', to: 'league_seasons#show'
+get '/api/seasons/find', to: 'seasons#show'
+
 # get '/api/weeks/new', to: 'weeks#create'
 # get '/api/matchups/new', to: 'matchups#create'
 
