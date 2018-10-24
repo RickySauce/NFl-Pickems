@@ -9,14 +9,16 @@ state = {
 }
 
 handleClick = (event) => {
+  let team = event.target.dataset.side
+  let teamId = event.target.dataset.id
   for (var el in this.state){
     this.setState({[el]: {...this.state[el], picked: false}})
   }
-  this.setState({[event.target.dataset.side]: {...this.state[event.target.dataset.side], picked: true}})
+  this.setState({[team]: {...this.state[team], picked: true}})
+  this.props.handelClick(this.props.matchup.id, teamId)
 }
 
   render(){
-    console.log(this.state)
     return(
       <ul>
       <Team team={this.props.matchup.homeTeam} side={this.state.home} handleClick={this.handleClick}/> vs. <Team team={this.props.matchup.awayTeam} side={this.state.away} handleClick={this.handleClick}/>
