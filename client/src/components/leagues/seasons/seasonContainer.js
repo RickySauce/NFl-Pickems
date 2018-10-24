@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import NewSeason from './newSeason'
 import SeasonSelect from './seasonSelect'
 import {resetSeason} from '../../../actions/seasons/resetSeason'
+import SeasonView from './seasonView'
 
 
  class SeasonContainer extends Component {
@@ -47,11 +48,11 @@ import {resetSeason} from '../../../actions/seasons/resetSeason'
   }
 
   renderSeasonView = () => {
-    return this.props.seasonLoading === true ? "Current Season is Loading." : "Season has loaded"
+    return this.props.seasonLoading === false ? <SeasonView season={this.props.season}/> : "Current Season is Loading." 
   }
 
   render() {
-    console.log(this.props.season)
+    console.log(this.props.seasonLoading)
     return (
       <div>
       {this.renderNewSeason()}
@@ -64,7 +65,7 @@ import {resetSeason} from '../../../actions/seasons/resetSeason'
 
 const mapStateToProps = (state) => {
   return  {
-    season: state.season.season,
+    season: state.season.season.season,
     seasonLoading: state.season.season.loading,
     leagueSeasons: state.league.league.leagueSeasons,
     currentSeason: state.league.league.currentSeason,
