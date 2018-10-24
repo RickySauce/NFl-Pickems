@@ -5,15 +5,23 @@ import { loadWeeklyPicks } from '../../../../actions/seasons/weeks/loadWeeklyPic
 
 class WeekView extends Component {
 
-componentWillMount(){
-  this.props.loadWeeklyPicks(this.props.userId, this.props.week.id, this.props.leagueSeasonId)
-}
+  componentWillMount(){
+    this.props.loadWeeklyPicks(this.props.userId, this.props.week.id, this.props.leagueSeasonId)
+  }
+
+  renderMatchupList = () => {
+    if (this.props.picksLoading === true){
+      return "Please wait for user information to load"
+    } else if (this.props.picksLoading === false){
+      return <MatchupList matchups={this.props.week.matchups} weekId={this.props.week.id}/>
+    }
+  }
 
   render(){
     return(
       <div>
       currently viewing week # {this.props.week.weekNumber}
-      <MatchupList matchups={this.props.week.matchups} weekId={this.props.week.id}/>
+      {this.renderMatchupList()}
       </div>
     )
   }
@@ -22,6 +30,7 @@ componentWillMount(){
 const mapStateToProps = (state) => {
   return  {
     userId: state.user.user.id,
+    picksLoading: state.userPicks.loading,
     leagueSeasonId: state.season.season.id
   }
 }
