@@ -4,7 +4,7 @@ import MatchupCard from './matchupCard'
 class MatchupList extends Component {
 
   renderMatchupList = () => {
-    return this.props.matchups.map(matchup => <MatchupCard matchup={matchup}/>)
+    return this.props.matchups.map(matchup => <MatchupCard key={matchup.id} matchup={matchup}/>)
   }
 
   render(){
