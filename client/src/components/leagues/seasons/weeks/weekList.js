@@ -19,6 +19,7 @@ class WeekList extends Component {
   handleClick = (event) => {
     event.preventDefault()
     this.setState({week: this.props.weeks.find(week => week.id === parseInt(event.target.dataset.id))})
+    this.props.loadWeeklyPicks(this.props.userId, event.target.dataset.id, this.props.leagueSeasonId)
   }
 
   renderWeekList = () => {

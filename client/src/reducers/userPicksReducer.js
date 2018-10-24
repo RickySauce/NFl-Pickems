@@ -1,4 +1,4 @@
-export default function userPicksReducer(state = {season: '', weekly: '', loading: ''}, action) {
+export default function userPicksReducer(state = {season: [], weekly: [], loading: ''}, action) {
   switch (action.type) {
 
   case 'LOADING_PICKS':
@@ -8,7 +8,7 @@ export default function userPicksReducer(state = {season: '', weekly: '', loadin
     return {...state, weekly: action.picks, loading: false}
 
   case 'ADD_PICKS':
-    return { season: [...state.season, action.picks], weekly: [...state.weekly, action.picks], loading: false};
+    return { season: state.season.concat(action.picks), weekly: state.weekly.concat(action.picks), loading: false};
 
     default:
       return state;
