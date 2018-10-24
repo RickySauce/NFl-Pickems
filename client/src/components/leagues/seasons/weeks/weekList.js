@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
+import WeekView from './weekView'
 
 class WeekList extends Component {
 
@@ -19,10 +20,10 @@ class WeekList extends Component {
   }
 
   render(){
-    console.log(this.state.week)
     return(
       <div>
       {this.renderWeekList()}
+      <WeekView week={this.state.week}/>
       </div>
     )
   }
