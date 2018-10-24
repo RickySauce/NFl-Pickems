@@ -1,5 +1,5 @@
 class LeagueSeasonSerializer < ActiveModel::Serializer
-  attributes :id, :season_id, :year
+  attributes :id, :year
   belongs_to :season
 
   def year

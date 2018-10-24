@@ -7,7 +7,7 @@ class WeekView extends Component {
     return(
       <div>
       currently viewing week # {this.props.week.weekNumber}
-      <MatchupList matchups={this.props.week.matchups}/>
+      <MatchupList matchups={this.props.week.matchups} weekId={this.props.week.id}/>
       </div>
     )
   }

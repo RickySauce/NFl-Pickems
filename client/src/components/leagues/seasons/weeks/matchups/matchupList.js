@@ -10,14 +10,17 @@ class MatchupList extends Component {
   }
 
   handleClick = (matchupId, teamId) => {
-    if (this.state.userPicks.find(userPick => userPick.matchupId === matchupId)){
-      let index = this.state.userPicks.findIndex(userPick => userPick.matchupId === matchupId)
-      console.log(index)
+    if (this.state.userPicks.find(userPick => userPick.matchup_id === matchupId)){
+      let index = this.state.userPicks.findIndex(userPick => userPick.matchup_id === matchupId)
       let newArray = this.state.userPicks
-      newArray[index] = {user_pick: {matchup_id: matchupId, team_id: teamId}}
+      newArray[index] = {...newArray[index], team_id: teamId}
       this.setState({userPicks: newArray})
     } else {
-      this.setState({userPicks: [...this.state.userPicks, {user_pick: {matchup_id: matchupId, team_id: teamId}}]})
+      this.setState({userPicks:
+        [...this.state.userPicks,
+          {matchup_id: matchupId, team_id: teamId, week_id: this.props.weekId, user_id:
+            this.props.userId, league_season_id: this.props.leagueSeasonId}]
+      })
     }
   }
 
@@ -51,4 +54,11 @@ class MatchupList extends Component {
   }
 }
 
-export default MatchupList
+const mapStateToProps = (state) => {
+  return  {
+    userId: state.user.user.id,
+    leagueSeasonId: state.season.season.id
+  }
+}
+
+export default connect(mapStateToProps)(MatchupList)
