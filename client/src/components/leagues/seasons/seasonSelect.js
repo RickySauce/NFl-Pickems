@@ -6,6 +6,7 @@ import {fetchSeason} from '../../../actions/seasons/fetchSeason'
  class SeasonSelect extends Component {
 
    handleChange = (event) => {
+     this.props.fetchSeason(event.target.value)
   }
 
   componentWillMount(){
