@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 post '/api/login', to: 'sessions#login'
 post '/api/register', to: 'users#create'
 get '/api/users/:id', to: 'users#show'
-post '/api/users/picks', to: 'user_picks#create'
+post '/api/users/picks/submit', to: 'user_picks#create'
 post '/api/leagues/new', to: 'leagues#create'
 get '/api/leagues/:id', to: 'leagues#show'
 get '/api/seasons/new', to: 'seasons#create'

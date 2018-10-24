@@ -6,23 +6,31 @@ import { connect } from 'react-redux';
 class MatchupList extends Component {
 
   state = {
-    matchups: []
+    userPicks: []
   }
 
-  handleClick = (id, teamId) => {
-    if (this.state.matchups.find(matchup => matchup.id === id)){
-      let index = this.state.matchups.findIndex(matchup => matchup.id === id)
+  handleClick = (matchupId, teamId) => {
+    if (this.state.userPicks.find(userPick => userPick.matchupId === matchupId)){
+      let index = this.state.userPicks.findIndex(userPick => userPick.matchupId === matchupId)
       console.log(index)
-      let newArray = this.state.matchups
-      newArray[index] = {id: id, team_id: teamId}
-      this.setState({matchups: newArray})
+      let newArray = this.state.userPicks
+      newArray[index] = {user_pick: {matchup_id: matchupId, team_id: teamId}}
+      this.setState({userPicks: newArray})
     } else {
-      this.setState({matchups: [...this.state.matchups, {id: id, team_id: teamId}]})
+      this.setState({userPicks: [...this.state.userPicks, {user_pick: {matchup_id: matchupId, team_id: teamId}}]})
     }
   }
 
   handleSubmit = () => {
-
+    let data = JSON.stringify({user_picks: this.state.userPicks})
+      fetch('/api/users/picks/submit', {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      method: "POST",
+      body: data
+    })
   }
 
   renderMatchupList = () => {
@@ -30,11 +38,10 @@ class MatchupList extends Component {
   }
 
   renderSubmit = () => {
-    return <Button>Submit Picks</Button>
+    return <Button onClick={this.handleSubmit}>Submit Picks</Button>
   }
 
   render(){
-    console.log(this.state)
     return(
       <div>
       {this.renderMatchupList()}

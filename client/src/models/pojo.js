@@ -12,7 +12,8 @@ export class Pojo{
           this[conventionialize(el)] = new Pojo(json[el])
         }
       } else if (typeof(json[el]) === "object" && Array.isArray(json[el])){
-        this[conventionialize(el)] = json[el].map(el => new Pojo(el))
+        this[conventionialize(el)] = json[el].map(el => {
+          return typeof(el) !== "object" ? el : new Pojo(el)})
       } else {
         this[conventionialize(el)] = json[el];
       };
