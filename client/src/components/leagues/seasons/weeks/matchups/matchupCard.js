@@ -19,8 +19,7 @@ handleClick = (event) => {
     console.log(this.state)
     return(
       <ul>
-      <Team team={this.props.matchup.homeTeam} side={this.state.home} handleClick={this.handleClick}/> vs.
-       <Team team={this.props.matchup.awayTeam} side={this.state.away} handleClick={this.handleClick}/>
+      <Team team={this.props.matchup.homeTeam} side={this.state.home} handleClick={this.handleClick}/> vs. <Team team={this.props.matchup.awayTeam} side={this.state.away} handleClick={this.handleClick}/>
       </ul>
     )
   }
