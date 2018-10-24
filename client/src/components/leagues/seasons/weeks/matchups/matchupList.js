@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import Matchup from './matchup'
+import MatchupCard from './matchupCard'
 
 class MatchupList extends Component {
 
   renderMatchupList = () => {
-    return this.props.matchups.map(matchup => <Matchup matchup={matchup}/>)
+    return this.props.matchups.map(matchup => <MatchupCard matchup={matchup}/>)
   }
 
   render(){

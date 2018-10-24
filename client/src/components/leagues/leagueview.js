@@ -45,7 +45,7 @@ import Popup from "reactjs-popup";
     return (
       <div>
       <PageHeader className="welcome">{this.props.name}</PageHeader>
-      <div style={{width: "15%", display: 'inline-block'}}>
+      <div  style={{width: "15%", display: 'inline-block', position: 'absolute'}}>
       <Panel>
       <Panel.Heading>Members {this.props.owner ? <Popup trigger={<Button className="pull-right" bsStyle="success" bsSize="xsmall" onClick={this.addUser} value={1}>+</Button>} position="right center">
       <form onSubmit={this.addUser}>
@@ -56,7 +56,7 @@ import Popup from "reactjs-popup";
       {this.renderMembersList()}
       </Panel>
       </div>
-      <div style={{width: "40%", display: 'inline-block', padding: '40px'}}>
+      <div style={{width: "40%", display: 'inline-block', marginLeft: '600px'}}>
       {this.renderSeasonView()}
       </div>
       </div>
