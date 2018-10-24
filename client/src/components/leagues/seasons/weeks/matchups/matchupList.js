@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import MatchupCard from './matchupCard'
 import { Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
+import { handlePicks } from '../../../../../actions/seasons/weeks/handlePicks'
 
 class MatchupList extends Component {
 
@@ -25,15 +26,7 @@ class MatchupList extends Component {
   }
 
   handleSubmit = () => {
-    let data = JSON.stringify({user_picks: this.state.userPicks})
-      fetch('/api/users/picks/submit', {
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      method: "POST",
-      body: data
-    })
+    this.props.handlePicks(this.state.userPicks, this.props.userPicks)
   }
 
   renderMatchupList = () => {
@@ -45,6 +38,7 @@ class MatchupList extends Component {
   }
 
   render(){
+    console.log(this.props.userPicks)
     return(
       <div>
       {this.renderMatchupList()}
@@ -57,8 +51,9 @@ class MatchupList extends Component {
 const mapStateToProps = (state) => {
   return  {
     userId: state.user.user.id,
-    leagueSeasonId: state.season.season.id
+    leagueSeasonId: state.season.season.id,
+    userPicks: state.userPicks
   }
 }
 
-export default connect(mapStateToProps)(MatchupList)
+export default connect(mapStateToProps,{handlePicks})(MatchupList)
