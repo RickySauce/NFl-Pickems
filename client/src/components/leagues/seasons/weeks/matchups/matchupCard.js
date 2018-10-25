@@ -3,7 +3,7 @@ import Team from './team'
 import moment from 'moment'
 import { Panel } from 'react-bootstrap';
 import relativeTime from '../../../../../functions/relativeTime'
-
+import Timer from './timer'
 
 class MatchupCard extends Component {
 
@@ -27,9 +27,10 @@ handleClick = (event) => {
 }
 
   render(){
+
     return(
       <Panel style={{width: "51%"}}>
-      <Panel.Heading style={{'font-size': "16px", 'font-weight': 'bold'}}>{this.dateFormatter(this.props.matchup.gameDateTime)}</Panel.Heading>
+      <Panel.Heading style={{'font-size': "16px", 'font-weight': 'bold'}}>{this.dateFormatter(this.props.matchup.gameDateTime)} <Timer time={this.props.gameDateTime}/></Panel.Heading>
       <Panel.Body><Team team={this.props.matchup.homeTeam} side={this.state.home} handleClick={this.handleClick}/>   <strong>vs.</strong>  <Team team={this.props.matchup.awayTeam} side={this.state.away} handleClick={this.handleClick}/> <br/><br/>
       </Panel.Body>
       <Panel.Body className="text-center"><strong>{this.props.matchup.homeTeam.name}</strong>(Home)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>{this.props.matchup.awayTeam.name}</strong>(Away)</Panel.Body>
@@ -40,3 +41,12 @@ handleClick = (event) => {
 }
 
 export default MatchupCard
+
+
+function countDown(gameDate) {
+  let gameParsed = Date.parse(gameDate)
+  let current = new Date()
+  let currentParsed = Date.parse(current)
+  let difference = gameParsed - currentParsed
+
+}
