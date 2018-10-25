@@ -11,7 +11,6 @@ class WeekList extends Component {
   }
 
   componentWillMount(){
-    console.log(this.state)
     this.props.loadWeeklyPicks(this.props.userId, this.state.week.id, this.props.leagueSeasonId)
   }
 
