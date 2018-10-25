@@ -9,11 +9,12 @@ export default class Timer extends Component {
 
   changeTime = () => {
     this.setState({time: this.state.time - 1000})
+    console.log(this.state)
   }
 
   componentDidMount() {
     setInterval(
-      this.changeTime(), 1000)
+      this.changeTime, 1000)
 
   }
 
