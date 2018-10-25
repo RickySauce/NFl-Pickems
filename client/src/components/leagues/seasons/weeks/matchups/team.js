@@ -2,7 +2,7 @@ import React from 'react';
 
 const Team = (props) => {
 
-const style = props.side.picked === true ?"1px solid black" : null
+const style = props.side.picked === true ?"3px solid #41cc2e" : null
 
   return(
     <span>

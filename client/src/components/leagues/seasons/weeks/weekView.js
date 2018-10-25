@@ -23,7 +23,7 @@ class WeekView extends Component {
   render(){
     return(
       <div>
-      currently viewing week # {this.props.week.weekNumber}: {this.renderDate(this.props.week.startDateTime)} - {this.renderDate(this.props.week.endDateTime)}
+      currently viewing week # {this.props.week.weekNumber}
       {this.renderMatchupList()}
       </div>
     )
