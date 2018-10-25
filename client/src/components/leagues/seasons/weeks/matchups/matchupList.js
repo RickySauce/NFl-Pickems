@@ -26,7 +26,7 @@ class MatchupList extends Component {
   }
 
   handleSubmit = () => {
-    this.props.handlePicks(this.state.userPicks, this.props.userPicks.weekly)
+    this.props.handlePicks(this.state.userPicks)
   }
 
   renderMatchupList = () => {
@@ -38,8 +38,8 @@ class MatchupList extends Component {
   }
 
   render(){
-    console.log(this.props.userPicks)
     console.log(this.state.userPicks)
+    console.log(this.props.userPicks)
     return(
       <div>
       {this.renderMatchupList()}
@@ -53,7 +53,7 @@ const mapStateToProps = (state) => {
   return  {
     userId: state.user.user.id,
     leagueSeasonId: state.season.season.id,
-    userPicks: state.userPicks
+    userPicks: state.userPicks.weekly
   }
 }
 
