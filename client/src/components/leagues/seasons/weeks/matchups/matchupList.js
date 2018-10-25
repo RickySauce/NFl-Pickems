@@ -11,19 +11,32 @@ class MatchupList extends Component {
   }
 
   handleClick = (matchupId, teamId) => {
-    if (this.state.userPicks.find(userPick => userPick.matchup_id === matchupId)){
-      let index = this.state.userPicks.findIndex(userPick => userPick.matchup_id === matchupId)
-      let newArray = this.state.userPicks
-      newArray[index] = {...newArray[index], team_id: teamId}
-      this.setState({userPicks: newArray})
-    } else {
-      this.setState({userPicks:
+    let userState = this.state.userPicks.find(userPick => userPick.matchup_id === matchupId)
+    let userGlobal = this.props.userPicks.find(userPick => userPick.matchupId === matchupId)
+    if (userState && userGlobal){
+      if(userGlobal.teamId == teamId){
+        this.setState({userPicks: this.state.userPicks.filter(el => el !== userState)})
+      }
+    } else if (userState && userState.team_id != teamId && !userGlobal){
+        let index = this.state.userPicks.findIndex(userPick => userPick.matchup_id === matchupId)
+        let newArray = this.state.userPicks
+        newArray[index] = {...newArray[index], team_id: teamId}
+        this.setState({userPicks: newArray})
+    } else if (userGlobal && userGlobal.teamId != teamId && !userState){
+          this.setState({userPicks:
+            [...this.state.userPicks,
+              {matchup_id: matchupId, team_id: teamId, week_id: this.props.weekId, user_id:
+                this.props.userId, league_season_id: this.props.leagueSeasonId}]
+          })
+    } else if (userState === undefined && userGlobal === undefined){
+        this.setState({userPicks:
         [...this.state.userPicks,
           {matchup_id: matchupId, team_id: teamId, week_id: this.props.weekId, user_id:
             this.props.userId, league_season_id: this.props.leagueSeasonId}]
       })
     }
   }
+
 
   handleSubmit = () => {
     this.props.handlePicks(this.state.userPicks)
@@ -39,7 +52,6 @@ class MatchupList extends Component {
 
   render(){
     console.log(this.state.userPicks)
-    console.log(this.props.userPicks)
     return(
       <div>
       {this.renderMatchupList()}

@@ -15,7 +15,9 @@ export function handlePicks(picks){
       })
       .then(res => res.json())
       .then(json => {
-        dispatch({type: 'ADD_PICKS', picks: json.new_picks.map(pick => new Pojo(pick))})
+        dispatch({type: 'ADD_PICKS', picks: json.new_picks.map(pick => new Pojo(pick))});
+        let uPS = json.updated_picks.map(pick => new Pojo(pick));
+        dispatch({type: 'UPDATE_PICKS', picks: uPS});
       })
     }
   };
