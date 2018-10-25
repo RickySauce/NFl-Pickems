@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Team from './team'
 import moment from 'moment'
+import { Panel } from 'react-bootstrap';
+
 class MatchupCard extends Component {
 
 state = {
@@ -25,11 +27,13 @@ handleClick = (event) => {
   render(){
     {console.log(this.props.matchup)}
     return(
+      <Panel style={{width: "51%"}}>
+      <Panel.Heading>{this.dateFormatter(this.props.matchup.gameDateTime)}</Panel.Heading>
+      <Panel.Body><Team team={this.props.matchup.homeTeam} side={this.state.home} handleClick={this.handleClick}/>   vs.  <Team team={this.props.matchup.awayTeam} side={this.state.away} handleClick={this.handleClick}/> <br/><br/>
+      </Panel.Body>
+      <Panel.Body className="text-center"><strong>{this.props.matchup.homeTeam.name}</strong>(Home)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>{this.props.matchup.awayTeam.name}</strong>(Away)</Panel.Body>
 
-      <ul>
-      <Team team={this.props.matchup.homeTeam} side={this.state.home} handleClick={this.handleClick}/>   vs.  <Team team={this.props.matchup.awayTeam} side={this.state.away} handleClick={this.handleClick}/> <br/><br/>
-      <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{this.props.matchup.homeTeam.name}(Home)  &nbsp;<strong>{this.dateFormatter(this.props.matchup.gameDateTime)}</strong>&nbsp;{this.props.matchup.awayTeam.name}(Away)</span>
-      </ul>
+      </Panel>
     )
   }
 }
