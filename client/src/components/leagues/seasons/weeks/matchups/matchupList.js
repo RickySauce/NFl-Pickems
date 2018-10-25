@@ -3,6 +3,7 @@ import MatchupCard from './matchupCard'
 import { Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { handlePicks } from '../../../../../actions/seasons/weeks/handlePicks'
+import moment from 'moment';
 
 class MatchupList extends Component {
 
@@ -39,10 +40,9 @@ class MatchupList extends Component {
 
 
   handleSubmit = () => {
-    if (this.state.userPicks.length < 1){
-      alert("Must submit valid picks")
-    } else {
+    if (this.state.userPicks.length > 0){
       this.props.handlePicks(this.state.userPicks)
+      alert("Picks submitted.")
     }
   }
 

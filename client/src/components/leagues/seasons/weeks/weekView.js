@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import MatchupList from './matchups/matchupList'
+import relativeTime from '../../../../functions/relativeTime'
+import moment from 'moment';
 
 
 
@@ -13,10 +15,15 @@ class WeekView extends Component {
     }
   }
 
+  renderDate = (dt) => {
+    let day = relativeTime(dt).format('ddd MM-DD-YYYY')
+    return day
+  }
+
   render(){
     return(
       <div>
-      currently viewing week # {this.props.week.weekNumber}
+      currently viewing week # {this.props.week.weekNumber}: {this.renderDate(this.props.week.startDateTime)} - {this.renderDate(this.props.week.endDateTime)}
       {this.renderMatchupList()}
       </div>
     )
