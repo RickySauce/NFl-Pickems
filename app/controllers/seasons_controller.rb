@@ -33,7 +33,7 @@ class SeasonsController < ApplicationController
       else
         @league_season = LeagueSeason.find_league_season(@league.id, @season.id)
       end
-      render :json => @league_season, status: 200
+      render :json => @league_season, status: 201
   end
 
   def show

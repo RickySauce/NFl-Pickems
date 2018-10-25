@@ -14,8 +14,14 @@ export default class Timer extends Component {
 
   componentDidMount() {
     setInterval(
-      this.changeTime, 1000)
+    this.changeTime, 1000)
+    this.interval = setInterval(this.changeTime, 1000)
 
+
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval)
   }
 
   render () {
