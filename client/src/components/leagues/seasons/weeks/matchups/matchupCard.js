@@ -4,8 +4,8 @@ import Team from './team'
 class MatchupCard extends Component {
 
 state = {
-  home: {side: "home", picked: false},
-  away: {side: "away", picked: false}
+  home: {side: "home", picked: this.props.pick === "home" ? true : false},
+  away: {side: "away", picked: this.props.pick === "away" ? true : false}
 }
 
 handleClick = (event) => {

@@ -39,11 +39,24 @@ class MatchupList extends Component {
 
 
   handleSubmit = () => {
-    this.props.handlePicks(this.state.userPicks)
+    if (this.state.userPicks.length < 1){
+      alert("Must submit valid picks")
+    } else {
+      this.props.handlePicks(this.state.userPicks)
+    }
   }
 
   renderMatchupList = () => {
-    return this.props.matchups.map(matchup => <MatchupCard key={matchup.id} handelClick={this.handleClick} matchup={matchup}/>)
+    return this.props.matchups.map(matchup => {
+      let pick = this.props.userPicks.find(el => matchup.id === el.matchupId)
+      if(pick){
+        if(pick.teamId === matchup.homeTeam.id){
+          pick = "home"
+        } else{
+          pick = "away"
+        }
+      }
+      return <MatchupCard key={matchup.id} handelClick={this.handleClick} pick={pick} matchup={matchup}/>})
   }
 
   renderSubmit = () => {
