@@ -38,7 +38,7 @@ class MatchupList extends Component {
   }
 
   render(){
-    console.log(this.props.userPicks)
+    console.log(this.state)
     return(
       <div>
       {this.renderMatchupList()}

@@ -2,14 +2,13 @@ import React from 'react';
 
 const Team = (props) => {
 
-const style = props.side.picked === true ? {border: '1px solid black'} : null
+const style = props.side.picked === true ?"1px solid black" : null
 
   return(
-    <span onClick={props.handleClick} data-side={props.side.side} data-id={props.team.id} style={style}>
-
-      <img style={{width: "100px", height: "75px"}} src={require(`../../../../../team logos/${props.team.id}.gif`)} alt="logo" title="logo" />
-      
-
+    <span>
+      <img onClick={props.handleClick}  data-side={props.side.side} data-id={props.team.id}
+      style={{width: "100px", height: "75px", border: style}} src={require(`../../../../../team logos/${props.team.id}.gif`)}
+      alt="logo" title="logo" />
     </span>
   )
 }
