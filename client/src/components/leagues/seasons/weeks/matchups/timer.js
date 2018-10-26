@@ -25,7 +25,6 @@ export default class Timer extends Component {
      hours = (hours < 10) ? "0" + hours : hours;
      minutes = (minutes < 10) ? "0" + minutes : minutes;
      seconds = (seconds < 10) ? "0" + seconds : seconds;
-     days = ( days < 10 ) ? "0" + days : days;
   return days + " DAYS " + hours + " HOURS " + minutes + " MINUTES " + seconds + " SECONDS UNTIL START"
 }
 
