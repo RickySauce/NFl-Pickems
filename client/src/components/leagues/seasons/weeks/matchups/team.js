@@ -7,7 +7,7 @@ const style = props.side.picked === true ?"3px solid #41cc2e" : null
   return(
     <span>
       <img onClick={props.handleClick}  data-side={props.side.side} data-id={props.team.id}
-      style={{width: "100px", height: "75px", border: style}} src={require(`../../../../../team logos/${props.team.id}.gif`)}
+      style={{width: "100px", height: "75px", border: style}} src={require(`../../../../../team logos/${props.team.abrv}.gif`)}
       alt="logo" title="logo" />
     </span>
   )
