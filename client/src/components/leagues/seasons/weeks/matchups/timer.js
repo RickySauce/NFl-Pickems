@@ -3,21 +3,23 @@ import moment from 'moment'
 
 
 export default class Timer extends Component {
-  state = {
-    time: Date.parse(new Date())
+  constructor(props) {
+    super(props);
+    this.state = {
+      time: Date.parse(new Date()),
+      gameTime: Date.parse(this.props.time)
+    }
   }
+
 
   changeTime = () => {
     this.setState({time: this.state.time - 1000})
-    console.log(this.state)
   }
 
   componentDidMount() {
     setInterval(
     this.changeTime, 1000)
     this.interval = setInterval(this.changeTime, 1000)
-
-
   }
 
   componentWillUnmount() {
@@ -26,7 +28,8 @@ export default class Timer extends Component {
 
   render () {
     return (
-      <div>{this.state.time}</div>
+      <div>{moment.duration(moment(new Date(this.state.gameTime), 'YYYY/MM/DD HH:mm').diff(moment(new Date(this.state.time), 'YYYY/MM/DD HH:mm'))).asHours()}</div>
+
     )
   }
 }
