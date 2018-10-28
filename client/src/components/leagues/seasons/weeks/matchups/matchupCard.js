@@ -30,7 +30,7 @@ handleClick = (event) => {
 
     return(
       <Panel style={{width: "51%"}}>
-      <Panel.Heading style={{'font-size': "16px", 'font-weight': 'bold'}}>{this.dateFormatter(this.props.matchup.gameDateTime)} <Timer time={this.props.matchup.gameDateTime}/></Panel.Heading>
+      <Panel.Heading style={{'fontSize': "16px", 'fontWeight': 'bold'}}>{this.dateFormatter(this.props.matchup.gameDateTime)} <Timer time={this.props.matchup.gameDateTime}/></Panel.Heading>
       <Panel.Body><Team team={this.props.matchup.homeTeam} side={this.state.home} handleClick={this.handleClick}/>   <strong>vs.</strong>  <Team team={this.props.matchup.awayTeam} side={this.state.away} handleClick={this.handleClick}/> <br/><br/>
       </Panel.Body>
       <Panel.Body className="text-center"><strong>{this.props.matchup.homeTeam.name}</strong>(Home)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>{this.props.matchup.awayTeam.name}</strong>(Away)</Panel.Body>

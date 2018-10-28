@@ -38,7 +38,7 @@ export default class Timer extends Component {
 
   render () {
     return (
-      <div style={{'font-size': '8px'}}>{(this.state.gameTime - this.state.time) < 0 ? "EXPIRED" : this.countDown(this.state.difference)}</div>
+      <div style={{'fontSize': '8px'}}>{(this.state.gameTime - this.state.time) < 0 ? "EXPIRED" : this.countDown(this.state.difference)}</div>
 
     )
   }

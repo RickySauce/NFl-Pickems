@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_24_164812) do
+ActiveRecord::Schema.define(version: 2018_10_28_140411) do
 
   create_table "league_seasons", force: :cascade do |t|
     t.integer "league_id"
@@ -91,6 +91,7 @@ ActiveRecord::Schema.define(version: 2018_10_24_164812) do
     t.integer "week_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "games_completed", default: false
   end
 
 end

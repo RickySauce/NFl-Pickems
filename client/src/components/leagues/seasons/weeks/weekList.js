@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux';
 import WeekView from './weekView'
 import { loadWeeklyPicks } from '../../../../actions/seasons/weeks/loadWeeklyPicks'
+import { updateCurrentWeek } from '../../../../actions/seasons/weeks/updateCurrentWeek'
 
 class WeekList extends Component {
 
@@ -12,6 +13,13 @@ class WeekList extends Component {
 
   componentWillMount(){
     this.props.loadWeeklyPicks(this.props.userId, this.state.week.id, this.props.leagueSeasonId)
+    this.checkResults()
+  }
+
+  checkResults = () =>{
+    if (this.props.currentWeek.gamesCompleted === false || this.props.currentWeek.locked === false) {
+      this.props.updateCurrentWeek(this.props.currentWeek)
+    }
   }
 
 
@@ -46,4 +54,4 @@ const mapStateToProps = (state) => {
 }
 
 
-export default connect(mapStateToProps,{loadWeeklyPicks})(WeekList)
+export default connect(mapStateToProps,{loadWeeklyPicks, updateCurrentWeek})(WeekList)
