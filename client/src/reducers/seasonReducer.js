@@ -22,6 +22,9 @@ export default function seasonReducer(state = {season: '', loading: false}, acti
       season["season"]["season"]["currentWeek"] = week
       return season
 
+    case 'LOCK_MATCHUPS':
+      return state
+
     default:
       return state;
 

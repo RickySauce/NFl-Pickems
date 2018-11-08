@@ -23,7 +23,7 @@ handleClick = (event) => {
     this.setState({[el]: {...this.state[el], picked: false}})
   }
   this.setState({[team]: {...this.state[team], picked: true}})
-  this.props.handelClick(this.props.matchup.id, teamId)
+  this.props.handleClick(this.props.matchup.id, teamId)
 }
 
   render(){

@@ -8,7 +8,14 @@ import moment from 'moment';
 class MatchupList extends Component {
 
   state = {
-    userPicks: []
+    userPicks: [],
+    gameTimes: {}
+  }
+
+  componentDidMount(){
+    let gameTimes = {}
+    this.props.matchups.forEach(matchup => gameTimes[matchup.gameDateTime] === undefined && matchup.locked === false ? gameTimes[matchup.gameDateTime] = "Active" : null)
+    this.setState({gameTimes: gameTimes})
   }
 
   handleClick = (matchupId, teamId) => {
@@ -46,6 +53,14 @@ class MatchupList extends Component {
     }
   }
 
+  handleExpiration = (gameTime) => {
+    if (this.state.gameTimes[gameTime] === "Active"){
+      this.setState({gameTimes: {...this.state.gameTimes, [gameTime]: "Expired"}}, function(){
+        console.log(this.state)
+      })
+    }
+  }
+
   renderMatchupList = () => {
     return this.props.matchups.map(matchup => {
       let pick = this.props.userPicks.find(el => matchup.id === el.matchupId)
@@ -56,7 +71,7 @@ class MatchupList extends Component {
           pick = "away"
         }
       }
-      return <MatchupCard key={matchup.id} handelClick={this.handleClick} pick={pick} matchup={matchup}/>})
+      return <MatchupCard key={matchup.id} pick={pick} matchup={matchup} handleClick={this.handleClick} handleExpiration={this.handleExpiration}/>})
   }
 
   renderSubmit = () => {
@@ -64,6 +79,7 @@ class MatchupList extends Component {
   }
 
   render(){
+    console.log(this.state)
     return(
       <div>
       {this.renderMatchupList()}

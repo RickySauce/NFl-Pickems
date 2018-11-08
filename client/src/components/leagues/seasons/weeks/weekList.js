@@ -8,8 +8,8 @@ import { changeCurrentWeek } from '../../../../actions/seasons/weeks/changeCurre
 
 class WeekList extends Component {
 
-  componentWillMount(){
-    this.props.loadWeeklyPicks(this.props.userId, this.props.currentWeek, this.props.leagueSeasonId)
+  componentDidMount(){
+    this.props.loadWeeklyPicks(this.props.userId, this.props.currentWeek.id, this.props.leagueSeasonId)
   }
 
   checkResults = () =>{
@@ -44,7 +44,6 @@ class WeekList extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state.season)
   return  {
     currentWeek: state.season.season.season.currentWeek,
     userId: state.user.user.id,
