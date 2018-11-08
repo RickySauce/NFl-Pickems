@@ -10,7 +10,7 @@ import {fetchSeason} from '../../../actions/seasons/fetchSeason'
   }
 
   componentWillMount(){
-    this.props.fetchSeason(this.seasonsSorted()[0].id)
+    this.props.fetchSeason(this.props.currentSeason.id)
   }
 
   seasonsSorted = () => {

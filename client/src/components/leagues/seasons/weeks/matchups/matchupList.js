@@ -64,7 +64,6 @@ class MatchupList extends Component {
   }
 
   render(){
-    console.log(this.state.userPicks)
     return(
       <div>
       {this.renderMatchupList()}

@@ -17,13 +17,13 @@ import SeasonView from './seasonView'
    }
 
    checkNewSeasonAvailability = () => {
+     //if a league has no leagueSeasons, or if a the league does not have an instance of a season with
+     // the current year, a new season will be available
      let season = this.props.leagueSeasons.find(season => {
        return season.year === new Date().getFullYear()
      })
-     if (this.props.leagueSeasons.length === 0){
+     if (this.props.leagueSeasons.length === 0 || season === undefined){
        this.setState({newSeasonAvailable: true})
-     } else if (season === undefined){
-         this.setState({newSeasonAvailable: true})
      }
    }
 

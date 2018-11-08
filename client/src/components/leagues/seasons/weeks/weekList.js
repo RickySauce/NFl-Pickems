@@ -4,16 +4,12 @@ import { connect } from 'react-redux';
 import WeekView from './weekView'
 import { loadWeeklyPicks } from '../../../../actions/seasons/weeks/loadWeeklyPicks'
 import { updateCurrentWeek } from '../../../../actions/seasons/weeks/updateCurrentWeek'
+import { changeCurrentWeek } from '../../../../actions/seasons/weeks/changeCurrentWeek'
 
 class WeekList extends Component {
 
-  state = {
-    week: this.props.currentWeek
-  }
-
   componentWillMount(){
-    this.props.loadWeeklyPicks(this.props.userId, this.state.week.id, this.props.leagueSeasonId)
-    this.checkResults()
+    this.props.loadWeeklyPicks(this.props.userId, this.props.currentWeek, this.props.leagueSeasonId)
   }
 
   checkResults = () =>{
@@ -24,8 +20,10 @@ class WeekList extends Component {
 
 
   handleClick = (event) => {
+    // dispatch week clicked to store, set currentWeek = to that instance
+    // will loadWeeklyPicks throw error if currentWeek isn't loaded before loadWeeklyPicks is fired?
     event.preventDefault()
-    this.setState({week: this.props.weeks.find(week => week.id === parseInt(event.target.dataset.id))})
+    this.props.changeCurrentWeek(event.target.dataset.id)
     this.props.loadWeeklyPicks(this.props.userId, event.target.dataset.id, this.props.leagueSeasonId)
   }
 
@@ -39,14 +37,16 @@ class WeekList extends Component {
     return(
       <div>
       {this.renderWeekList()}
-      <WeekView week={this.state.week} picksLoading={this.props.picksLoading}/>
+      <WeekView week={this.props.currentWeek} picksLoading={this.props.picksLoading}/>
       </div>
     )
   }
 }
 
 const mapStateToProps = (state) => {
+  console.log(state.season)
   return  {
+    currentWeek: state.season.season.season.currentWeek,
     userId: state.user.user.id,
     picksLoading: state.userPicks.loading,
     leagueSeasonId: state.season.season.id
@@ -54,4 +54,4 @@ const mapStateToProps = (state) => {
 }
 
 
-export default connect(mapStateToProps,{loadWeeklyPicks, updateCurrentWeek})(WeekList)
+export default connect(mapStateToProps,{loadWeeklyPicks, updateCurrentWeek, changeCurrentWeek})(WeekList)

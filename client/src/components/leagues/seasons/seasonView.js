@@ -7,7 +7,7 @@ import WeekList from './weeks/weekList'
     return (
       <div>
       NFL REGULAR SEASON SCHEDULE {this.props.season.year}
-        <WeekList weeks={this.props.season.weeks} currentWeek={this.props.season.currentWeek}/>
+        <WeekList weeks={this.props.season.weeks}/>
       </div>
     )
   }

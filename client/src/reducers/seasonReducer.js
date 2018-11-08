@@ -16,6 +16,12 @@ export default function seasonReducer(state = {season: '', loading: false}, acti
     case 'SEASON_LOADED':
       return {season: {loading: false, ...action.season}, loading: false}
 
+    case 'CHANGE_CURRENT_WEEK':
+      let week = state.season.season.weeks.find(week => week.id == action.weekId)
+      let season = {...state}
+      season["season"]["season"]["currentWeek"] = week
+      return season
+
     default:
       return state;
 
