@@ -13,7 +13,9 @@ import moment from 'moment'
 
 
   changeTime = () => {
-    this.setState({difference: this.state.gameTime - Date.parse(new Date())})
+    this.setState({difference: this.state.gameTime - Date.parse(new Date())}, function(){
+      return this.state.difference <= 0 ? this.props.handleExpiration(this.props.time) : null 
+    })
   }
 
   countDown = duration => {

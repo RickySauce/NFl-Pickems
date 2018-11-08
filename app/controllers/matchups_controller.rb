@@ -1,6 +1,6 @@
 class MatchupsController < ApplicationController
 
-  def create
+  def update
   end
-  
+
 end

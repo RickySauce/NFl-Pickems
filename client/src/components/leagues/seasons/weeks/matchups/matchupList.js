@@ -14,7 +14,9 @@ class MatchupList extends Component {
 
   componentDidMount(){
     let gameTimes = {}
-    this.props.matchups.forEach(matchup => gameTimes[matchup.gameDateTime] === undefined && matchup.locked === false ? gameTimes[matchup.gameDateTime] = "Active" : null)
+    this.props.matchups.forEach(matchup => {
+        return gameTimes[matchup.gameDateTime] === undefined && matchup.locked === false ? gameTimes[matchup.gameDateTime] = "Active" : null
+    })
     this.setState({gameTimes: gameTimes})
   }
 
@@ -56,7 +58,6 @@ class MatchupList extends Component {
   handleExpiration = (gameTime) => {
     if (this.state.gameTimes[gameTime] === "Active"){
       this.setState({gameTimes: {...this.state.gameTimes, [gameTime]: "Expired"}}, function(){
-        console.log(this.state)
       })
     }
   }
