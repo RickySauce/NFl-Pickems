@@ -18,12 +18,15 @@ export default function seasonReducer(state = {season: '', loading: false}, acti
 
     case 'CHANGE_CURRENT_WEEK':
       let week = state.season.season.weeks.find(week => week.id == action.weekId)
-      let season = {...state}
-      season["season"]["season"]["currentWeek"] = week
-      return season
+      let changeWeek = {...state}
+      changeWeek["season"]["season"]["currentWeek"] = week
+      return changeWeek
 
     case 'LOCK_MATCHUPS':
-      return state
+      let matchups = state.season.season.currentWeek.matchups.map(matchup => matchup.gameDateTime === action.gameTime ? {...matchup, locked: true} : matchup)
+      let lockMatchups = {...state}
+      lockMatchups["season"]["season"]["currentWeek"]["matchups"] = matchups
+      return lockMatchups
 
     default:
       return state;

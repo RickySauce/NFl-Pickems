@@ -3,6 +3,7 @@ import MatchupCard from './matchupCard'
 import { Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { handlePicks } from '../../../../../actions/seasons/weeks/handlePicks'
+import { lockMatchups } from '../../../../../actions/seasons/weeks/matchups/lockMatchups'
 import moment from 'moment';
 
 class MatchupList extends Component {
@@ -57,8 +58,8 @@ class MatchupList extends Component {
 
   handleExpiration = (gameTime) => {
     if (this.state.gameTimes[gameTime] === "Active"){
-      this.setState({gameTimes: {...this.state.gameTimes, [gameTime]: "Expired"}}, function(){
-      })
+      this.setState({gameTimes: {...this.state.gameTimes, [gameTime]: "Expired"}})
+      this.props.lockMatchups(gameTime)
     }
   }
 
@@ -80,7 +81,7 @@ class MatchupList extends Component {
   }
 
   render(){
-    console.log(this.state)
+    console.log(this.props.matchups)
     return(
       <div>
       {this.renderMatchupList()}
@@ -92,10 +93,11 @@ class MatchupList extends Component {
 
 const mapStateToProps = (state) => {
   return  {
+    matchups: state.season.season.season.currentWeek.matchups,
     userId: state.user.user.id,
     leagueSeasonId: state.season.season.id,
     userPicks: state.userPicks.weekly
   }
 }
 
-export default connect(mapStateToProps,{handlePicks})(MatchupList)
+export default connect(mapStateToProps,{handlePicks, lockMatchups})(MatchupList)

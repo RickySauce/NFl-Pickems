@@ -1,5 +1,5 @@
-export function lockMatchups(matchup){
+export function lockMatchups(gameTime){
   return (dispatch) => {
-    dispatch({type: 'LOCK_MATCHUPS', matchup})
+    dispatch({type: 'LOCK_MATCHUPS', gameTime})
   }
 };

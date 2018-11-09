@@ -11,7 +11,7 @@ class WeekView extends Component {
     if (this.props.picksLoading === true){
       return "Please wait for user information to load"
     } else if (this.props.picksLoading === false){
-      return <MatchupList matchups={this.props.week.matchups} weekId={this.props.week.id}/>
+      return <MatchupList weekId={this.props.week.id}/>
     }
   }
 
