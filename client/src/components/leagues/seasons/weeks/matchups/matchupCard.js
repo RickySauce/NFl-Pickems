@@ -17,18 +17,20 @@ dateFormatter = (date) => {
 }
 
 handleClick = (event) => {
-  let team = event.target.dataset.side
-  let teamId = event.target.dataset.id
-  let newState = {}
-  for (var el in this.state){
-    if (el === team){
-      newState[team] = {...this.state[team], picked: true}
-    } else {
-      newState[el] = {...this.state[el], picked: false}
+  if (this.props.matchup.locked === false){
+    let team = event.target.dataset.side
+    let teamId = event.target.dataset.id
+    let newState = {}
+    for (var el in this.state){
+      if (el === team){
+        newState[team] = {...this.state[team], picked: true}
+      } else {
+        newState[el] = {...this.state[el], picked: false}
+      }
     }
+    this.setState({...newState})
+    this.props.handleClick(this.props.matchup.id, teamId)
   }
-  this.setState({...newState})
-  this.props.handleClick(this.props.matchup.id, teamId)
 }
   render(){
     return(

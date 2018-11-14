@@ -86,7 +86,6 @@ class MatchupList extends Component {
   }
 
   render(){
-    console.log(this.props.matchups)
     return(
       <div>
       {this.renderMatchupList()}
