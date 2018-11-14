@@ -1,4 +1,4 @@
-class UserPicksController < ApplicationController
+class Api::UserPicksController < ApplicationController
 
   def submit
     @new_picks = []

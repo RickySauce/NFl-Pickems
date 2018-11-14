@@ -1,4 +1,4 @@
-class LeagueSeasonsController < ApplicationController
+class Api::LeagueSeasonsController < ApplicationController
 
   def show
     @league_season = LeagueSeason.find_by(id: params["id"])

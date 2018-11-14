@@ -1,4 +1,4 @@
-class SeasonsController < ApplicationController
+class Api::SeasonsController < ApplicationController
 
   def create
     current_year = Date.today.year
@@ -36,14 +36,14 @@ class SeasonsController < ApplicationController
       render :json => @league_season, status: 201
   end
 
-  def show
-    @season = Season.find_by(year: params["year"])
-    if !@season.blank?
-      render status: 200
-    else
-      render status: 404
-    end
-  end
+  # def show
+  #   @season = Season.find_by(year: params["year"])
+  #   if !@season.blank?
+  #     render status: 200
+  #   else
+  #     render status: 404
+  #   end
+  # end
 
 end
 

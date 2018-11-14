@@ -56,6 +56,9 @@ class MatchupList extends Component {
     }
   }
 
+
+// passed down to MatchUp card in renderMatchupList which in turn passes it to the Timer Component
+// this.state.gameTimes handles bulk dispatching of "locked" matchups based on a shared time
   handleExpiration = (gameTime) => {
     if (this.state.gameTimes[gameTime] === "Active"){
       this.setState({gameTimes: {...this.state.gameTimes, [gameTime]: "Expired"}})
@@ -77,7 +80,9 @@ class MatchupList extends Component {
   }
 
   renderSubmit = () => {
-    return <Button onClick={this.handleSubmit}>Submit Picks</Button>
+    if (this.props.matchups.find(matchup => matchup.locked === false)){
+      return <Button onClick={this.handleSubmit}>Submit Picks</Button>
+    }
   }
 
   render(){

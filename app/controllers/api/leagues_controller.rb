@@ -1,4 +1,4 @@
-class LeaguesController < ApplicationController
+class Api::LeaguesController < ApplicationController
 
   def create
     @league = League.new(league_params)
