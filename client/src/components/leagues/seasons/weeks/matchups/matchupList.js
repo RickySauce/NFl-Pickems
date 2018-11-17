@@ -63,7 +63,7 @@ class MatchupList extends Component {
     if (this.state.gameTimes[gameTime] === "Active"){
       this.setState({gameTimes: {...this.state.gameTimes, [gameTime]: "Expired"}})
       //lockMatchups needs weekId as a reference to update all of the matchups with the same game time for the same week - rails
-      this.props.lockMatchups(gameTime, this.props.matchups[0].weekId)
+      this.props.lockMatchups(gameTime, this.props.weekId)
     }
   }
 
@@ -98,6 +98,7 @@ class MatchupList extends Component {
 
 const mapStateToProps = (state) => {
   return  {
+    weekId: state.season.season.season.currentWeek.id,
     matchups: state.season.season.season.currentWeek.matchups,
     userId: state.user.user.id,
     leagueSeasonId: state.season.season.id,

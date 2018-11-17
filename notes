@@ -4,9 +4,3 @@ TO-DO:
 
 -finish matchup update for backend
 -after dispatch locks a matchup, sends fetch request to back end and updates all matchups with the same game time
-
--fetch teams on app load, teams should be loaded when the app starts
--matchups use team ids as a reference for the team array stored in the global state, instead of loading serialized
- teams every time
-
--cleanup unused components/functions

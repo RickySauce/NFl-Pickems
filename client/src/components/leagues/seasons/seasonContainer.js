@@ -32,10 +32,10 @@ import SeasonView from './seasonView'
    }
 
   renderSeasonSelect = () => {
-    if (this.props.loading === true){
+    if (this.props.loading === true && this.props.teams.loading === true){
       return "Seasons Loading"
-    } else if (this.props.leagueSeasons.length > 0){
-        return <SeasonSelect seasons={this.props.leagueSeasons} currentSeason={this.props.currentSeason}/>
+    } else if (this.props.leagueSeasons.length > 0 && this.props.teams.loading === false){
+        return <SeasonSelect seasons={this.props.leagueSeasons} teams={this.props.teams.teams} currentSeason={this.props.currentSeason}/>
     }
   }
 
@@ -68,6 +68,7 @@ import SeasonView from './seasonView'
 
 const mapStateToProps = (state) => {
   return  {
+    teams: state.teams,
     season: state.season.season.season,
     seasonLoading: state.season.season.loading,
     leagueSeasons: state.league.league.leagueSeasons,

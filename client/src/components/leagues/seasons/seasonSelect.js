@@ -7,9 +7,9 @@ import {fetchSeason} from '../../../actions/seasons/fetchSeason'
 
    handleChange = (event) => {
      this.props.fetchSeason(event.target.value, this.props.teams)
-  }
+    }
 
-  componentWillMount(){
+  componentDidMount(){
     this.props.fetchSeason(this.props.currentSeason.id, this.props.teams)
   }
 
@@ -34,10 +34,4 @@ render(){
   }
 }
 
-const mapStateToProps = (state) => {
-  return  {
-    teams: state.teams.teams
-  }
-}
-
-export default connect(mapStateToProps,{fetchSeason})(SeasonSelect)
+export default connect(null,{fetchSeason})(SeasonSelect)
