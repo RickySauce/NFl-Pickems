@@ -1,5 +1,5 @@
 import React from 'react';
-import { Panel, Button, PageHeader, Col } from 'react-bootstrap'
+import { Button } from 'react-bootstrap'
 import { connect } from 'react-redux';
 import { deleteUser }  from '../../../actions/league/deleteUser'
 

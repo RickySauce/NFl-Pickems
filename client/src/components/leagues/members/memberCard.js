@@ -1,5 +1,5 @@
 import React from 'react';
-import { Panel, Button, PageHeader, Col } from 'react-bootstrap'
+// import { Panel, Button, PageHeader, Col } from 'react-bootstrap'
 import RemoveUser from './removeUser'
 import { connect } from 'react-redux';
 

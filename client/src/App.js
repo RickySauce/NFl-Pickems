@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
 import Header from './header'
 import CustomNavbar from './components/navbar'
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Login from './components/LoginRegistration/login'
 import Register from './components/LoginRegistration/register'
 import { connect } from 'react-redux';
 import { fetchUser } from './actions/users/fetchUser'
+import { fetchTeams } from './actions/teams/fetchTeams'
 import ProfileContainer from './components/user/profileContainer'
 import LeagueForm from './components/leagues/createleague'
 import Home from './components/home'
 import League from './components/leagues/leagueview'
 import jstz from 'jstz';
-import moment from 'moment';
 import 'moment-timezone';
 
 
@@ -28,8 +28,9 @@ class App extends Component {
     }
   }
 
-  componentWillMount(){
+  componentDidMount(){
     this.setTimeZone()
+    this.props.fetchTeams()
     let id = sessionStorage.getItem("ID")
     if (typeof(id) === "string") {
         this.props.fetchUser(id)
@@ -61,4 +62,4 @@ const mapStateToProps = (state) => {
 }
 
 
-export default connect(mapStateToProps, {fetchUser})(App);
+export default connect(mapStateToProps, {fetchUser, fetchTeams})(App);

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import MatchupList from './matchups/matchupList'
 import relativeTime from '../../../../functions/relativeTime'
-import moment from 'moment';
+// import moment from 'moment';
 
 
 

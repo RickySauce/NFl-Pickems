@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 namespace :api do
   post '/login', to: 'sessions#login'
   post '/register', to: 'users#create'
+  patch '/matchups/update(/:week_id)(/:matchup_id)', to: 'matchups#update'
+  get '/teams', to: 'teams#show'
 
   scope '/users' do
     get '/:id', to: 'users#show'
@@ -19,8 +21,6 @@ namespace :api do
     post '/users/new', to: 'user_leagues#create'
     delete '/:league_id/users/remove/:user_id', to: 'user_leagues#destroy'
   end
-
-  post '/matchups/update(/:week_id)(/:matchup_id)', to: 'matchups#update'
 
   scope 'seasons' do
     get '/new', to: 'seasons#create'

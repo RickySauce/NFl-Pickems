@@ -1,4 +1,3 @@
-import jstz from 'jstz';
 import moment from 'moment';
 import 'moment-timezone';
 

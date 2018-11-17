@@ -5,7 +5,7 @@ export default function teamsReducer(state = {teams: [], loading: ''}, action) {
       return {...state, loading: true}
 
   case 'TEAMS_LOADED':
-      return {action.teams, loading: false}
+      return {teams: [...action.teams], loading: false}
 
   default:
       return state;

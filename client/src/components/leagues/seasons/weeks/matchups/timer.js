@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import moment from 'moment'
+// import moment from 'moment'
 
  class Timer extends Component {
   constructor(props) {
@@ -14,7 +14,7 @@ import moment from 'moment'
 
   changeTime = () => {
     this.setState({difference: this.state.gameTime - Date.parse(new Date())}, function(){
-      return this.state.difference <= 0 ? this.props.handleExpiration(this.props.time) : null 
+      return this.state.difference <= 0 ? this.props.handleExpiration(this.props.time) : null
     })
   }
 

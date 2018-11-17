@@ -6,11 +6,11 @@ import {fetchSeason} from '../../../actions/seasons/fetchSeason'
  class SeasonSelect extends Component {
 
    handleChange = (event) => {
-     this.props.fetchSeason(event.target.value)
+     this.props.fetchSeason(event.target.value, this.props.teams)
   }
 
   componentWillMount(){
-    this.props.fetchSeason(this.props.currentSeason.id)
+    this.props.fetchSeason(this.props.currentSeason.id, this.props.teams)
   }
 
   seasonsSorted = () => {
@@ -34,5 +34,10 @@ render(){
   }
 }
 
+const mapStateToProps = (state) => {
+  return  {
+    teams: state.teams.teams
+  }
+}
 
-export default connect(null,{fetchSeason})(SeasonSelect)
+export default connect(mapStateToProps,{fetchSeason})(SeasonSelect)

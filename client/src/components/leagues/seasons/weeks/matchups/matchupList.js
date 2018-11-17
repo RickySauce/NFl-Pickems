@@ -4,7 +4,7 @@ import { Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { handlePicks } from '../../../../../actions/seasons/weeks/handlePicks'
 import { lockMatchups } from '../../../../../actions/seasons/weeks/matchups/lockMatchups'
-import moment from 'moment';
+// import moment from 'moment';
 
 class MatchupList extends Component {
 

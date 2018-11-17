@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Panel, Button, PageHeader, Col } from 'react-bootstrap'
+import { Panel, Button, PageHeader } from 'react-bootstrap'
 import MembersList from './members/membersList'
 import SeasonContainer from './seasons/seasonContainer'
 import {fetchLeague} from '../../actions/league/fetchLeague'

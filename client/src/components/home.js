@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { resetLoggingOut } from '../actions/users/resetloggingout';
 import { connect } from 'react-redux';
-import { Panel, Button, PageHeader, Col, Grid, Row } from 'react-bootstrap'
+// import { Panel, Button, PageHeader, Col, Grid, Row } from 'react-bootstrap'
 
 
 class Home extends Component {

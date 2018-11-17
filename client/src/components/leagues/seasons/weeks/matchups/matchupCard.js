@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Team from './team'
-import moment from 'moment'
+// import moment from 'moment'
 import { Panel } from 'react-bootstrap';
 import relativeTime from '../../../../../functions/relativeTime'
 import Timer from './timer'
@@ -48,10 +48,9 @@ handleClick = (event) => {
 export default MatchupCard
 
 
-function countDown(gameDate) {
-  let gameParsed = Date.parse(gameDate)
-  let current = new Date()
-  let currentParsed = Date.parse(current)
-  let difference = gameParsed - currentParsed
-
-}
+// function countDown(gameDate) {
+//   let gameParsed = Date.parse(gameDate)
+//   let current = new Date()
+//   let currentParsed = Date.parse(current)
+//   let difference = gameParsed - currentParsed
+// }

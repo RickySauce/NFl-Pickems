@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Button } from 'react-bootstrap'
 import { connect } from 'react-redux';
-import { BrowserRouter as Router, Route, Link, Redirect  } from 'react-router-dom';
+import { Redirect  } from 'react-router-dom';
 import { newLeague } from '../../actions/users/newleague';
 
 
@@ -16,7 +16,7 @@ class LeagueForm extends Component {
   }
 
   handleClick = (event) => {
-    let input = `<input type="text" />`
+    // let input = `<input type="text" />`
     switch (event.target.name) {
       case "decrease":
         if (this.state.count > 0) {
