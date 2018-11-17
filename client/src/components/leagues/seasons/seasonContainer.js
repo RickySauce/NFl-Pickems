@@ -35,7 +35,7 @@ import SeasonView from './seasonView'
     if (this.props.loading === true && this.props.teams.loading === true){
       return "Seasons Loading"
     } else if (this.props.leagueSeasons.length > 0 && this.props.teams.loading === false){
-        return <SeasonSelect seasons={this.props.leagueSeasons} teams={this.props.teams.teams} currentSeason={this.props.currentSeason}/>
+      return <SeasonSelect seasons={this.props.leagueSeasons} teams={this.props.teams.teams} currentSeason={this.props.currentSeason}/>
     }
   }
 

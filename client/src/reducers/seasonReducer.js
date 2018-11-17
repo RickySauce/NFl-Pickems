@@ -23,7 +23,11 @@ export default function seasonReducer(state = {season: '', loading: false}, acti
         })
         return week
       })
-      season.season.currentWeek = season.season.weeks.find(week => week.id === season.season.currentWeek.id)
+      season.season["currentWeek"] = season.season.weeks.find(week => {
+        if (new Date(week.startDateTime) <= new Date() && new Date() <= new Date(week.endDateTime)) {
+          return week
+        }
+      })
       return {season: {loading: false, ...season}, loading: false}
 
     case 'CHANGE_CURRENT_WEEK':

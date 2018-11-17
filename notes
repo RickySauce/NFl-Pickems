@@ -4,3 +4,10 @@ TO-DO:
 
 -finish matchup update for backend
 -after dispatch locks a matchup, sends fetch request to back end and updates all matchups with the same game time
+
+-user can click on team before dispatch locks matchups, must add additional logic to prevent this and or remove it.
+
+-currentWeek persisted on the back end, is this neccessary? can set currentWeek when fetched to first week that isn't locked
+
+-refactor currentWeek, currentSeason. current week and current season should be relative. current season is set on new season
+current weeks should be set when the initial current week is locked 

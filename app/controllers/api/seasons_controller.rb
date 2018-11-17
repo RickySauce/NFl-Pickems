@@ -30,6 +30,7 @@ class Api::SeasonsController < ApplicationController
       end
       if LeagueSeason.find_league_season(@league.id, @season.id).nil?
         @league_season = LeagueSeason.create(league_id: @league.id, season_id: @season.id)
+        @league.update(current_season_id: @league_season["id"])
       else
         @league_season = LeagueSeason.find_league_season(@league.id, @season.id)
       end

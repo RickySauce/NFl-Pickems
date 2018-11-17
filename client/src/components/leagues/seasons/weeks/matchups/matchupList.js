@@ -53,6 +53,8 @@ class MatchupList extends Component {
     if (this.state.userPicks.length > 0){
       this.props.handlePicks(this.state.userPicks)
       alert("Picks submitted.")
+    } else {
+      alert("Must make additional picks or change original ones")
     }
   }
 

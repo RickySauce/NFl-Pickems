@@ -4,7 +4,7 @@ class Api::LeagueSeasonsController < ApplicationController
     @league_season = LeagueSeason.find_by(id: params["id"])
     if @league_season
       render :json => @league_season, include: [
-        'season', 'season.weeks', 'season.current_week.matchups', 'season.weeks.matchups', 
+        'season', 'season.weeks', 'season.weeks.matchups'
         ], status: 200
     else
       render status: 404
