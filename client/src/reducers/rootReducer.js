@@ -8,7 +8,8 @@ const rootReducer = combineReducers({
   user: userReducer,
   userPicks: userPicksReducer,
   league: leagueReducer,
-  season: seasonReducer
+  season: seasonReducer,
+  teams: teamsReducer
 })
 
 export default rootReducer;

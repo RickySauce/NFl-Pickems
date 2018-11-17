@@ -26,12 +26,6 @@ class App extends Component {
       let tz = jstz.determine() || 'UTC';
       sessionStorage.setItem('timezone', tz.name());
     }
-    // let currTz = sessionStorage.getItem('timezone');
-    // let date = moment().format("YYYY-MM-DD");
-    // let stamp = date + "T" + '14:30' + "Z";
-    // let momentTime = moment(stamp);
-    // let tzTime = momentTime.tz(currTz);
-    // let formattedTime = tzTime.format('YYYY-MM-DD h:mm A');
   }
 
   componentWillMount(){

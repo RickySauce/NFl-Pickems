@@ -46,14 +46,3 @@ class Api::SeasonsController < ApplicationController
   # end
 
 end
-
-
-
-
-# create_table "seasons", force: :cascade do |t|
-#   t.integer "current_week"
-#   t.integer "year"
-#   t.boolean "locked", default: false
-#   t.datetime "created_at", null: false
-#   t.datetime "updated_at", null: false
-# end

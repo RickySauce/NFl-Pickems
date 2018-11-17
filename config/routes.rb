@@ -20,6 +20,8 @@ namespace :api do
     delete '/:league_id/users/remove/:user_id', to: 'user_leagues#destroy'
   end
 
+  post '/matchups/update(/:week_id)(/:matchup_id)', to: 'matchups#update'
+
   scope 'seasons' do
     get '/new', to: 'seasons#create'
     # get '/find', to: 'seasons#show'
