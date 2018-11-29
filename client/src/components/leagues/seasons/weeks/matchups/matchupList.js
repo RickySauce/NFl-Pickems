@@ -4,7 +4,7 @@ import { Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { handlePicks } from '../../../../../actions/seasons/weeks/handlePicks'
 import { lockMatchups } from '../../../../../actions/seasons/weeks/matchups/lockMatchups'
-// import moment from 'moment';
+import moment from 'moment';
 
 class MatchupList extends Component {
 
@@ -14,11 +14,40 @@ class MatchupList extends Component {
   }
 
   componentDidMount(){
+    //every minute check to see if enough time has surpassed for there to be results for games with expired clocks
+    //matchups without a winningId and that aren't locked will be set to expired on mount
+    //each matchup without a winningId that is expired and past a certain time: check for results on mount ?
+    this.interval = setInterval(this.checkResults, 60000)
+    this.initializeGameTimes()
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval)
+  }
+
+  initializeGameTimes = () => {
+    let timeNow = moment(new Date)
     let gameTimes = {}
+    let checkResults = {}
     this.props.matchups.forEach(matchup => {
-        return gameTimes[matchup.gameDateTime] === undefined && matchup.locked === false ? gameTimes[matchup.gameDateTime] = "Active" : null
+      if (matchup.locked === false){
+        gameTimes[matchup.gameDateTime] = "Active"
+      }else if (matchup.winningId === null) {
+        let gameTime = moment(matchup.gameDateTime)
+        console.log(timeNow.diff(gameTime, 'hours'), matchup.gameDateTime)
+        gameTimes[matchup.gameDateTime] = "Expired"
+      }
     })
+    for (var gameTime in gameTimes){
+      if (gameTimes[gameTime] === "Expired"){
+        this.checkResults()
+      }
+    }
     this.setState({gameTimes: gameTimes})
+  }
+
+  checkResults = (gameTimes) => {
+    console.log("suh")
   }
 
   handleClick = (matchupId, teamId) => {
@@ -89,6 +118,8 @@ class MatchupList extends Component {
   }
 
   render(){
+    console.log(this.props.matchups)
+    console.log(this.state)
     return(
       <div>
       {this.renderMatchupList()}

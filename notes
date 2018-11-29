@@ -10,4 +10,24 @@ TO-DO:
 -currentWeek persisted on the back end, is this neccessary? can set currentWeek when fetched to first week that isn't locked
 
 -refactor currentWeek, currentSeason. current week and current season should be relative. current season is set on new season
-current weeks should be set when the initial current week is locked 
+current weeks should be set when the initial current week is locked
+
+
+-------------------------------------------------
+-MatchupList Component:
+
+  [
+    - needs a component that will handle the gametimes of all of the games, the expiration of those times, the locking of the times and a mass update of said times through fetch
+      request to the API.
+    - times should be locked via dispatch when timer is expired, but should not send an instantaneous fetch request. - this can be handled via local state???? or new reducer.
+    - front end/ reducer should only be worried on whether a user has the ability to make new choices and send said choices at a certain time.
+    - gametime{active: -true or false-, updated: -true or false-}
+    ]
+
+    - handleExpiration should change MatchupList state when timer hits 0, local state may still have pick saved and can be sent if other games have not been locked
+    - separate submit button for each gametime?,
+
+    -matchups should be separated but gameTime components!!!!!
+
+    - new branch
+--------------------------------------------------
