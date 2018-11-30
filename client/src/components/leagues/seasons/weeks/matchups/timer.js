@@ -14,7 +14,7 @@ import React, { Component } from 'react';
 
   changeTime = () => {
     this.setState({difference: this.state.gameTime - Date.parse(new Date())}, function(){
-      return this.state.difference <= 0 ? this.props.handleExpiration(this.props.time) : null
+      // return this.state.difference <= 0 ? this.props.handleExpiration(this.props.time) : null
     })
   }
 

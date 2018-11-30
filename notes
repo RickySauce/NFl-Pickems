@@ -27,7 +27,7 @@ current weeks should be set when the initial current week is locked
     - handleExpiration should change MatchupList state when timer hits 0, local state may still have pick saved and can be sent if other games have not been locked
     - separate submit button for each gametime?,
 
-    -matchups should be separated but gameTime components!!!!!
+    -matchups should be separated by gameTime components!!!!!
 
     - new branch
 --------------------------------------------------

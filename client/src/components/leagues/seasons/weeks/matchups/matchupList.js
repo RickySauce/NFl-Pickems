@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import GameTimeContainer from './gameTimeContainer'
 import MatchupCard from './matchupCard'
 import { Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
@@ -9,42 +10,49 @@ import moment from 'moment';
 class MatchupList extends Component {
 
   state = {
-    userPicks: [],
-    gameTimes: {}
+    userPicks: []
   }
 
-  componentDidMount(){
-    //every minute check to see if enough time has surpassed for there to be results for games with expired clocks
-    //matchups without a winningId and that aren't locked will be set to expired on mount
-    //each matchup without a winningId that is expired and past a certain time: check for results on mount ?
-    this.interval = setInterval(this.checkResults, 60000)
-    this.initializeGameTimes()
-  }
+  // componentDidMount(){
+  //   //every minute check to see if enough time has surpassed for there to be results for games with expired clocks
+  //   //matchups without a winningId and that aren't locked will be set to expired on mount
+  //   //each matchup without a winningId that is expired and past a certain time: check for results on mount ?
+  //   this.interval = setInterval(this.checkResults, 60000)
+  //   this.initializeGameTimes()
+  // }
 
   componentWillUnmount() {
     clearInterval(this.interval)
   }
 
-  initializeGameTimes = () => {
-    let timeNow = moment(new Date)
+  renderGameTimes = () => {
     let gameTimes = {}
-    let checkResults = {}
     this.props.matchups.forEach(matchup => {
-      if (matchup.locked === false){
-        gameTimes[matchup.gameDateTime] = "Active"
-      }else if (matchup.winningId === null) {
-        let gameTime = moment(matchup.gameDateTime)
-        console.log(timeNow.diff(gameTime, 'hours'), matchup.gameDateTime)
-        gameTimes[matchup.gameDateTime] = "Expired"
-      }
+      gameTimes[matchup.gameDateTime] ? gameTimes[matchup.gameDateTime].push(matchup) : gameTimes[matchup.gameDateTime] = [matchup]
     })
-    for (var gameTime in gameTimes){
-      if (gameTimes[gameTime] === "Expired"){
-        this.checkResults()
-      }
-    }
-    this.setState({gameTimes: gameTimes})
+    return Object.keys(gameTimes).map( (gameTime , index) => <GameTimeContainer key={index} gameTime={gameTime} matchups={gameTimes[gameTime]}/>)
   }
+
+  // initializeGameTimes = () => {
+  //   let timeNow = moment(new Date)
+  //   let gameTimes = {}
+  //   let checkResults = {}
+  //   this.props.matchups.forEach(matchup => {
+  //     if (matchup.locked === false){
+  //       gameTimes[matchup.gameDateTime] = "Active"
+  //     }else if (matchup.winningId === null) {
+  //       let gameTime = moment(matchup.gameDateTime)
+  //       console.log(timeNow.diff(gameTime, 'hours'), matchup.gameDateTime)
+  //       gameTimes[matchup.gameDateTime] = "Expired"
+  //     }
+  //   })
+  //   for (var gameTime in gameTimes){
+  //     if (gameTimes[gameTime] === "Expired"){
+  //       this.checkResults()
+  //     }
+  //   }
+  //   this.setState({gameTimes: gameTimes})
+  // }
 
   checkResults = (gameTimes) => {
     console.log("suh")
@@ -90,26 +98,26 @@ class MatchupList extends Component {
 
 // passed down to MatchUp card in renderMatchupList which in turn passes it to the Timer Component
 // this.state.gameTimes handles bulk dispatching of "locked" matchups based on a shared time
-  handleExpiration = (gameTime) => {
-    if (this.state.gameTimes[gameTime] === "Active"){
-      this.setState({gameTimes: {...this.state.gameTimes, [gameTime]: "Expired"}})
-      //lockMatchups needs weekId as a reference to update all of the matchups with the same game time for the same week - rails
-      this.props.lockMatchups(gameTime, this.props.weekId)
-    }
-  }
+  // handleExpiration = (gameTime) => {
+  //   if (this.state.gameTimes[gameTime] === "Active"){
+  //     this.setState({gameTimes: {...this.state.gameTimes, [gameTime]: "Expired"}})
+  //     //lockMatchups needs weekId as a reference to update all of the matchups with the same game time for the same week - rails
+  //     this.props.lockMatchups(gameTime, this.props.weekId)
+  //   }
+  // }
 
-  renderMatchupList = () => {
-    return this.props.matchups.map(matchup => {
-      let pick = this.props.userPicks.find(el => matchup.id === el.matchupId)
-      if(pick){
-        if(pick.teamId === matchup.homeTeam.id){
-          pick = "home"
-        } else{
-          pick = "away"
-        }
-      }
-      return <MatchupCard key={matchup.id} pick={pick} matchup={matchup} handleClick={this.handleClick} handleExpiration={this.handleExpiration}/>})
-  }
+  // renderMatchupList = () => {
+  //   return this.props.matchups.map(matchup => {
+  //     let pick = this.props.userPicks.find(el => matchup.id === el.matchupId)
+  //     if(pick){
+  //       if(pick.teamId === matchup.homeTeam.id){
+  //         pick = "home"
+  //       } else{
+  //         pick = "away"
+  //       }
+  //     }
+  //     return <MatchupCard key={matchup.id} pick={pick} matchup={matchup} handleClick={this.handleClick}/>})
+  // }
 
   renderSubmit = () => {
     if (this.props.matchups.find(matchup => matchup.locked === false)){
@@ -118,11 +126,9 @@ class MatchupList extends Component {
   }
 
   render(){
-    console.log(this.props.matchups)
-    console.log(this.state)
     return(
       <div>
-      {this.renderMatchupList()}
+      {this.renderGameTimes()}
       {this.renderSubmit()}
       </div>
     )
