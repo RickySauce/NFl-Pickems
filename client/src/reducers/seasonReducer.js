@@ -26,6 +26,8 @@ export default function seasonReducer(state = {season: '', loading: false}, acti
       season.season["currentWeek"] = season.season.weeks.find(week => {
         if (new Date(week.startDateTime) <= new Date() && new Date() <= new Date(week.endDateTime)) {
           return week
+        } else if (week.weekNumber == 17) {
+          return week
         }
       })
       return {season: {loading: false, ...season}, loading: false}
