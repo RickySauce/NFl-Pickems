@@ -10,7 +10,8 @@ import moment from 'moment';
 class MatchupList extends Component {
 
   state = {
-    userPicks: []
+    userPicks: [],
+    gameTimes: []
   }
 
   // componentDidMount(){
@@ -94,30 +95,6 @@ class MatchupList extends Component {
       alert("Must make additional picks or change original ones")
     }
   }
-
-
-// passed down to MatchUp card in renderMatchupList which in turn passes it to the Timer Component
-// this.state.gameTimes handles bulk dispatching of "locked" matchups based on a shared time
-  // handleExpiration = (gameTime) => {
-  //   if (this.state.gameTimes[gameTime] === "Active"){
-  //     this.setState({gameTimes: {...this.state.gameTimes, [gameTime]: "Expired"}})
-  //     //lockMatchups needs weekId as a reference to update all of the matchups with the same game time for the same week - rails
-  //     this.props.lockMatchups(gameTime, this.props.weekId)
-  //   }
-  // }
-
-  // renderMatchupList = () => {
-  //   return this.props.matchups.map(matchup => {
-  //     let pick = this.props.userPicks.find(el => matchup.id === el.matchupId)
-  //     if(pick){
-  //       if(pick.teamId === matchup.homeTeam.id){
-  //         pick = "home"
-  //       } else{
-  //         pick = "away"
-  //       }
-  //     }
-  //     return <MatchupCard key={matchup.id} pick={pick} matchup={matchup} handleClick={this.handleClick}/>})
-  // }
 
   renderSubmit = () => {
     if (this.props.matchups.find(matchup => matchup.locked === false)){

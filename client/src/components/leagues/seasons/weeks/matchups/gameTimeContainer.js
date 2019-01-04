@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
 import MatchupCard from './matchupCard'
 import relativeTime from '../../../../../functions/relativeTime'
 import Timer from './timer'
 import moment from 'moment';
+import { lockMatchups } from '../../../../../actions/seasons/weeks/matchups/lockMatchups'
 
 class GameTimeContainer extends Component {
 
@@ -48,4 +50,4 @@ class GameTimeContainer extends Component {
 
 
 
-export default GameTimeContainer
+export default connect(null, { lockMatchups })(GameTimeContainer)
