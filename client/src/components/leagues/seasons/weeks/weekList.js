@@ -37,7 +37,6 @@ class WeekList extends Component {
     return(
       <div>
       {this.renderWeekList()}
-      {console.log(this.props)}
       <WeekView week={this.props.currentWeek} picksLoading={this.props.picksLoading}/>
       </div>
     )
