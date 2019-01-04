@@ -12,7 +12,7 @@ class GameTimeContainer extends Component {
 
   renderMatchupList = () => {
     return this.props.matchups.map(matchup => {
-      return <MatchupCard key={matchup.id} matchup={matchup}/>})
+      return <MatchupCard key={matchup.id} handleClick={this.props.handleClick} matchup={matchup}/>})
   }
 
   render(){

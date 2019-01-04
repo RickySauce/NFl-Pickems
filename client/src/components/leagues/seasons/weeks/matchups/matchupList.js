@@ -30,7 +30,7 @@ class MatchupList extends Component {
     this.props.matchups.forEach(matchup => {
       gameTimes[matchup.gameDateTime] ? gameTimes[matchup.gameDateTime].push(matchup) : gameTimes[matchup.gameDateTime] = [matchup]
     })
-    return Object.keys(gameTimes).map( (gameTime , index) => <GameTimeContainer key={index} gameTime={gameTime} matchups={gameTimes[gameTime]}/>)
+    return Object.keys(gameTimes).map( (gameTime , index) => <GameTimeContainer key={index} gameTime={gameTime} handleClick={this.handleClick} matchups={gameTimes[gameTime]}/>)
   }
 
   // initializeGameTimes = () => {
