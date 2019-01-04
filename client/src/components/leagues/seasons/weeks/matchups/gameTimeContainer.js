@@ -20,8 +20,10 @@ class GameTimeContainer extends Component {
   }
 
   lockMatchups = () => {
-    if (this.state.locked == false && new Date > new Date(this.props.gameTime)){
+    if ((this.state.locked === false || this.state.locked === null) && new Date > new Date(this.props.gameTime)){
       this.setState({locked: true})
+    } else if (this.state.locked === null) {
+      this.setState({locked: false})
     }
   }
 
@@ -37,7 +39,6 @@ class GameTimeContainer extends Component {
   render(){
     return(
       <div>
-      {console.log(this.state)}
       {this.dateFormatter(this.props.gameTime)} <Timer time={this.props.gameTime}/>
       {this.renderMatchupList()}
       </div>

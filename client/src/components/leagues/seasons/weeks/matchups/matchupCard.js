@@ -17,7 +17,7 @@ dateFormatter = (date) => {
 }
 
 handleClick = (event) => {
-  if (this.props.matchup.locked === false){
+  if (this.props.locked === false){
     let team = event.target.dataset.side
     let teamId = event.target.dataset.id
     let newState = {}

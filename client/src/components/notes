@@ -1,3 +1,6 @@
 - add boolean to user reducer
 - convert all fetch requests to async dispatch actions
 - refactor code for LeagueForm
+
+-timer does not convert to expired if time goes below 00 seconds unless refreshed
+-make picks unhighlight if timer goes below 00 
