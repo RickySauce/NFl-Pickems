@@ -4,6 +4,7 @@ import NewSeason from './newSeason'
 import SeasonSelect from './seasonSelect'
 import {resetSeason} from '../../../actions/seasons/resetSeason'
 import SeasonView from './seasonView'
+import '../../../css/season.css'
 
 
  class SeasonContainer extends Component {
@@ -57,7 +58,7 @@ import SeasonView from './seasonView'
 
   render() {
     return (
-      <div>
+      <div id='season-container'>
       {this.renderNewSeason()}
       {this.renderSeasonSelect()}
       {this.renderSeasonView()}

@@ -12,9 +12,7 @@ const MembersList = (props) => {
   }
 
     return(
-      <div>
-      {renderMembers()}
-      </div>
+      renderMembers()
     )
 }
 

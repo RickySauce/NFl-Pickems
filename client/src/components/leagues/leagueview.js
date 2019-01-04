@@ -7,6 +7,7 @@ import {fetchLeague} from '../../actions/league/fetchLeague'
 import {resetLeague} from '../../actions/league/resetLeague'
 import {postUser} from '../../actions/league/postUser'
 import Popup from "reactjs-popup";
+import '../../css/members.css'
 
 
  class League extends Component {
@@ -44,21 +45,19 @@ import Popup from "reactjs-popup";
   render() {
     return (
       <div>
-      <PageHeader className="welcome">{this.props.name}</PageHeader>
-      <div  style={{width: "15%", display: 'inline-block', position: 'absolute'}}>
-      <Panel>
-      <Panel.Heading>Members {this.props.owner ? <Popup trigger={<Button className="pull-right" bsStyle="success" bsSize="xsmall" onClick={this.addUser} value={1}>+</Button>} position="right center">
-      <form onSubmit={this.addUser}>
-      <input type="text"  onChange={this.handleChange} name="username" placeholder="User"/>
-      <input type="submit" value="Add" />
-      </form>
-      </Popup> : null }</Panel.Heading>
-      {this.renderMembersList()}
-      </Panel>
-      </div>
-      <div style={{width: "40%", display: 'inline-block', marginLeft: '600px'}}>
-      {this.renderSeasonView()}
-      </div>
+        <PageHeader className="welcome">{this.props.name}</PageHeader>
+        <div id='members-list-container'>
+          <Panel id="members-list">
+          <Panel.Heading>Members {this.props.owner ? <Popup trigger={<Button className="pull-right" bsStyle="success" bsSize="xsmall" onClick={this.addUser} value={1}>+</Button>} position="right center">
+          <form onSubmit={this.addUser}>
+          <input type="text"  onChange={this.handleChange} name="username" placeholder="User"/>
+          <input type="submit" value="Add" />
+          </form>
+          </Popup> : null }</Panel.Heading>
+          {this.renderMembersList()}
+          </Panel>
+        </div>
+        {this.renderSeasonView()}
       </div>
     )
   }

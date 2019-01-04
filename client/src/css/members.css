@@ -1,0 +1,14 @@
+#members-list{
+  position: fixed;
+  width: inherit;
+  min-width: inherit;
+}
+
+#members-list-container{
+  position: relative;
+  margin-right: 5%;
+  float: left;
+  width: 15%;
+  min-width: 200px;
+  height: 1px;
+}
