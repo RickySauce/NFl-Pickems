@@ -31,29 +31,8 @@ class MatchupList extends Component {
     this.props.matchups.forEach(matchup => {
       gameTimes[matchup.gameDateTime] ? gameTimes[matchup.gameDateTime].push(matchup) : gameTimes[matchup.gameDateTime] = [matchup]
     })
-    return Object.keys(gameTimes).map( (gameTime , index) => <GameTimeContainer key={index} gameTime={gameTime} handleClick={this.handleClick} matchups={gameTimes[gameTime]}/>)
+    return Object.keys(gameTimes).map( (gameTime , index) => <GameTimeContainer key={index} weekId={this.props.weekId} gameTime={gameTime} handleClick={this.handleClick} matchups={gameTimes[gameTime]}/>)
   }
-
-  // initializeGameTimes = () => {
-  //   let timeNow = moment(new Date)
-  //   let gameTimes = {}
-  //   let checkResults = {}
-  //   this.props.matchups.forEach(matchup => {
-  //     if (matchup.locked === false){
-  //       gameTimes[matchup.gameDateTime] = "Active"
-  //     }else if (matchup.winningId === null) {
-  //       let gameTime = moment(matchup.gameDateTime)
-  //       console.log(timeNow.diff(gameTime, 'hours'), matchup.gameDateTime)
-  //       gameTimes[matchup.gameDateTime] = "Expired"
-  //     }
-  //   })
-  //   for (var gameTime in gameTimes){
-  //     if (gameTimes[gameTime] === "Expired"){
-  //       this.checkResults()
-  //     }
-  //   }
-  //   this.setState({gameTimes: gameTimes})
-  // }
 
   checkResults = (gameTimes) => {
     console.log("suh")

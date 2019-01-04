@@ -8,10 +8,6 @@ import { lockMatchups } from '../../../../../actions/seasons/weeks/matchups/lock
 
 class GameTimeContainer extends Component {
 
-  state = {
-    locked: null
-  }
-
   componentDidMount() {
     this.interval = setInterval(this.lockMatchups, 1000)
     this.lockMatchups()
@@ -22,10 +18,8 @@ class GameTimeContainer extends Component {
   }
 
   lockMatchups = () => {
-    if ((this.state.locked === false || this.state.locked === null) && new Date > new Date(this.props.gameTime)){
-      this.setState({locked: true})
-    } else if (this.state.locked === null) {
-      this.setState({locked: false})
+    if (this.props.matchups[0].locked === false && new Date > new Date(this.props.gameTime)){
+      this.props.lockMatchups(this.props.gameTime, this.props.weekId)
     }
   }
 
@@ -35,7 +29,7 @@ class GameTimeContainer extends Component {
 
   renderMatchupList = () => {
     return this.props.matchups.map(matchup => {
-      return <MatchupCard key={matchup.id} handleClick={this.props.handleClick} matchup={matchup} locked={this.state.locked}/>})
+      return <MatchupCard key={matchup.id} handleClick={this.props.handleClick} matchup={matchup} locked={matchup.locked}/>})
   }
 
   render(){
