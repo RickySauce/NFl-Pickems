@@ -1,4 +1,5 @@
 .matchup-card {
   display: inline-block;
   width: 280px;
+  margin-right: 5px;
 }
