@@ -1,4 +1,5 @@
 #season-container {
-  position: relative;
-  display: inline-block;
+  float: right;
+  display: inline;
+  width: 70%;
 }
