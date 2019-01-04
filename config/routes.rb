@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 namespace :api do
   post '/login', to: 'sessions#login'
   post '/register', to: 'users#create'
-  patch '/matchups/update(/:week_id)(/:matchup_id)', to: 'matchups#update'
+  patch '/matchups/update/:week_id', to: 'matchups#update'
   get '/teams', to: 'teams#show'
 
   scope '/users' do
