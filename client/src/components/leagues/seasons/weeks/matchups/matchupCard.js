@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Team from './team'
-// import moment from 'moment'
-import { Panel, Col, Row } from 'react-bootstrap';
+import { Panel, Col } from 'react-bootstrap';
 import relativeTime from '../../../../../functions/relativeTime'
 import Timer from './timer'
 import '../../../../../css/matchups.css'
@@ -18,7 +17,7 @@ dateFormatter = (date) => {
 }
 
 handleClick = (event) => {
-  if (this.props.locked === false){
+  if (this.props.matchup.locked === false){
     let team = event.target.dataset.side
     let teamId = event.target.dataset.id
     let newState = {}
@@ -33,7 +32,10 @@ handleClick = (event) => {
     this.props.handleClick(this.props.matchup.id, teamId)
   }
 }
+
+
   render(){
+    console.log(this.props.matchup.locked, this.props.matchup.homeTeam.name, this.props.matchup.awayTeam.name)
     return(
       <Panel className='matchup-card'>
         <Panel.Heading style={{'fontSize': "16px", 'fontWeight': 'bold'}}> <Col xs={4}><strong>{this.props.matchup.homeTeam.name}</strong></Col>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>{this.props.matchup.awayTeam.name}</strong></Panel.Heading>

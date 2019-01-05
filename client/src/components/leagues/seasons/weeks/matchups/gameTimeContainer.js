@@ -18,7 +18,7 @@ class GameTimeContainer extends Component {
   }
 
   lockMatchups = () => {
-    if (this.props.matchups[0].locked === false && new Date > new Date(this.props.gameTime)){
+    if (this.props.matchups.some(matchup => matchup.locked === false) && new Date > new Date(this.props.gameTime)){
       this.props.lockMatchups(this.props.gameTime, this.props.weekId)
     }
   }
