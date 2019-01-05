@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Team from './team'
 import { Panel, Col } from 'react-bootstrap';
 import relativeTime from '../../../../../functions/relativeTime'
-import Timer from './timer'
 import '../../../../../css/matchups.css'
 
 class MatchupCard extends Component {

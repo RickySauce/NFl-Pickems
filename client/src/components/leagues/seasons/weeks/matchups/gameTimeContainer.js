@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import MatchupCard from './matchupCard'
 import relativeTime from '../../../../../functions/relativeTime'
 import Timer from './timer'
-import moment from 'moment';
 import { lockMatchups } from '../../../../../actions/seasons/weeks/matchups/lockMatchups'
 
 class GameTimeContainer extends Component {
@@ -18,7 +17,7 @@ class GameTimeContainer extends Component {
   }
 
   lockMatchups = () => {
-    if (this.props.matchups.some(matchup => matchup.locked === false) && new Date > new Date(this.props.gameTime)){
+    if (this.props.matchups.some(matchup => matchup.locked === false) && new Date() > new Date(this.props.gameTime)){
       this.props.lockMatchups(this.props.gameTime, this.props.weekId)
     }
   }
