@@ -6,9 +6,6 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-
-api_key = 'qgwp56audu67tqeyupv66ymc'
-api_root = 'https://api.sportradar.us/nfl-ot2/'
 current_year = Date.today.year
 
 @resp = Faraday.get "#{api_root}seasontd/#{current_year}/standings.json?" do |req|
